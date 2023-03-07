@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Proyectofinal.MainPage">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="Proyectofinal.Login">
 
     <StackLayout Margin="30,0,30,0">
         <Frame BackgroundColor="Transparent" Margin="0,50,0,0">
@@ -22,10 +22,15 @@
                Margin="0,30,0,0"/>
 
         <Entry Placeholder="Email"
-               Margin="10"></Entry>
+               Margin="10"
+               Text="{Binding Login.Username}"
+               ></Entry>
+        
         <Entry IsPassword="True"
                Placeholder="Password"
-               Margin="10"></Entry>
+               Margin="10"
+               Text="{Binding Login.Password}"
+               ></Entry>
         
         <Button Text="Sing In"
                 TextColor="White"
@@ -33,6 +38,7 @@
                 BackgroundColor="#665ca8"
                 CornerRadius="10"
                 Margin="10,30,10,0"
+                Command="{Binding LoginCommand}" 
         />
 
         <Button Text="Register"
@@ -41,6 +47,7 @@
                 BackgroundColor="#5e5ca8"
                 CornerRadius="10"
                 Margin="10,30,10,0"
+                Command="{Binding RegisterCommand}"
         />
     </StackLayout>
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using Proyectofinal.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -9,12 +11,13 @@ using Xamarin.Forms;
 
 namespace Proyectofinal
 {
-    public partial class MainPage : ContentPage
+    public partial class Login : ContentPage
     {
 
-        public MainPage()
+        public Login()
         {
             InitializeComponent();
+            this.BindingContext = new LoginViewModel();
         }
     }
 }

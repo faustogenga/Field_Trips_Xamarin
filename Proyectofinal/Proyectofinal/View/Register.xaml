@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyectofinal.View.Register">
+    <ContentPage.Content>
+        
+    <StackLayout Margin="30,0,30,0">
+        <Frame BackgroundColor="Transparent" Margin="0,50,0,0">
+            <Image Source="LogoUlacit.png"/>
+        </Frame>
+        <Label Text="Academic Field trips" 
+               TextColor="#5e5ca8" 
+               FontSize="20"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Padding="5"/>
+        <Label Text="Register" 
+               TextColor="#665ca8"
+               FontSize="20"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Start"
+               Padding="10"/>
+
+            <Entry Placeholder="Nombre"
+               Margin="5"
+               Text="{Binding Register.Nombre}"
+               ></Entry>
+
+            <Entry Placeholder="Cedula"
+               Margin="5"
+               Text="{Binding Register.Cedula}"
+               ></Entry>
+
+            <Entry Placeholder="Email"
+               Margin="5"
+               Text="{Binding Register.Email}"
+               ></Entry>
+        
+        <Entry IsPassword="True"
+               Placeholder="Password"
+               Margin="5"
+               Text="{Binding Register.Password}"
+               ></Entry>
+        
+        <Button Text="Sing In"
+                TextColor="White"
+                FontAttributes="Bold"
+                BackgroundColor="#665ca8"
+                CornerRadius="10"
+                Margin="10,30,10,0"
+
+        />
+
+        <Button Text="Register"
+                TextColor="White"
+                FontAttributes="Bold"
+                BackgroundColor="#5e5ca8"
+                CornerRadius="10"
+                Margin="10,30,10,0"
+                Command="{Binding RegisterCommand}"
+        />
+    </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
