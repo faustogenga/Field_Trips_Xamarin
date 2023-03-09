@@ -8,7 +8,7 @@ namespace Proyectofinal.Model
 {
     public class RegisterModel : INotifyPropertyChanged
     {
-        private string Nombre;
+        private string nombre;
 
         private string email;
 
@@ -18,7 +18,7 @@ namespace Proyectofinal.Model
 
         private string carrera;
 
-        public string Nombre1
+        public string Nombre
         {
             get { return Nombre; }
             set

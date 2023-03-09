@@ -19,12 +19,11 @@ namespace Proyectofinal.ViewModel {
             RegisterCommand = new Command(() =>
             {
                     App.Current.MainPage.DisplayAlert("exito",
-                         $"{RegisterModel.Nombre1} \n" +
+                         $"hola : {RegisterModel.Nombre} \n" +
                          $"{RegisterModel.Cedula} \n" +
                          $"{RegisterModel.Carrera} \n" +
                           $"{RegisterModel.Email} \n" +
-                          $"{RegisterModel.Password} \n"
-                         ,
+                          $"{RegisterModel.Password} \n",
                         "OK");
             });
 
