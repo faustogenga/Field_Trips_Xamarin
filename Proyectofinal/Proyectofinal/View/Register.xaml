@@ -42,14 +42,6 @@
                Text="{Binding Register.Password}"
                ></Entry>
         
-        <Button Text="Sing In"
-                TextColor="White"
-                FontAttributes="Bold"
-                BackgroundColor="#665ca8"
-                CornerRadius="10"
-                Margin="10,30,10,0"
-
-        />
 
         <Button Text="Register"
                 TextColor="White"

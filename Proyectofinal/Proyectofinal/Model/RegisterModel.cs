@@ -20,10 +20,10 @@ namespace Proyectofinal.Model
 
         public string Nombre
         {
-            get { return Nombre; }
+            get { return nombre; }
             set
             {
-                Nombre = value;
+                nombre = value;
                 OnPropertyChanged();
             }
         }

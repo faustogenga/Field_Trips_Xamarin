@@ -23,13 +23,13 @@
 
         <Entry Placeholder="Email"
                Margin="10"
-               Text="{Binding Login.Username}"
+               Text="{Binding Username}"
                ></Entry>
         
         <Entry IsPassword="True"
                Placeholder="Password"
                Margin="10"
-               Text="{Binding Login.Password}"
+               Text="{Binding Password}"
                ></Entry>
         
         <Button Text="Sing In"
