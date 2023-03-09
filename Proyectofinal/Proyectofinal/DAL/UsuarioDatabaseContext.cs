@@ -3,6 +3,7 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Proyectofinal.DAL
@@ -58,6 +59,12 @@ namespace Proyectofinal.DAL
         {
             var query = connection.Table<Usuario>().Where(u => u.Email == email && u.Password == password);
             return query.FirstOrDefault();
+        }
+        public List<string> GetAllCarreras()
+        {
+            var query = connection.Table<Usuario>().Select(u => u.Carrera);
+            List<string> carreras = query.ToList();
+            return carreras;
         }
     }
 
