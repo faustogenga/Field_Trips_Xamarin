@@ -1,4 +1,5 @@
-﻿using Proyectofinal.Model;
+﻿using Proyectofinal.DAL;
+using Proyectofinal.Model;
 using Proyectofinal.View;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,11 @@ namespace Proyectofinal.ViewModel
 {
     public class LoginViewModel : INotifyPropertyChanged
     {
-        public LoginModel Login { get; set; }
+        private readonly UsuarioDatabaseContext MyDal;
+
+        private List<Usuario> Usuarios;
+
+        public LoginModel Login;
 
         public bool isLoginButtonEnabled;
         public ICommand LoginCommand { get; set; }
@@ -23,6 +28,10 @@ namespace Proyectofinal.ViewModel
         public LoginViewModel()
         {
             Login = new LoginModel();
+
+            MyDal = new UsuarioDatabaseContext();
+
+            Usuarios = MyDal.GetAllModels();
 
             LoginCommand = new Command (async () =>
             {
@@ -35,16 +44,16 @@ namespace Proyectofinal.ViewModel
 
                     if (isSuccess)
                     {
-                        // Navigate to home page
+                        await App.Current.MainPage.DisplayAlert("Bien", "Bien", "OK");
                     }
                     else
                     {
-                        // Display error message
+                        await App.Current.MainPage.DisplayAlert("Error", "Invalid username or password", "OK");
                     }
                 }
                 else
                 {
-                    // Display error message for invalid input fields
+                    await App.Current.MainPage.DisplayAlert("Error", "Username and password cannot be empty", "OK");
                 }
 
             });
@@ -116,7 +125,16 @@ namespace Proyectofinal.ViewModel
 
         private async Task<bool> LoginVoid(string username, string password)
         {
-            throw new NotImplementedException();
+            bool isSuccess = false;
+
+            var user = MyDal.LoginModelAsync(username, password);
+
+            if (user != null)
+            {
+                isSuccess = true;
+            }
+
+            return isSuccess;
         }
     }
 }
