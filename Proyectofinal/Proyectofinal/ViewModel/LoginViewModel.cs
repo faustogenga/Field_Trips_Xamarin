@@ -16,8 +16,6 @@ namespace Proyectofinal.ViewModel
     {
         private readonly UsuarioDatabaseContext MyDal;
 
-        private List<Usuario> Usuarios;
-
         public LoginModel Login;
 
         public bool isLoginButtonEnabled;
@@ -31,16 +29,14 @@ namespace Proyectofinal.ViewModel
 
             MyDal = new UsuarioDatabaseContext();
 
-            Usuarios = MyDal.GetAllModels();
-
-            LoginCommand = new Command (async () =>
+            LoginCommand = new Command(async () =>
             {
                 ValidateLoginInputFields();
 
                 if (IsLoginButtonEnabled)
                 {
                     // Perform login logic
-                    bool isSuccess = await LoginVoid(Login.Username, Login.Password);
+                    bool isSuccess = LoginVoid(Login.Username, Login.Password);
 
                     if (isSuccess)
                     {
@@ -123,11 +119,11 @@ namespace Proyectofinal.ViewModel
             }
         }
 
-        private async Task<bool> LoginVoid(string username, string password)
+        private bool LoginVoid(string email, string password)
         {
             bool isSuccess = false;
 
-            var user = MyDal.LoginModelAsync(username, password);
+            var user = MyDal.LoginModel(email, password);
 
             if (user != null)
             {

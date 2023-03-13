@@ -40,10 +40,6 @@ namespace Proyectofinal.DAL
             return query.ToList();
         }
 
-        public void InsertModel(Usuario model)
-        {
-            connection.Insert(model);
-        }
 
         public void UpdateModel(Usuario model)
         {
@@ -55,11 +51,31 @@ namespace Proyectofinal.DAL
             connection.Delete(model);
         }
 
-        public Usuario LoginModelAsync(string email, string password)
+        public Usuario LoginModel(string email, string password)
         {
             var query = connection.Table<Usuario>().Where(u => u.Email == email && u.Password == password);
             return query.FirstOrDefault();
         }
+
+        public int RegisterModel(Usuario model)
+        {
+            int rowsAffected = connection.Insert(model);
+            return rowsAffected;
+        }
+
+        public Usuario RegisterEmailValidation(string email)
+        {
+            var query = connection.Table<Usuario>().Where(u => u.Email == email);
+            return query.FirstOrDefault();
+        }
+
+        public Usuario RegisterCedulaValidation(string cedula)
+        {
+            var query = connection.Table<Usuario>().Where(u => u.Cedula == cedula);
+            return query.FirstOrDefault();
+        }
+
+
         public List<string> GetAllCarreras()
         {
             var query = connection.Table<Usuario>().Select(u => u.Carrera);
