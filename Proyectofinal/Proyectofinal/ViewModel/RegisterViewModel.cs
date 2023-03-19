@@ -54,6 +54,56 @@ namespace Proyectofinal.ViewModel
 
         }
 
+        public string Nombre
+        {
+            get { return Register.Nombre; }
+            set
+            {
+                Register.Nombre = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Email
+        {
+            get { return Register.Email; }
+            set
+            {
+                Register.Email = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Password
+        {
+            get { return Register.Password; }
+            set
+            {
+                Register.Password = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Cedula
+        {
+            get { return Register.Cedula; }
+            set
+            {
+                Register.Cedula = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Carrera
+        {
+            get { return Register.Carrera; }
+            set
+            {
+                Register.Carrera = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public bool IsRegisterButtonEnabled
         {
@@ -113,6 +163,12 @@ namespace Proyectofinal.ViewModel
 
             if (MyDal.RegisterModel(nuevo) > 0)
             {
+                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.Email}", "OK");
+                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.Id}", "OK");
+                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.Nombre}", "OK");
+                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.Cedula}", "OK");
+                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.Carrera}", "OK");
+                App.Current.MainPage.DisplayAlert("registrado", $"reg", "OK");
                 return true;
             }
             else

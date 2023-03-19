@@ -20,17 +20,20 @@ namespace Proyectofinal.DAL
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
             dbName);
 
-            var assembly = typeof(UsuarioDatabaseContext).Assembly;
-
-            using (Stream stream = assembly.GetManifestResourceStream("Proyectofinal.Database.Proyecto.db"))
+            if (!File.Exists(dbPath))
             {
-                // Copy the stream to the local storage
-                using (var fileStream = new FileStream(dbPath, FileMode.Create, FileAccess.Write))
+                // El archivo de base de datos no existe en la ubicación local, copiar el recurso
+                var assembly = typeof(UsuarioDatabaseContext).Assembly;
+
+                using (Stream stream = assembly.GetManifestResourceStream("Proyectofinal.Database.Proyecto.db"))
                 {
-                    stream.CopyTo(fileStream);
+                    // Copy the stream to the local storage
+                    using (var fileStream = new FileStream(dbPath, FileMode.Create, FileAccess.Write))
+                    {
+                        stream.CopyTo(fileStream);
+                    }   
                 }
             }
-
             connection = new SQLiteConnection(dbPath);
         }
 
@@ -60,6 +63,7 @@ namespace Proyectofinal.DAL
         public int RegisterModel(Usuario model)
         {
             int rowsAffected = connection.Insert(model);
+            UpdateDatabase();
             return rowsAffected;
         }
 
@@ -82,6 +86,32 @@ namespace Proyectofinal.DAL
             List<string> carreras = query.ToList();
             return carreras;
         }
+
+        private void UpdateResourceDatabase()
+        {
+            var assembly = typeof(UsuarioDatabaseContext).Assembly;
+
+            // Read the original database file as a stream
+            using (var stream = assembly.GetManifestResourceStream("Proyectofinal.Database.Proyecto.db"))
+            {
+                if (stream == null)
+                {
+                    throw new Exception("Could not find the original database file in the resources folder.");
+                }
+
+                // Get the path to the local copy of the database file
+                var localPath = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                    "Proyecto.db");
+
+                // Overwrite the original database file with the updated contents
+                using (var fileStream = new FileStream(localPath, FileMode.OpenOrCreate, FileAccess.Write))
+                {
+                    stream.CopyTo(fileStream);
+                }
+            }
+        }
+
     }
 
 }

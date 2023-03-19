@@ -8,15 +8,11 @@ namespace Proyectofinal.Model
 {
     public class RegisterModel : INotifyPropertyChanged
     {
-        private string nombre;
-
-        private string email;
-
-        private string password;
-
-        private string cedula;
-
-        private string carrera;
+        public string nombre;
+        public string email;
+        public string password;
+        public string cedula;
+        public string carrera;
 
         public string Nombre
         {
