@@ -34,6 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Database\Proyecto.db" />
+    <Folder Include="Database\" />
   </ItemGroup>
 </Project>
