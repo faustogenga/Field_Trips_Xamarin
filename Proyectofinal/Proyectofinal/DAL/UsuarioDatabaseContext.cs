@@ -20,7 +20,7 @@ namespace Proyectofinal.DAL
 
 
         public UsuarioDatabaseContext()
-        {
+        { 
 
             if (!File.Exists(dbPath))
             {
@@ -69,7 +69,7 @@ namespace Proyectofinal.DAL
 
         public Usuario LoginAdminModel(String email, string password)
         {
-            var query = connection.Table<Usuario>().Where(u => u.Email == email && u.Password == password && u.Role == "admin");
+            var query = connection.Table<Usuario>().Where(u => u.Email == email && u.Password == password && u.Role == "Admin");
             return query.FirstOrDefault();
         }
 
