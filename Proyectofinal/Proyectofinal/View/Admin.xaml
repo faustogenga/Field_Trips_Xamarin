@@ -4,9 +4,20 @@
              x:Class="Proyectofinal.View.Admin">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Button Text="Refresh" Clicked="OnRefreshClicked" />
+            <ListView x:Name="userListView" ItemsSource="{Binding Users}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding Email}" FontAttributes="Bold" />
+                                <Label Text="{Binding Name}" />
+                                <Label Text="{Binding Carrera}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

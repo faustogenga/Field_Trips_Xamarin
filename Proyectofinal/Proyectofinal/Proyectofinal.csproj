@@ -11,7 +11,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Database\Proyecto.db" />
+    <Compile Remove="Database\**" />
+    <EmbeddedResource Remove="Database\**" />
+    <None Remove="Database\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,9 +33,5 @@
     <EmbeddedResource Update="View\Register.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Database\" />
   </ItemGroup>
 </Project>

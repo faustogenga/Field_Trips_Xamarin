@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Proyectofinal.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,17 @@ namespace Proyectofinal.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Admin : ContentPage
     {
+        private readonly UserViewModel _viewModel;
         public Admin()
         {
             InitializeComponent();
+            _viewModel = new UserViewModel();
+            BindingContext = _viewModel;
+        }
+
+        private void OnRefreshClicked(object sender, System.EventArgs e)
+        {
+            _viewModel.Refresh();
         }
     }
 }

@@ -26,6 +26,13 @@ namespace Proyectofinal.DAL
             {
                 connection = new SQLiteConnection(dbPath);
                 connection.CreateTable<Usuario>();
+                var Admin = new Usuario();
+                Admin.Nombre = "Admin";
+                Admin.Email = "Admin@gmail.com";
+                Admin.Password = "Admin";
+                Admin.Cedula = "000000000";
+                Admin.Carrera = "Administracion";
+                connection.Insert(Admin);
             }
             else
             {
