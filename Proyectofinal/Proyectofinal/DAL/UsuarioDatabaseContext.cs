@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Proyectofinal.DAL
@@ -15,30 +16,27 @@ namespace Proyectofinal.DAL
         static string dbName = "Proyecto.db";
 
         public string dbPath = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            dbName);
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),dbName);
 
 
         public UsuarioDatabaseContext()
         { 
-
+            File.Delete(dbPath);
+            // Check if the database file exists in the local application data folder
             if (!File.Exists(dbPath))
             {
-                connection = new SQLiteConnection(dbPath);
-                connection.CreateTable<Usuario>();
-                var Admin = new Usuario();
-                Admin.Nombre = "Admin";
-                Admin.Email = "Admin@gmail.com";
-                Admin.Password = "Admin";
-                Admin.Cedula = "000000000";
-                Admin.Carrera = "Administracion";
-                Admin.Role = "Admin";
-                connection.Insert(Admin);
+                // Copy the database file from the resources folder to the local application data folder
+                var assembly = typeof(App).GetTypeInfo().Assembly;
+                using (var resourceStream = assembly.GetManifestResourceStream("Proyectofinal.Database.Proyecto.db"))
+                {
+                    using (var fileStream = File.Create(dbPath))
+                    {
+                        resourceStream.CopyTo(fileStream);
+                    }
+                }
             }
-            else
-            {
-                connection = new SQLiteConnection(dbPath);
-            }
+
+            connection = new SQLiteConnection(dbPath);
 
             File.SetAttributes(dbPath, FileAttributes.Normal);
         }
