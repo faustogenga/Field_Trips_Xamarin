@@ -158,7 +158,8 @@ namespace Proyectofinal.ViewModel
                 Email = email,
                 Password = password,
                 Cedula = cedula,
-                Carrera = carrera
+                Carrera = carrera,
+                Role = "user"
             };
 
             if (MyDal.RegisterModel(nuevo) > 0)
@@ -168,6 +169,7 @@ namespace Proyectofinal.ViewModel
                 App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.Nombre}", "OK");
                 App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.Cedula}", "OK");
                 App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.Carrera}", "OK");
+                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.Role}", "OK");
                 App.Current.MainPage.DisplayAlert("registrado", $"reg", "OK");
                 return true;
             }

@@ -32,6 +32,7 @@ namespace Proyectofinal.DAL
                 Admin.Password = "Admin";
                 Admin.Cedula = "000000000";
                 Admin.Carrera = "Administracion";
+                Admin.Role = "Admin";
                 connection.Insert(Admin);
             }
             else
@@ -63,6 +64,12 @@ namespace Proyectofinal.DAL
         public Usuario LoginModel(string email, string password)
         {
             var query = connection.Table<Usuario>().Where(u => u.Email == email && u.Password == password);
+            return query.FirstOrDefault();
+        }
+
+        public Usuario LoginAdminModel(String email, string password)
+        {
+            var query = connection.Table<Usuario>().Where(u => u.Email == email && u.Password == password && u.Role == "admin");
             return query.FirstOrDefault();
         }
 

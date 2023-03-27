@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Proyectofinal.ViewModel
@@ -35,16 +36,27 @@ namespace Proyectofinal.ViewModel
 
                 if (IsLoginButtonEnabled)
                 {
+                    bool isAdmin = LoginAdminVoid(Login.Username, Login.Password);
                     // Perform login logic
-                    bool isSuccess = LoginVoid(Login.Username, Login.Password);
-
-                    if (isSuccess)
+                    if (isAdmin)
                     {
-                        await App.Current.MainPage.DisplayAlert("Bien", "Bien", "OK");
+                        await App.Current.MainPage.DisplayAlert("Bien", "Admin login successful", "OK");
+                        App.Current.MainPage = new Admin();
                     }
                     else
                     {
-                        await App.Current.MainPage.DisplayAlert("Error", "Invalid username or password", "OK");
+                        bool isUser = LoginVoid(Login.Username, Login.Password);
+
+                        if (isUser)
+                        {
+                            await App.Current.MainPage.DisplayAlert("Bien", "User login successful", "OK");
+                            /*App.Current.MainPage = new User();*/
+                        }
+                        else
+                        {
+                            await App.Current.MainPage.DisplayAlert("Error", "Invalid username or password", "OK");
+                        }
+
                     }
                 }
                 else
@@ -121,16 +133,26 @@ namespace Proyectofinal.ViewModel
 
         private bool LoginVoid(string email, string password)
         {
-            bool isSuccess = false;
-
             var user = MyDal.LoginModel(email, password);
 
             if (user != null)
             {
-                isSuccess = true;
+                return true;
             }
 
-            return isSuccess;
+            return false;
+        }
+
+        private bool LoginAdminVoid(string email, string password)
+        {
+            var user = MyDal.LoginAdminModel(email, password);
+
+            if (user != null)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

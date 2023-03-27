@@ -14,6 +14,7 @@ namespace Proyectofinal.Model
         private string _password;
         private string _cedula;
         private string _carrera;
+        private string _role;
 
         [PrimaryKey, AutoIncrement]
         public int Id
@@ -92,6 +93,19 @@ namespace Proyectofinal.Model
                     OnPropertyChanged(nameof(Carrera));
                 }
             }
+        }
+
+        public string Role
+        {
+            get=> _role;
+            set
+            {
+                if (_role != value)
+                {
+                    _role = value;
+                    OnPropertyChanged(nameof(Role));
+                }
+            }   
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

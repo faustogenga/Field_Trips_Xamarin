@@ -10,9 +10,11 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding Id}" FontAttributes="Bold"/>
                                 <Label Text="{Binding Email}" FontAttributes="Bold" />
                                 <Label Text="{Binding Name}" />
                                 <Label Text="{Binding Carrera}" />
+                                <Label Text="{Binding Cedula}" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
