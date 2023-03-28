@@ -16,11 +16,18 @@ namespace Proyectofinal.ViewModel
 
         private readonly UsuarioDatabaseContext MyDal;
 
-        public string ErrorMessage { get; set; }
+        private CarreraViewModel carreraViewModel;
 
         public RegisterModel Register { get; set; }
 
+        public string ErrorMessage { get; set; }
+
+        private List<string> _carreras;
+        private string _selectedCarrera { get; set; }
+
         public ICommand RegisterCommand { get; set; }
+
+        public ICommand SigninCommand { get; set; }
 
         public RegisterViewModel()
         {
@@ -28,14 +35,17 @@ namespace Proyectofinal.ViewModel
 
             MyDal = new UsuarioDatabaseContext();
 
+            Carreras = MyDal.GetAllCarreras();
+
             RegisterCommand = new Command(() =>
             {
+
                 ValidateRegisterInputFields();
 
                 if (IsRegisterButtonEnabled)
                 {
                     // Perform register logic
-                    bool isSuccess = RegisterVoid(Register.Nombre, Register.Email, Register.Password, Register.Cedula, Register.Carrera);
+                    bool isSuccess = RegisterVoid(Register.Nombre, Register.Email, Register.Password, Register.Cedula, SelectedCarrera);
 
                     if (isSuccess)
                     {
@@ -52,6 +62,30 @@ namespace Proyectofinal.ViewModel
                 }
             });
 
+            SigninCommand = new Command(() =>
+            {
+                App.Current.MainPage = new Login();
+
+            });
+
+        }
+        public List<string> Carreras
+        {
+            get => _carreras;
+            set
+            {
+                _carreras = value;
+                OnPropertyChanged();
+            }
+        }
+        public string SelectedCarrera
+        {
+            get => _selectedCarrera;
+            set 
+            {
+                _selectedCarrera = value;
+                OnPropertyChanged();
+            }
         }
 
         public string Nombre
@@ -94,16 +128,6 @@ namespace Proyectofinal.ViewModel
             }
         }
 
-        public string Carrera
-        {
-            get { return Register.Carrera; }
-            set
-            {
-                Register.Carrera = value;
-                OnPropertyChanged();
-            }
-        }
-
 
         public bool IsRegisterButtonEnabled
         {
@@ -125,7 +149,7 @@ namespace Proyectofinal.ViewModel
 
         private void ValidateRegisterInputFields()
         {
-            if (string.IsNullOrEmpty(Register.Nombre) || string.IsNullOrEmpty(Register.Email) || string.IsNullOrEmpty(Register.Password) || string.IsNullOrEmpty(Register.Cedula) || string.IsNullOrEmpty(Register.Carrera))
+            if (string.IsNullOrEmpty(Register.Nombre) || string.IsNullOrEmpty(Register.Email) || string.IsNullOrEmpty(Register.Password) || string.IsNullOrEmpty(Register.Cedula))
             {
                 IsRegisterButtonEnabled = false;
                 ErrorMessage = "Entries cannot be empty";
@@ -159,7 +183,7 @@ namespace Proyectofinal.ViewModel
                 Password = password,
                 Cedula = cedula,
                 Carrera = carrera,
-                Role = "user"
+                Role = "User"
             };
 
             if (MyDal.RegisterModel(nuevo) > 0)

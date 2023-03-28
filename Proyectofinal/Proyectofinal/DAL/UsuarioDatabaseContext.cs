@@ -21,7 +21,6 @@ namespace Proyectofinal.DAL
 
         public UsuarioDatabaseContext()
         { 
-            File.Delete(dbPath);
             // Check if the database file exists in the local application data folder
             if (!File.Exists(dbPath))
             {
@@ -45,6 +44,12 @@ namespace Proyectofinal.DAL
         public List<Usuario> GetAllModels()
         {
             var query = connection.Table<Usuario>();
+            return query.ToList();
+        }
+
+        public List<string> GetAllCarreras()
+        {
+            var query = connection.Table<Carrera>().Select(u => u.Nombre);
             return query.ToList();
         }
 
@@ -90,12 +95,6 @@ namespace Proyectofinal.DAL
         }
 
 
-        public List<string> GetAllCarreras()
-        {
-            var query = connection.Table<Usuario>().Select(u => u.Carrera);
-            List<string> carreras = query.ToList();
-            return carreras;
-        }
 
     }
 

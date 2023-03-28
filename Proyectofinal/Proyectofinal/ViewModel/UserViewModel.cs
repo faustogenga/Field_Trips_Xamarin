@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace Proyectofinal.ViewModel
 {
-    internal class UserViewModel : INotifyPropertyChanged
+    public class UserViewModel : INotifyPropertyChanged
     {
         private readonly UsuarioDatabaseContext _databaseContext;
 
