@@ -18,7 +18,7 @@ namespace Proyectofinal.ViewModel
         public UserViewModel()
         {
             _databaseContext = new UsuarioDatabaseContext();
-            Users = new ObservableCollection<Usuario>(_databaseContext.GetAllModels());
+            Users = new ObservableCollection<Usuario>(_databaseContext.GetAllUsuarios());
         }
 
         public ObservableCollection<Usuario> Users
@@ -37,7 +37,7 @@ namespace Proyectofinal.ViewModel
         public void Refresh()
         {
             Users.Clear();
-            var users = _databaseContext.GetAllModels();
+            var users = _databaseContext.GetAllUsuarios();
             foreach (var user in users)
             {
                 Users.Add(user);

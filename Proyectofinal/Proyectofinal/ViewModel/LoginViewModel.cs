@@ -133,7 +133,7 @@ namespace Proyectofinal.ViewModel
 
         private bool LoginVoid(string email, string password)
         {
-            var user = MyDal.LoginModel(email, password);
+            var user = MyDal.LoginUsuario(email, password);
 
             if (user != null)
             {
@@ -145,7 +145,7 @@ namespace Proyectofinal.ViewModel
 
         private bool LoginAdminVoid(string email, string password)
         {
-            var user = MyDal.LoginAdminModel(email, password);
+            var user = MyDal.LoginAdminUsuario(email, password);
 
             if (user != null)
             {

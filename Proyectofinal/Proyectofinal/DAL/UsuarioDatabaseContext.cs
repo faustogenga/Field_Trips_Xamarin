@@ -1,11 +1,12 @@
 ﻿using Proyectofinal.Model;
 using SQLite;
+using SQLiteNetExtensions.Extensions;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace Proyectofinal.DAL
 {
@@ -21,6 +22,7 @@ namespace Proyectofinal.DAL
 
         public UsuarioDatabaseContext()
         { 
+            File.Delete(dbPath);
             // Check if the database file exists in the local application data folder
             if (!File.Exists(dbPath))
             {
@@ -41,60 +43,55 @@ namespace Proyectofinal.DAL
         }
 
 
-        public List<Usuario> GetAllModels()
+        public List<Usuario> GetAllUsuarios()
         {
-            var query = connection.Table<Usuario>();
-            return query.ToList();
+            return connection.Table<Usuario>().ToList();
         }
 
-        public List<string> GetAllCarreras()
+        public List<Carrera> GetAllCarreras()
         {
-            var query = connection.Table<Carrera>().Select(u => u.Nombre);
-            return query.ToList();
+            return connection.GetAllWithChildren<Carrera>().ToList();
         }
 
-
-        public void UpdateModel(Usuario model)
+        public int UpdateUsuario(Usuario model)
         {
-            connection.Update(model);
+            return connection.Update(model);
         }
 
-        public void DeleteModel(Usuario model)
+        public int DeleteUsuario(Usuario model)
         {
-            connection.Delete(model);
+            return connection.Delete(model);
         }
 
-        public Usuario LoginModel(string email, string password)
+        public Usuario LoginUsuario(string email, string password)
         {
-            var query = connection.Table<Usuario>().Where(u => u.Email == email && u.Password == password);
+            var query = connection.Table<Usuario>().Where(u => u.Email == email && u.Password == password).ToList();
             return query.FirstOrDefault();
         }
 
-        public Usuario LoginAdminModel(String email, string password)
+
+        public Usuario LoginAdminUsuario(String email, string password)
         {
-            var query = connection.Table<Usuario>().Where(u => u.Email == email && u.Password == password && u.Role == "Admin");
+            var query = connection.Table<Usuario>().Where(u => u.Email == email && u.Password == password && u.Role == "Admin").ToList();
             return query.FirstOrDefault();
         }
 
-        public int RegisterModel(Usuario model)
+        public int RegisterUsuario(Usuario model)
         {
-            int rowsAffected = connection.Insert(model);
-            return rowsAffected;
+            return connection.Insert(model);
         }
 
         public Usuario RegisterEmailValidation(string email)
         {
-            var query = connection.Table<Usuario>().Where(u => u.Email == email);
+            var query = connection.Table<Usuario>().Where(u => u.Email == email).ToList();
             return query.FirstOrDefault();
         }
 
         public Usuario RegisterCedulaValidation(string cedula)
         {
-            var query = connection.Table<Usuario>().Where(u => u.Cedula == cedula);
+            var query = connection.Table<Usuario>().Where(u => u.Cedula == cedula).ToList();
             return query.FirstOrDefault();
         }
-
-
 
     }
 

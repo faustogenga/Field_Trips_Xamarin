@@ -16,9 +16,9 @@ namespace Proyectofinal.ViewModel
 
         private readonly UsuarioDatabaseContext MyDal;
 
-        private CarreraViewModel carreraViewModel;
-
         public RegisterModel Register { get; set; }
+
+        public CarreraViewModel Carrera { get; set; }
 
         public string ErrorMessage { get; set; }
 
@@ -35,7 +35,9 @@ namespace Proyectofinal.ViewModel
 
             MyDal = new UsuarioDatabaseContext();
 
-            Carreras = MyDal.GetAllCarreras();
+            Carrera = new CarreraViewModel();
+
+            Carreras = Carrera.CarrerasNombres;
 
             RegisterCommand = new Command(() =>
             {
@@ -186,7 +188,7 @@ namespace Proyectofinal.ViewModel
                 Role = "User"
             };
 
-            if (MyDal.RegisterModel(nuevo) > 0)
+            if (MyDal.RegisterUsuario(nuevo) > 0)
             {
                 App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.Email}", "OK");
                 App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.Id}", "OK");

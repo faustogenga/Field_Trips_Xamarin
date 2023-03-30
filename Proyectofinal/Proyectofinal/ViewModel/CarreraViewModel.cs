@@ -4,34 +4,41 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Proyectofinal.ViewModel
 {
     public class CarreraViewModel : INotifyPropertyChanged
     {
         private string _nombre;
-        private ObservableCollection<string> _carreras { get; set; }
+
+        private List<string> _carrerasnombres;
 
 
-        private readonly UsuarioDatabaseContext _databaseContext;
+        private CarreraRepository Repository { get; set; }
 
         public CarreraViewModel()
         {
-            _databaseContext = new UsuarioDatabaseContext();
-            Carreras= new ObservableCollection<string>(_databaseContext.GetAllCarreras());
+            InitializeAsync();
         }
 
-        public ObservableCollection<String> Carreras
+        public async Task InitializeAsync()
         {
-            get { return _carreras; }
+            Repository = new CarreraRepository();
+            CarrerasNombres = Repository.GetAllCarreraNombres();
+        }
+
+
+        public List<string> CarrerasNombres
+        {
+            get => _carrerasnombres;
             set
             {
-                if (_carreras != value)
-                {
-                    _carreras = value;
-                    OnPropertyChanged(nameof(Carreras));
-                }
+                _carrerasnombres = value;
+                OnPropertyChanged();
             }
         }
 
@@ -49,9 +56,9 @@ namespace Proyectofinal.ViewModel
             }
         }
 
-
         public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
