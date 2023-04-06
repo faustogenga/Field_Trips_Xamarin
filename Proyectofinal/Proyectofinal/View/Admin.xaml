@@ -4,18 +4,62 @@
              x:Class="Proyectofinal.View.Admin">
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Refresh" Clicked="OnRefreshClicked" />
+            <Button Text="Login" Clicked="LoginView" 
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    BackgroundColor="#665ca8"
+                    CornerRadius="10"
+                    Margin="10,10,10,0"/>
+            
+            <Button Text="Refresh" Clicked="OnRefreshClicked"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    BackgroundColor="#665ca8"
+                    CornerRadius="10"
+                    Margin="10,10,10,0"/>
+            
             <ListView x:Name="userListView" ItemsSource="{Binding Users}" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Vertical">
-                                <Label Text="{Binding Id}" FontAttributes="Bold"/>
-                                <Label Text="{Binding Email}" FontAttributes="Bold" />
-                                <Label Text="{Binding Nombre}" />
-                                <Label Text="{Binding Carrera}" />
-                                <Label Text="{Binding Cedula}" />
-                            </StackLayout>
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Delete" BackgroundColor="Red"
+                                                    Command="{Binding BindingContext.DeleteUserCommand, 
+                                                                Source={x:Reference Name=userListView}}"  
+                                                   CommandParameter="{Binding .}" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <SwipeView.Content>
+                                    <Grid Padding="10" RowSpacing="5"
+                                          BackgroundColor="#5e5ca8"
+                                          Margin="10,30,10,0" 
+                                          >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label Text="{Binding Id}" FontAttributes="Bold" Grid.Row="0"
+                                               TextColor="White"
+                                               FontSize="20"/>  
+                                        <Label Text="{Binding Email}" FontAttributes="Bold" Grid.Row="1"
+                                               TextColor="White"/>
+                                        <Label Text="{Binding Nombre}" Grid.Row="2"
+                                               FontAttributes="Bold"
+                                               TextColor="White"/>
+                                        <Label Text="{Binding Carrera}" Grid.Row="3" 
+                                               TextColor="White"
+                                               FontAttributes="Bold"/>
+                                        <Label Text="{Binding Cedula}" Grid.Row="4" 
+                                               TextColor="White"
+                                               FontAttributes="Bold"/>
+                                    </Grid>
+                                </SwipeView.Content>
+                            </SwipeView>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

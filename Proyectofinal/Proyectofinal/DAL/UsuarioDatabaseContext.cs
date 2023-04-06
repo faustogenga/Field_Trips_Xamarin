@@ -63,6 +63,12 @@ namespace Proyectofinal.DAL
             return connection.Delete(model);
         }
 
+        public Usuario GetUsuarioById(int id)
+        {
+            return connection.Table<Usuario>().FirstOrDefault(u => u.Id == id);
+        }
+
+
         public Usuario LoginUsuario(string email, string password)
         {
             var query = connection.Table<Usuario>().Where(u => u.Email == email && u.Password == password).ToList();

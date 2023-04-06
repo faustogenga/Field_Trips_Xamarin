@@ -25,5 +25,10 @@ namespace Proyectofinal.View
         {
             _viewModel.Refresh();
         }
+
+        private void LoginView(object sender, EventArgs e)
+        {
+            _viewModel.LoginView();
+        }
     }
 }

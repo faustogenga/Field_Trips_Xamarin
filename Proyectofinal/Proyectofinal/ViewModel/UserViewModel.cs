@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Proyectofinal.ViewModel
@@ -12,6 +14,7 @@ namespace Proyectofinal.ViewModel
     public class UserViewModel : INotifyPropertyChanged
     {
         private readonly UsuarioDatabaseContext _databaseContext;
+        public ICommand DeleteUserCommand { get; private set; }
 
         private ObservableCollection<Usuario> _users { get; set; }
 
@@ -19,6 +22,7 @@ namespace Proyectofinal.ViewModel
         {
             _databaseContext = new UsuarioDatabaseContext();
             Users = new ObservableCollection<Usuario>(_databaseContext.GetAllUsuarios());
+            DeleteUserCommand = new Command<Usuario>(OnDeleteUser);
         }
 
         public ObservableCollection<Usuario> Users
@@ -34,6 +38,29 @@ namespace Proyectofinal.ViewModel
             }
         }
 
+        private async void OnDeleteUser(Usuario user)
+        {
+            bool answer = await App.Current.MainPage.DisplayAlert("Confirm Deletion", $"Are you sure you want to delete user \n {user.Nombre}?", "Yes", "No");
+            if (answer)
+            {
+                await DeleteUser(user.Id);
+                Refresh();
+            }
+        }
+
+        public async Task DeleteUser(int id)
+        {
+            var userToDelete = _databaseContext.GetUsuarioById(id);
+
+            if (userToDelete != null)
+            {
+                _databaseContext.DeleteUsuario(userToDelete);
+
+                // Remove the user from the collection
+                Users.Remove(userToDelete);
+            }
+        }
+
         public void Refresh()
         {
             Users.Clear();
@@ -42,6 +69,11 @@ namespace Proyectofinal.ViewModel
             {
                 Users.Add(user);
             }
+        }
+
+        public void LoginView()
+        {
+            App.Current.MainPage = new Login();
         }
 
 
