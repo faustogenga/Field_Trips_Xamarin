@@ -63,10 +63,23 @@ namespace Proyectofinal.DAL
             return connection.Delete(model);
         }
 
+        public int DeleteCarrera(Carrera model)
+        {
+            return connection.Delete(model);
+        }
+
+
         public Usuario GetUsuarioById(int id)
         {
             return connection.Table<Usuario>().FirstOrDefault(u => u.Id == id);
         }
+
+        public Carrera GetCarreraById(int id)
+        {
+            return connection.Table<Carrera>().FirstOrDefault(u => u.Id == id);
+        }
+
+
 
 
         public Usuario LoginUsuario(string email, string password)

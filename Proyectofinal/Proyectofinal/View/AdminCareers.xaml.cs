@@ -11,24 +11,23 @@ using Xamarin.Forms.Xaml;
 namespace Proyectofinal.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Admin : ContentPage
+    public partial class AdminCareers : ContentPage
     {
-        private readonly UserViewModel _viewModel;
-        public Admin()
+        private readonly EditViewModel _viewModel;
+        public AdminCareers()
         {
             InitializeComponent();
-            _viewModel = new UserViewModel();
+            _viewModel = new EditViewModel();
             BindingContext = _viewModel;
         }
-
         private void OnRefreshClicked(object sender, System.EventArgs e)
         {
             _viewModel.Refresh();
         }
 
-        private void LoginView(object sender, EventArgs e)
+        private void AdminMainView(object sender, EventArgs e)
         {
-            _viewModel.LoginView();
+            _viewModel.AdminMainView();
         }
     }
 }

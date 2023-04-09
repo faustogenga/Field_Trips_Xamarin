@@ -41,7 +41,7 @@ namespace Proyectofinal.ViewModel
                     if (isAdmin)
                     {
                         await App.Current.MainPage.DisplayAlert("Bien", "Admin login successful", "OK");
-                        App.Current.MainPage = new Admin();
+                        App.Current.MainPage = new AdminMain();
                     }
                     else
                     {

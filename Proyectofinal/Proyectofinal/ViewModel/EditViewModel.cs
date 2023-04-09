@@ -1,5 +1,6 @@
 ﻿using Proyectofinal.DAL;
 using Proyectofinal.Model;
+using Proyectofinal.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,18 +12,41 @@ using Xamarin.Forms;
 
 namespace Proyectofinal.ViewModel
 {
-    public class UserViewModel : INotifyPropertyChanged
+    public class EditViewModel : INotifyPropertyChanged
     {
         private readonly UsuarioDatabaseContext _databaseContext;
         public ICommand DeleteUserCommand { get; private set; }
 
-        private ObservableCollection<Usuario> _users { get; set; }
+        public ICommand DeleteCareerCommand { get; private set; }
 
-        public UserViewModel()
+        public ICommand DeleteTripCommand { get; private set; }
+
+        private ObservableCollection<Usuario> _users { get; set; }
+        private ObservableCollection<Carrera> _carrera { get; set; }
+
+        private ObservableCollection<Usuario> _trip { get; set; }
+
+
+        public EditViewModel()
         {
             _databaseContext = new UsuarioDatabaseContext();
             Users = new ObservableCollection<Usuario>(_databaseContext.GetAllUsuarios());
+            Carreras = new ObservableCollection<Carrera>(_databaseContext.GetAllCarreras());
             DeleteUserCommand = new Command<Usuario>(OnDeleteUser);
+            DeleteCareerCommand = new Command<Carrera>(OnDeleteCareer);
+        }
+        
+        public ObservableCollection<Carrera> Carreras
+        {
+            get { return _carrera; }
+            set
+            {
+                if (_carrera != value)
+                {
+                    _carrera = value;
+                    OnPropertyChanged(nameof(Carreras));
+                }
+            }
         }
 
         public ObservableCollection<Usuario> Users
@@ -48,6 +72,16 @@ namespace Proyectofinal.ViewModel
             }
         }
 
+        private async void OnDeleteCareer(Carrera carrera)
+        {
+            bool answer = await App.Current.MainPage.DisplayAlert("Confirm Deletion", $"Are you sure you want to delete career \n {carrera.Nombre}?", "Yes", "No");
+            if (answer)
+            {
+                await DeleteCareer(carrera.Id);
+                Refresh();
+            }
+        }
+
         public async Task DeleteUser(int id)
         {
             var userToDelete = _databaseContext.GetUsuarioById(id);
@@ -61,19 +95,38 @@ namespace Proyectofinal.ViewModel
             }
         }
 
+        public async Task DeleteCareer(int id)
+        {
+            var careerToDelete = _databaseContext.GetCarreraById(id);
+
+            if (careerToDelete != null)
+            {
+                _databaseContext.DeleteCarrera(careerToDelete);
+
+                // Remove the user from the collection
+                Carreras.Remove(careerToDelete);
+            }
+        }
+
         public void Refresh()
         {
+            Carreras.Clear();
             Users.Clear();
             var users = _databaseContext.GetAllUsuarios();
+            var careers = _databaseContext.GetAllCarreras();
             foreach (var user in users)
             {
                 Users.Add(user);
             }
+            foreach (var career in careers)
+            {
+                Carreras.Add(career);
+            }
         }
 
-        public void LoginView()
+        public void AdminMainView()
         {
-            App.Current.MainPage = new Login();
+            App.Current.MainPage = new AdminMain();
         }
 
 
