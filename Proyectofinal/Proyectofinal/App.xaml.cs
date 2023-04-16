@@ -1,5 +1,6 @@
 ﻿using Proyectofinal.View;
 using System;
+using Rg.Plugins.Popup;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,6 +16,9 @@ namespace Proyectofinal
 
         protected override void OnStart()
         {
+            base.OnStart();
+
+
         }
 
         protected override void OnSleep()

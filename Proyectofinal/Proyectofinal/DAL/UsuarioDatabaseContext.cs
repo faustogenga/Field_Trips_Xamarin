@@ -22,7 +22,7 @@ namespace Proyectofinal.DAL
 
         public UsuarioDatabaseContext()
         { 
-            File.Delete(dbPath);
+            /*File.Delete(dbPath);*/
             // Check if the database file exists in the local application data folder
             if (!File.Exists(dbPath))
             {
@@ -57,6 +57,12 @@ namespace Proyectofinal.DAL
         {
             return connection.Update(model);
         }
+
+        public int UpdateCarrera(Carrera model)
+        {
+            return connection.Update(model);
+        }
+
 
         public int DeleteUsuario(Usuario model)
         {

@@ -1,11 +1,10 @@
 ﻿using Proyectofinal.DAL;
 using Proyectofinal.Model;
 using Proyectofinal.View;
-using System;
-using System.Collections.Generic;
+using Proyectofinal.View.PopUp;
+using Rg.Plugins.Popup.Extensions;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -15,27 +14,98 @@ namespace Proyectofinal.ViewModel
     public class EditViewModel : INotifyPropertyChanged
     {
         private readonly UsuarioDatabaseContext _databaseContext;
+
+        public ICommand ItemTappedCommandUser { get; set; }
         public ICommand DeleteUserCommand { get; private set; }
+
+        public ICommand EditUserCommand { get; private set; }
 
         public ICommand DeleteCareerCommand { get; private set; }
 
         public ICommand DeleteTripCommand { get; private set; }
+
+        public ICommand SignOutCommand { get; private set; }
+
+        public ICommand ShowAddCareerPopupCommand { get; private set; }
+
+        public ICommand OnCancelCommand { get; private set; }
 
         private ObservableCollection<Usuario> _users { get; set; }
         private ObservableCollection<Carrera> _carrera { get; set; }
 
         private ObservableCollection<Usuario> _trip { get; set; }
 
+        private Usuario _selectedUser;
+
+        private Carrera _selectedCareer;
+
+        private Usuario _selectedTrip;
+
+    
+
+
 
         public EditViewModel()
         {
             _databaseContext = new UsuarioDatabaseContext();
+
             Users = new ObservableCollection<Usuario>(_databaseContext.GetAllUsuarios());
             Carreras = new ObservableCollection<Carrera>(_databaseContext.GetAllCarreras());
+
             DeleteUserCommand = new Command<Usuario>(OnDeleteUser);
+            EditUserCommand = new Command(async () => await OnEditUser());
+
             DeleteCareerCommand = new Command<Carrera>(OnDeleteCareer);
+
+            SignOutCommand = new Command(OnSignOut);
+            OnCancelCommand = new Command(async () => await App.Current.MainPage.Navigation.PopPopupAsync());
+
+            ItemTappedCommandUser = new Command(async () =>
+            {
+                var EditUserPopupPage = new EditUserPopupPage();
+
+                await App.Current.MainPage.DisplayAlert("Bien", $"{SelectedUser.Nombre}", "OK");
+                await App.Current.MainPage.Navigation.PushPopupAsync(EditUserPopupPage);
+            });
+
+
+            ShowAddCareerPopupCommand = new Command(async () =>
+            {
+                var addCareerPopupPage = new AddCareerPopupPage();
+                await App.Current.MainPage.Navigation.PushPopupAsync(addCareerPopupPage);
+            });
+
         }
-        
+        public Usuario SelectedUser
+        {
+            get { return _selectedUser; }
+            set
+            {
+                if (_selectedUser != value)
+                {
+                    _selectedUser = value;
+                    OnPropertyChanged(nameof(SelectedUser));
+                    ItemTappedCommandUser.Execute(_selectedUser);
+                }
+            }
+        }
+
+        /*
+        public Carrera SelectedCareer
+        {
+            get { return _selectedCareer; }
+            set
+            {
+                if (_selectedCareer != value)
+                {
+                    _selectedCareer = value;
+                    OnPropertyChanged(nameof(SelectedCareer));
+                    ItemTappedCommand.Execute(_selectedCareer);
+                }
+            }
+        }
+        */
+
         public ObservableCollection<Carrera> Carreras
         {
             get { return _carrera; }
@@ -72,6 +142,12 @@ namespace Proyectofinal.ViewModel
             }
         }
 
+        public async Task OnEditUser()
+        {
+            _databaseContext.UpdateUsuario(SelectedUser);
+            await App.Current.MainPage.Navigation.PopPopupAsync();
+        }
+
         private async void OnDeleteCareer(Carrera carrera)
         {
             bool answer = await App.Current.MainPage.DisplayAlert("Confirm Deletion", $"Are you sure you want to delete career \n {carrera.Nombre}?", "Yes", "No");
@@ -80,6 +156,11 @@ namespace Proyectofinal.ViewModel
                 await DeleteCareer(carrera.Id);
                 Refresh();
             }
+        }
+
+        private void OnSignOut()
+        {
+            App.Current.MainPage = new Login();
         }
 
         public async Task DeleteUser(int id)

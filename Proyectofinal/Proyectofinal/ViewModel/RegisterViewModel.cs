@@ -190,18 +190,12 @@ namespace Proyectofinal.ViewModel
 
             if (MyDal.RegisterUsuario(nuevo) > 0)
             {
-                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.Email}", "OK");
-                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.Id}", "OK");
-                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.Nombre}", "OK");
-                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.Cedula}", "OK");
-                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.Carrera}", "OK");
-                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.Role}", "OK");
-                App.Current.MainPage.DisplayAlert("registrado", $"reg", "OK");
+                App.Current.MainPage.DisplayAlert("registerd", $"{nuevo.Email} succesfully", "OK");
                 return true;
             }
             else
             {
-                ErrorMessage = "Error, No se pudo Registrar";
+                ErrorMessage = "Error, cant register";
                 return false;
 
             }

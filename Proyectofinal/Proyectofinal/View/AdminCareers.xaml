@@ -18,7 +18,15 @@
                     CornerRadius="10"
                     Margin="10,10,10,0"/>
 
-            <ListView x:Name="userListView" ItemsSource="{Binding Carreras}" HasUnevenRows="True">
+            <Button Text="Add Career"
+                    Command="{Binding ShowAddCareerPopupCommand}"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    BackgroundColor="#665ca8"
+                    CornerRadius="10"
+                    Margin="10,10,10,0"/>
+
+            <ListView x:Name="careerListView" ItemsSource="{Binding Carreras}" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -26,8 +34,8 @@
                                 <SwipeView.RightItems>
                                     <SwipeItems>
                                         <SwipeItem Text="Delete" BackgroundColor="Red"
-                                                    Command="{Binding BindingContext.DeleteUserCommand, 
-                                                                Source={x:Reference Name=userListView}}"  
+                                                    Command="{Binding BindingContext.DeleteCareerCommand, 
+                                                                Source={x:Reference Name=careerListView}}"  
                                                    CommandParameter="{Binding .}" />
                                     </SwipeItems>
                                 </SwipeView.RightItems>
@@ -39,24 +47,13 @@
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <Label Text="{Binding Id}" FontAttributes="Bold" Grid.Row="0"
                                                TextColor="White"
                                                FontSize="20"/>
-                                        <Label Text="{Binding Email}" FontAttributes="Bold" Grid.Row="1"
-                                               TextColor="White"/>
                                         <Label Text="{Binding Nombre}" Grid.Row="2"
                                                FontAttributes="Bold"
                                                TextColor="White"/>
-                                        <Label Text="{Binding Carrera}" Grid.Row="3" 
-                                               TextColor="White"
-                                               FontAttributes="Bold"/>
-                                        <Label Text="{Binding Cedula}" Grid.Row="4" 
-                                               TextColor="White"
-                                               FontAttributes="Bold"/>
                                     </Grid>
                                 </SwipeView.Content>
                             </SwipeView>

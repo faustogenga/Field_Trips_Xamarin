@@ -18,7 +18,38 @@
                     CornerRadius="10"
                     Margin="10,10,10,0"/>
             
-            <ListView x:Name="userListView" ItemsSource="{Binding Users}" HasUnevenRows="True">
+            
+
+            <ListView x:Name="userListView" 
+                      ItemsSource="{Binding Users}" 
+                      Header="Usuarios"
+                      HasUnevenRows="True"
+                      Footer="Todos los derechos reservados."
+                      SelectedItem="{Binding SelectedUser}">
+
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                            <Label Text="Users"
+                                   TextColor="#665ca8"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   Margin="10,10,10,10"
+                                   />
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+
+                <ListView.FooterTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                            <Label Text="2021 © Todos los Derechos Reservados."/>
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.FooterTemplate>
+
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
