@@ -9,27 +9,27 @@
             <Label Text="Nombre: " 
                    Style="{StaticResource formLabel}" />
             <Entry Placeholder="Nombre..."
-                   Text="{Binding SelectedUser.Nombre}" />
+                   Text="{Binding User.Nombre}" />
 
             <Label Text="Email: " 
                    Style="{StaticResource formLabel}" />
             <Entry Placeholder="Email..."
-                   Text="{Binding SelectedUser.Email}" />
+                   Text="{Binding User.Email}" />
 
             <Label Text="Cedula: " 
                    Style="{StaticResource formLabel}" />
             <Entry Placeholder="Cedula..."
-                   Text="{Binding SelectedUser.Cedula}" />
+                   Text="{Binding User.Cedula}" />
 
             <Label Text="Carrera: " 
                    Style="{StaticResource formLabel}" />
             <Entry Placeholder="Carrera..."
-                   Text="{Binding SelectedUser.Carrera}" />
+                   Text="{Binding User.Carrera}" />
 
         </StackLayout>
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,20">
             <Button Text="Cancel" Margin="0,0,10,0" Command="{Binding OnCancelCommand}" />
-            <Button Text="Save" BackgroundColor="Green" TextColor="White" Command="{Binding EditUserCommand}" />
+            <Button Text="Save" BackgroundColor="Green" TextColor="White" Command="{Binding EditUserCommand}"/>
         </StackLayout>
     </StackLayout>
 </pages:PopupPage>

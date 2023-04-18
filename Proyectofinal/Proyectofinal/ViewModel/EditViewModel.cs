@@ -35,36 +35,38 @@ namespace Proyectofinal.ViewModel
 
         private ObservableCollection<Usuario> _trip { get; set; }
 
+        private Usuario _User;
+
         private Usuario _selectedUser;
 
         private Carrera _selectedCareer;
 
         private Usuario _selectedTrip;
 
-    
+
 
 
 
         public EditViewModel()
         {
+           
             _databaseContext = new UsuarioDatabaseContext();
 
             Users = new ObservableCollection<Usuario>(_databaseContext.GetAllUsuarios());
             Carreras = new ObservableCollection<Carrera>(_databaseContext.GetAllCarreras());
 
             DeleteUserCommand = new Command<Usuario>(OnDeleteUser);
+
             EditUserCommand = new Command(async () => await OnEditUser());
 
             DeleteCareerCommand = new Command<Carrera>(OnDeleteCareer);
 
             SignOutCommand = new Command(OnSignOut);
-            OnCancelCommand = new Command(async () => await App.Current.MainPage.Navigation.PopPopupAsync());
+            OnCancelCommand = new Command(OnClose);
 
             ItemTappedCommandUser = new Command(async () =>
             {
-                var EditUserPopupPage = new EditUserPopupPage();
-
-                await App.Current.MainPage.DisplayAlert("Bien", $"{SelectedUser.Nombre}", "OK");
+                var EditUserPopupPage = new EditUserPopupPage(_selectedUser);
                 await App.Current.MainPage.Navigation.PushPopupAsync(EditUserPopupPage);
             });
 
@@ -76,6 +78,19 @@ namespace Proyectofinal.ViewModel
             });
 
         }
+        public Usuario User
+        {
+            get { return _User; }
+            set
+            {
+                if (_User != value)
+                {
+                    _User = value;
+                    OnPropertyChanged(nameof(User));
+                }
+            }
+        }
+
         public Usuario SelectedUser
         {
             get { return _selectedUser; }
@@ -141,11 +156,10 @@ namespace Proyectofinal.ViewModel
                 Refresh();
             }
         }
-
         public async Task OnEditUser()
         {
-            _databaseContext.UpdateUsuario(SelectedUser);
-            await App.Current.MainPage.Navigation.PopPopupAsync();
+            _databaseContext.UpdateUsuario(User);
+            OnClose();
         }
 
         private async void OnDeleteCareer(Carrera carrera)
@@ -162,6 +176,13 @@ namespace Proyectofinal.ViewModel
         {
             App.Current.MainPage = new Login();
         }
+
+        private async void OnClose()
+        {
+            await App.Current.MainPage.Navigation.PopPopupAsync();
+
+        }
+
 
         public async Task DeleteUser(int id)
         {
