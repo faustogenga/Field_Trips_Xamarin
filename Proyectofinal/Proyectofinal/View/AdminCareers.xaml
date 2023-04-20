@@ -3,20 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyectofinal.View.AdminCareers">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="10">
             <Button Text="Exit" Clicked="AdminMainView" 
                     TextColor="White"
                     FontAttributes="Bold"
                     BackgroundColor="#665ca8"
                     CornerRadius="10"
-                    Margin="10,10,10,0"/>
+                    Margin="10,1,10,0"/>
 
             <Button Text="Refresh" Clicked="OnRefreshClicked"
                     TextColor="White"
                     FontAttributes="Bold"
                     BackgroundColor="#665ca8"
                     CornerRadius="10"
-                    Margin="10,10,10,0"/>
+                    Margin="10,1,10,0"/>
 
             <Button Text="Add Career"
                     Command="{Binding ShowAddCareerPopupCommand}"
@@ -24,9 +24,36 @@
                     FontAttributes="Bold"
                     BackgroundColor="#665ca8"
                     CornerRadius="10"
-                    Margin="10,10,10,0"/>
+                    Margin="10,1,10,0"/>
 
-            <ListView x:Name="careerListView" ItemsSource="{Binding Carreras}" HasUnevenRows="True">
+            <ListView x:Name="careerListView" 
+                      ItemsSource="{Binding Carreras}" 
+                      HasUnevenRows="True"
+                      SelectedItem="{Binding SelectedCareer}">
+
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                            <Label Text="Careers"
+                                   TextColor="#665ca8"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   Margin="10,10,10,10"
+                                   />
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+
+                <ListView.FooterTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                            <Label Padding="20" Text="2023 © Univeridad Latinoamericana de Ciencia y Technologia." FontSize="10"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.FooterTemplate>
+
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

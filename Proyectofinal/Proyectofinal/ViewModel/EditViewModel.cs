@@ -16,9 +16,13 @@ namespace Proyectofinal.ViewModel
         private readonly UsuarioDatabaseContext _databaseContext;
 
         public ICommand ItemTappedCommandUser { get; set; }
+
+        public ICommand ItemTappedCommandCareer { get; set; }
         public ICommand DeleteUserCommand { get; private set; }
 
         public ICommand EditUserCommand { get; private set; }
+
+        public ICommand EditCareerCommand { get; private set; }
 
         public ICommand DeleteCareerCommand { get; private set; }
 
@@ -36,6 +40,8 @@ namespace Proyectofinal.ViewModel
         private ObservableCollection<Usuario> _trip { get; set; }
 
         private Usuario _User;
+
+        private Carrera _Career;
 
         private Usuario _selectedUser;
 
@@ -59,6 +65,8 @@ namespace Proyectofinal.ViewModel
 
             EditUserCommand = new Command(async () => await OnEditUser());
 
+            EditCareerCommand = new Command(async () => await OnEditCarreer());
+
             DeleteCareerCommand = new Command<Carrera>(OnDeleteCareer);
 
             SignOutCommand = new Command(OnSignOut);
@@ -67,6 +75,11 @@ namespace Proyectofinal.ViewModel
             ItemTappedCommandUser = new Command(async () =>
             {
                 App.Current.MainPage = new EditUserMain(SelectedUser);
+            });
+
+            ItemTappedCommandCareer = new Command(async () =>
+            {
+                App.Current.MainPage = new EditCareerMain(SelectedCareer);
             });
 
 
@@ -90,6 +103,19 @@ namespace Proyectofinal.ViewModel
             }
         }
 
+        public Carrera Career
+        {
+            get { return _Career; }
+            set
+            {
+                if (_Career != value)
+                {
+                    _Career = value;
+                    OnPropertyChanged(nameof(Career));
+                }
+            }
+        }
+
         public Usuario SelectedUser
         {
             get { return _selectedUser; }
@@ -107,7 +133,6 @@ namespace Proyectofinal.ViewModel
             }
         }
 
-        /*
         public Carrera SelectedCareer
         {
             get { return _selectedCareer; }
@@ -117,11 +142,11 @@ namespace Proyectofinal.ViewModel
                 {
                     _selectedCareer = value;
                     OnPropertyChanged(nameof(SelectedCareer));
-                    ItemTappedCommand.Execute(_selectedCareer);
+                    ItemTappedCommandCareer.Execute(_selectedCareer);
                 }
             }
         }
-        */
+        
 
         public ObservableCollection<Carrera> Carreras
         {
@@ -164,6 +189,12 @@ namespace Proyectofinal.ViewModel
             OnClose();
         }
 
+        public async Task OnEditCarreer()
+        {
+            _databaseContext.UpdateCarrera(Career);
+            OnClose();
+        }
+
         private async void OnDeleteCareer(Carrera carrera)
         {
             bool answer = await App.Current.MainPage.DisplayAlert("Confirm Deletion", $"Are you sure you want to delete career \n {carrera.Nombre}?", "Yes", "No");
@@ -181,8 +212,15 @@ namespace Proyectofinal.ViewModel
 
         private async void OnClose()
         {
-            App.Current.MainPage = new AdminUsers();
-
+            if (App.Current.MainPage is EditUserMain editUserPage)
+            {
+                // set the MainPage to a new HomePage instance
+                App.Current.MainPage = new AdminUsers();
+            }
+            else
+            {
+                App.Current.MainPage = new AdminCareers();
+            }
         }
 
 

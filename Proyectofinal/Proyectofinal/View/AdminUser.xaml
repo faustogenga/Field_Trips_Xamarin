@@ -45,7 +45,7 @@
                     <DataTemplate>
                         <StackLayout Orientation="Horizontal"
                              HorizontalOptions="Center">
-                            <Label Padding="20" Text="2021 © Univeridad Latinoamericana de Ciencia y Technologia." FontSize="20"/>
+                            <Label Padding="20" Text="2023 © Univeridad Latinoamericana de Ciencia y Technologia." FontSize="10"/>
                         </StackLayout>
                     </DataTemplate>
                 </ListView.FooterTemplate>
