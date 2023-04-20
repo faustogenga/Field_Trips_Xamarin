@@ -36,11 +36,10 @@ namespace Proyectofinal.ViewModel
 
                 if (IsLoginButtonEnabled)
                 {
-                    bool isAdmin = LoginAdminVoid(Login.Username, Login.Password);
+                    bool isAdmin = LoginAdminVoid(Login.Username.ToLower(), Login.Password);
                     // Perform login logic
                     if (isAdmin)
                     {
-                        await App.Current.MainPage.DisplayAlert("Bien", "Admin login successful", "OK");
                         App.Current.MainPage = new AdminMain();
                     }
                     else

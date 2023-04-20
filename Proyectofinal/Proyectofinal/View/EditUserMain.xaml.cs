@@ -1,19 +1,21 @@
-﻿using Proyectofinal.DAL;
-using Proyectofinal.Model;
+﻿using Proyectofinal.Model;
 using Proyectofinal.ViewModel;
-using Rg.Plugins.Popup.Extensions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Proyectofinal.View.PopUp
+namespace Proyectofinal.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EditUserPopupPage : Rg.Plugins.Popup.Pages.PopupPage
+    public partial class EditUserMain : ContentPage
     {
         private readonly EditViewModel _viewModel;
-
-
-        public EditUserPopupPage(Usuario selectedUser)
+        public EditUserMain(Usuario selectedUser)
         {
             InitializeComponent();
             _viewModel = new EditViewModel();

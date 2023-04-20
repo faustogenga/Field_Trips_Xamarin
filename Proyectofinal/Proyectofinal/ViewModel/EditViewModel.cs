@@ -66,8 +66,7 @@ namespace Proyectofinal.ViewModel
 
             ItemTappedCommandUser = new Command(async () =>
             {
-                var EditUserPopupPage = new EditUserPopupPage(_selectedUser);
-                await App.Current.MainPage.Navigation.PushPopupAsync(EditUserPopupPage);
+                App.Current.MainPage = new EditUserMain(SelectedUser);
             });
 
 
@@ -100,7 +99,10 @@ namespace Proyectofinal.ViewModel
                 {
                     _selectedUser = value;
                     OnPropertyChanged(nameof(SelectedUser));
-                    ItemTappedCommandUser.Execute(_selectedUser);
+                    if (_selectedUser != null)
+                    {
+                        ItemTappedCommandUser.Execute(SelectedUser);
+                    }
                 }
             }
         }
@@ -179,7 +181,7 @@ namespace Proyectofinal.ViewModel
 
         private async void OnClose()
         {
-            await App.Current.MainPage.Navigation.PopPopupAsync();
+            App.Current.MainPage = new AdminUsers();
 
         }
 

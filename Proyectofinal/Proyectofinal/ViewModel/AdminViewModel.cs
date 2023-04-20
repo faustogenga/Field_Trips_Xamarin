@@ -38,7 +38,7 @@ namespace Proyectofinal.ViewModel
 
             SignOutCommand = new Command(() =>
             {
-
+                App.Current.MainPage = new Login();
             });
         }
 

@@ -45,7 +45,7 @@
                     <DataTemplate>
                         <StackLayout Orientation="Horizontal"
                              HorizontalOptions="Center">
-                            <Label Text="2021 © Todos los Derechos Reservados."/>
+                            <Label Padding="20" Text="2021 © Univeridad Latinoamericana de Ciencia y Technologia." FontSize="20"/>
                         </StackLayout>
                     </DataTemplate>
                 </ListView.FooterTemplate>
@@ -74,18 +74,27 @@
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
-                                        <Label Text="{Binding Id}" FontAttributes="Bold" Grid.Row="0"
+                                        <Label                                                
+                                               FontAttributes="Bold"
                                                TextColor="White"
-                                               FontSize="20"/>  
-                                        <Label Text="{Binding Email}" FontAttributes="Bold" Grid.Row="1"
-                                               TextColor="White"/>
-                                        <Label Text="{Binding Nombre}" Grid.Row="2"
+                                               FontSize="20"
+                                               Grid.Row="0">
+                                            <Label.FormattedText 
+>
+                                                <FormattedString >
+                                                    <Span Text="{Binding Id}" />
+                                                    <Span Text=" - " />
+                                                    <Span Text="{Binding Email}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Text="{Binding Nombre, StringFormat='Nombre : {0}'}" Grid.Row="2"
                                                FontAttributes="Bold"
                                                TextColor="White"/>
-                                        <Label Text="{Binding Carrera}" Grid.Row="3" 
+                                        <Label Text="{Binding Carrera, StringFormat='Carrera : {0}'}" Grid.Row="3" 
                                                TextColor="White"
                                                FontAttributes="Bold"/>
-                                        <Label Text="{Binding Cedula}" Grid.Row="4" 
+                                        <Label Text="{Binding Cedula, StringFormat='Cedula : {0}'}" Grid.Row="4" 
                                                TextColor="White"
                                                FontAttributes="Bold"/>
                                     </Grid>
