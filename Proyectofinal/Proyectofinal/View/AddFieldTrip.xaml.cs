@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Proyectofinal.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +11,13 @@ using Xamarin.Forms.Xaml;
 namespace Proyectofinal.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class FieldTrip : ContentPage
+	public partial class AddFieldTrip : ContentPage
 	{
-		public FieldTrip ()
+		public AddFieldTrip ()
 		{
 			InitializeComponent ();
             this.BindingContext = new FieldTripViewModel();
         }
+
 	}
 }

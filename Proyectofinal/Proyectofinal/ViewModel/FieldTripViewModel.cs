@@ -14,13 +14,13 @@ namespace Proyectofinal.ViewModel
     {
         public bool statusEntryFieldTrip;
         private readonly UsuarioDatabaseContext MyDal;
-        public Model.FieldTripModel FieldTrip { get; set; }
+        public Model.FieldTrip FieldTrip { get; set; }
         public string ErrorMessage { get; set; }
         public ICommand EntryTripCommand { get; set; }
 
         public FieldTripViewModel()
         {
-            FieldTrip = new Model.FieldTripModel();
+            FieldTrip = new Model.FieldTrip();
             MyDal = new UsuarioDatabaseContext();
 
             EntryTripCommand = new Command(() =>
@@ -28,8 +28,18 @@ namespace Proyectofinal.ViewModel
                 ValidateInputFields();
                 if (statusEntryFieldTrip)
                 {
-                    bool isSuccess = EntryVoid(FieldTrip.GiraId, FieldTrip.GiraOrganizacion, FieldTrip.GiraUbicacion, FieldTrip.GiraFecha, FieldTrip.GiraHoraSalida, FieldTrip.GiraHoraRegreso,
-                        FieldTrip.GiraDescripcion, FieldTrip.GiraRequisitos, FieldTrip.GiraValor, FieldTrip.GiraPrecio, FieldTrip.GiraLink, FieldTrip.GiraImgURL);
+                    bool isSuccess = EntryVoid(
+                        FieldTrip.Codigo,
+                        FieldTrip.Organizacion, 
+                        FieldTrip.Ubicacion, 
+                        FieldTrip.Fecha, 
+                        FieldTrip.HoraSalida, 
+                        FieldTrip.HoraRegreso,
+                        FieldTrip.Descripcion,
+                        FieldTrip.Valor, 
+                        FieldTrip.Precio, 
+                        FieldTrip.Link, 
+                        FieldTrip.ImgURL);
                     if (isSuccess)
                     {
                         App.Current.MainPage = new AdminFieldTrip();
@@ -44,122 +54,112 @@ namespace Proyectofinal.ViewModel
         }
 
         //Get and Set
-        public int GiraId
+        public int Id
         {
-            get { return FieldTrip.GiraId; }
+            get { return FieldTrip.Id; }
             set
             {
-                FieldTrip.GiraId = value;
+                FieldTrip.Id = value;
                 OnPropertyChanged();
             }
         }
 
-        public string GiraOrganizacion
+        public string Organizacion
         {
-            get { return FieldTrip.GiraOrganizacion; }
+            get { return FieldTrip.Organizacion; }
             set
             {
-                FieldTrip.GiraOrganizacion = value;
+                FieldTrip.Organizacion = value;
                 OnPropertyChanged();
             }
         }
 
-        public string GiraUbicacion
+        public string Ubicacion
         {
-            get { return FieldTrip.GiraUbicacion; }
+            get { return FieldTrip.Ubicacion; }
             set
             {
-                FieldTrip.GiraUbicacion = value;
+                FieldTrip.Ubicacion = value;
                 OnPropertyChanged();
             }
         }
 
-        public string GiraFecha
+        public string Fecha
         {
-            get { return FieldTrip.GiraFecha; }
+            get { return FieldTrip.Fecha; }
             set
             {
-                FieldTrip.GiraFecha = value;
+                FieldTrip.Fecha = value;
                 OnPropertyChanged();
             }
         }
 
-        public string GiraHoraSalida
+        public string HoraSalida
         {
-            get { return FieldTrip.GiraHoraSalida; }
+            get { return FieldTrip.HoraSalida; }
             set
             {
-                FieldTrip.GiraHoraSalida = value;
+                FieldTrip.HoraSalida = value;
                 OnPropertyChanged();
             }
         }
 
-        public string GiraHoraRegreso
+        public string HoraRegreso
         {
-            get { return FieldTrip.GiraHoraRegreso; }
+            get { return FieldTrip.HoraRegreso; }
             set
             {
-                FieldTrip.GiraHoraRegreso = value;
+                FieldTrip.HoraRegreso = value;
                 OnPropertyChanged();
             }
         }
 
-        public string GiraDescripcion
+        public string Descripcion
         {
-            get { return FieldTrip.GiraDescripcion; }
+            get { return FieldTrip.Descripcion; }
             set
             {
-                FieldTrip.GiraDescripcion = value;
+                FieldTrip.Descripcion = value;
                 OnPropertyChanged();
             }
         }
 
-        public string GiraRequisitos
+        public int Valor
         {
-            get { return FieldTrip.GiraRequisitos; }
+            get { return FieldTrip.Valor; }
             set
             {
-                FieldTrip.GiraRequisitos = value;
+                FieldTrip.Valor = value;
                 OnPropertyChanged();
             }
         }
 
-        public int GiraValor
+        public int Precio
         {
-            get { return FieldTrip.GiraValor; }
+            get { return FieldTrip.Precio; }
             set
             {
-                FieldTrip.GiraValor = value;
+                FieldTrip.Precio = value;
                 OnPropertyChanged();
             }
         }
 
-        public int GiraPrecio
+        public string Link
         {
-            get { return FieldTrip.GiraPrecio; }
+            get { return FieldTrip.Link; }
             set
             {
-                FieldTrip.GiraPrecio = value;
+                FieldTrip.Link = value;
                 OnPropertyChanged();
             }
         }
 
-        public string GiraLink
+        public string ImgURL
         {
-            get { return FieldTrip.GiraLink; }
+            get { return FieldTrip.ImgURL; }
             set
             {
-                FieldTrip.GiraLink = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string GiraImgURL
-        {
-            get { return FieldTrip.GiraImgURL; }
-            set
-            {
-                FieldTrip.GiraImgURL = value;
+                FieldTrip.ImgURL = value;
                 OnPropertyChanged();
             }
         }
@@ -169,17 +169,18 @@ namespace Proyectofinal.ViewModel
         //Validation fields
         private void ValidateInputFields()
         {
-            if (string.IsNullOrEmpty(FieldTrip.GiraOrganizacion) ||
-                string.IsNullOrEmpty(FieldTrip.GiraUbicacion) ||
-                string.IsNullOrEmpty(FieldTrip.GiraFecha) ||
-                string.IsNullOrEmpty(FieldTrip.GiraHoraSalida) ||
-                string.IsNullOrEmpty(FieldTrip.GiraHoraRegreso) ||
-                string.IsNullOrEmpty(FieldTrip.GiraDescripcion) ||
-                string.IsNullOrEmpty(FieldTrip.GiraRequisitos) ||
-                FieldTrip.GiraValor == default(int) ||
-                FieldTrip.GiraPrecio == default(int) ||
-                string.IsNullOrEmpty(FieldTrip.GiraLink) ||
-                string.IsNullOrEmpty(FieldTrip.GiraImgURL))
+            if (string.IsNullOrEmpty(FieldTrip.Organizacion) &
+                string.IsNullOrEmpty(FieldTrip.Ubicacion) &
+                string.IsNullOrEmpty(FieldTrip.Fecha) &
+                string.IsNullOrEmpty(FieldTrip.HoraSalida) &
+                string.IsNullOrEmpty(FieldTrip.HoraRegreso) &
+                string.IsNullOrEmpty(FieldTrip.Descripcion) &
+                FieldTrip.Valor == default(int) &
+                FieldTrip.Valor > 0 &
+                FieldTrip.Precio == default(int) &
+                FieldTrip.Precio > 0 &
+                string.IsNullOrEmpty(FieldTrip.Link) &
+                string.IsNullOrEmpty(FieldTrip.ImgURL))
             {
                 statusEntryFieldTrip = false;
                 ErrorMessage = "Empty entries, please fill in required spaces";
@@ -191,54 +192,50 @@ namespace Proyectofinal.ViewModel
         }
 
         //Register New User
-        private bool EntryVoid(int giraId, string giraOrganizacion, string giraUbicacion, string giraFecha, string giraHoraSalida, string giraHoraRegreso,
-            string giraDescripcion, string giraRequisitos, int giraValor, int giraPrecio, string giraLink, string giraImgURL)
+        private bool EntryVoid(
+            string Codigo,
+            string Organizacion,
+            string Ubicacion, 
+            string Fecha, 
+            string HoraSalida,
+            string HoraRegreso,
+            string Descripcion,
+            int Valor, 
+            int Precio, 
+            string Link,
+            string ImgURL)
         {
             //Validation ID
-            if (MyDal.FieldTripIdValidation(giraId) != null)
+            if (MyDal.FieldTripIdValidation(Codigo) != null)
             {
                 ErrorMessage = "Field trip ID already taken";
                 return false;
             }
 
             //Insert
-            Model.FieldTripModel nuevo = new Model.FieldTripModel
+            Model.FieldTrip nuevo = new Model.FieldTrip
             {
-                GiraId = giraId,
-                GiraOrganizacion = giraOrganizacion,
-                GiraUbicacion = giraUbicacion,
-                GiraFecha = giraFecha,
-                GiraHoraSalida = giraHoraSalida,
-                GiraHoraRegreso = giraHoraRegreso,
-                GiraDescripcion = giraDescripcion,
-                GiraRequisitos = giraRequisitos,
-                GiraValor = giraValor,
-                GiraPrecio = giraPrecio,
-                GiraLink = giraLink,
-                GiraImgURL = giraImgURL
+                Codigo = Codigo,
+                Organizacion = Organizacion,
+                Ubicacion = Ubicacion,
+                Fecha = Fecha,
+                HoraSalida = HoraSalida,
+                HoraRegreso = HoraRegreso,
+                Descripcion = Descripcion,
+                Valor = Valor,
+                Precio = Precio,
+                Link = Link,
+                ImgURL = ImgURL
             };
 
             if (MyDal.InsertFieldTrip(nuevo) > 0)
             {
-                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.GiraId}", "OK");
-                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.GiraOrganizacion}", "OK");
-                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.GiraUbicacion}", "OK");
-                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.GiraFecha}", "OK");
-                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.GiraHoraSalida}", "OK");
-                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.GiraHoraRegreso}", "OK");
-                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.GiraDescripcion}", "OK");
-                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.GiraRequisitos}", "OK");
-                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.GiraValor}", "OK");
-                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.GiraPrecio}", "OK");
-                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.GiraLink}", "OK");
-                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.GiraImgURL}", "OK");
-                return true;
+                App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.Organizacion}", "OK");
             }
             else
             {
                 ErrorMessage = "Error, please review in required spaces";
                 return false;
-
             }
         }
 

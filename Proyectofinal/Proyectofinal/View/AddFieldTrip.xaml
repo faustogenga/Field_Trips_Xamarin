@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:Proyectofinal.ViewModel" 
              x:DataType="viewmodel:FieldTripViewModel"
-             x:Class="Proyectofinal.View.FieldTrip">
+             x:Class="Proyectofinal.View.AddFieldTrip">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="30,0,30,0">
@@ -17,7 +17,7 @@
                    HorizontalTextAlignment="Center"
                    Padding="5"/>
 
-                <Label Text="Entry" 
+                <Label Text="Agregar Gira" 
                    TextColor="#665ca8"
                    FontSize="20"
                    FontAttributes="Bold"
@@ -26,66 +26,66 @@
 
                 <Entry Placeholder="Codigo"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraId}"
+                   Text="{Binding FieldTrip.Codigo}"
                    TextTransform="Uppercase"
+                   
                    ></Entry>
 
                 <Entry Placeholder="Organizacion"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraOrganizacion}"
+                   Text="{Binding FieldTrip.Organizacion}"
                    ></Entry>
 
                 <Entry Placeholder="Ubicacion"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraUbicacion}"
+                   Text="{Binding FieldTrip.Ubicacion}"
                    ></Entry>
 
                 <Entry Placeholder="Fecha"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraFecha}"
+                   Text="{Binding FieldTrip.Fecha}"
                    ></Entry>
 
                 <Entry Placeholder="HoraSalida"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraHoraSalida}"
+                   Text="{Binding FieldTrip.HoraSalida}"
                    ></Entry>
 
                 <Entry Placeholder="Hora Regreso"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraHoraRegreso}"
+                   Text="{Binding FieldTrip.HoraRegreso}"
                    ></Entry>
 
                 <Entry Placeholder="Descripcion"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraDescripcion}"
+                   Text="{Binding FieldTrip.Descripcion}"
                    ></Entry>
 
-                <Entry Placeholder="Requisitos"
+                <Label Text="Valor de la gira :"></Label>
+
+                    <Entry Placeholder="Valor"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraRequisitos}"
+                   Text="{Binding FieldTrip.Valor}"
                    ></Entry>
 
-                <Entry Placeholder="Valor"
-                   Margin="5"
-                   Text="{Binding FieldTrip.GiraValor}"
-                   ></Entry>
+                <Label Text="Precio de la gira :"></Label>
 
                 <Entry Placeholder="Precio"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraPrecio}"
+                   Text="{Binding FieldTrip.Precio}"
                    ></Entry>
 
                 <Entry Placeholder="Link"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraLink}"
+                   Text="{Binding FieldTrip.Link}"
                    ></Entry>
 
                 <Entry Placeholder="Imagen URL"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraImgURL}"
+                   Text="{Binding FieldTrip.ImgURL}"
                    ></Entry>
 
-                <Button Text="Entry data"
+                <Button Text="Add Field Trip"
                     TextColor="White"
                     FontAttributes="Bold"
                     BackgroundColor="#5e5ca8"

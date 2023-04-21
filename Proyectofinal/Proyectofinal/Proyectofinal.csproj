@@ -33,6 +33,9 @@
     <Compile Update="View\AdminUser.xaml.cs">
       <DependentUpon>AdminUser.xaml</DependentUpon>
     </Compile>
+    <Compile Update="View\AddFieldTrip.xaml.cs">
+      <DependentUpon>AddFieldTrip.xaml</DependentUpon>
+    </Compile>
     <Compile Update="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -45,13 +48,22 @@
     <EmbeddedResource Update="View\AdminCareers.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="View\AdminFieldTrip.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\AdminMain.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\EditCareerMain.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="View\EditFieldTripMain.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\EditUserMain.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\AddFieldTrip.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\PopUp\AddCareerPopupPage.xaml">
