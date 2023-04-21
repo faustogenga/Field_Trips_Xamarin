@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="Proyectofinal.Login">
-
-    <StackLayout Margin="30,0,30,0">
+    <ContentPage.Content>
+        <StackLayout Margin="30,0,30,0">
         <Frame BackgroundColor="Transparent" Margin="0,50,0,0">
             <Image Source="LogoUlacit.png"/>
         </Frame>
@@ -49,6 +49,16 @@
                 Margin="10,30,10,0"
                 Command="{Binding RegisterCommand}"
         />
-    </StackLayout>
 
+        <Button Text="Register Trip"
+                TextColor="White"
+                FontAttributes="Bold"
+                BackgroundColor="#5e5ca8"
+                CornerRadius="10"
+                Margin="10,30,10,0"
+                Command="{Binding FieldTripCommand}"
+        />
+        
+    </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

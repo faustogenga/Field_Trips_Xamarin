@@ -32,11 +32,32 @@
     <Compile Update="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Update="View\FieldTrip.xaml.cs">
+      <DependentUpon>FieldTrip.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\FieldTripListView.xaml.cs">
+      <DependentUpon>FieldTripListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\Register.xaml.cs">
+      <DependentUpon>Register.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\UsuarioMainView.xaml.cs">
+      <DependentUpon>UsuarioMainView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <!--<EmbeddedResource Update="View\FieldTrip.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\FieldTripListView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\Register.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="View\UsuarioMainView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>-->
   </ItemGroup>
 </Project>

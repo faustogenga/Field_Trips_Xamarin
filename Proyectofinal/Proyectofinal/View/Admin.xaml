@@ -10,14 +10,14 @@
                     BackgroundColor="#665ca8"
                     CornerRadius="10"
                     Margin="10,10,10,0"/>
-            
+
             <Button Text="Refresh" Clicked="OnRefreshClicked"
                     TextColor="White"
                     FontAttributes="Bold"
                     BackgroundColor="#665ca8"
                     CornerRadius="10"
                     Margin="10,10,10,0"/>
-            
+
             <ListView x:Name="userListView" ItemsSource="{Binding Users}" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>

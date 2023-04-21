@@ -1,10 +1,8 @@
 ﻿using Proyectofinal.DAL;
 using Proyectofinal.Model;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -28,6 +26,7 @@ namespace Proyectofinal.ViewModel
         public ICommand RegisterCommand { get; set; }
 
         public ICommand SigninCommand { get; set; }
+        
 
         public RegisterViewModel()
         {
@@ -68,7 +67,7 @@ namespace Proyectofinal.ViewModel
             {
                 App.Current.MainPage = new Login();
 
-            });
+            });            
 
         }
         public List<string> Carreras

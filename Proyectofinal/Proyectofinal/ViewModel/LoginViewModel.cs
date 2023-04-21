@@ -24,6 +24,9 @@ namespace Proyectofinal.ViewModel
 
         public ICommand RegisterCommand { get; set; }
         public ICommand ForgotPasswordCommand { get; set; }
+        //***********************
+        public ICommand FieldTripCommand { get; set; }
+        //***********************
         public LoginViewModel()
         {
             Login = new LoginModel();
@@ -50,7 +53,7 @@ namespace Proyectofinal.ViewModel
                         if (isUser)
                         {
                             await App.Current.MainPage.DisplayAlert("Bien", "User login successful", "OK");
-                            /*App.Current.MainPage = new User();*/
+                            App.Current.MainPage = new UsuarioMainView();
                         }
                         else
                         {
@@ -70,6 +73,14 @@ namespace Proyectofinal.ViewModel
             {
                 App.Current.MainPage = new Register();
             });
+
+            //*********************
+            FieldTripCommand = new Command(() =>
+            {
+                App.Current.MainPage = new View.FieldTrip();
+
+            });
+            //*********************
 
             ForgotPasswordCommand = new Command(() =>
             {
