@@ -72,6 +72,7 @@
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding SigninCommand}" />
                 </Label.GestureRecognizers>
+                
             </Label>
         </StackLayout>
     </ContentPage.Content>

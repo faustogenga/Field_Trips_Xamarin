@@ -1,9 +1,5 @@
 ﻿using SQLite;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace Proyectofinal.Model
 {
