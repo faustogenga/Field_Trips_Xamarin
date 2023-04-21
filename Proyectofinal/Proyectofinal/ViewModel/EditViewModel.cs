@@ -214,11 +214,12 @@ namespace Proyectofinal.ViewModel
         {
             if (App.Current.MainPage is EditUserMain editUserPage)
             {
-                // set the MainPage to a new HomePage instance
+                SelectedUser = null;
                 App.Current.MainPage = new AdminUsers();
             }
-            else
+            if (App.Current.MainPage is EditCareerMain editCareerPage)
             {
+                SelectedCareer= null;
                 App.Current.MainPage = new AdminCareers();
             }
         }
