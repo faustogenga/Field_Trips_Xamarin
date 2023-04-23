@@ -20,8 +20,9 @@ namespace Proyectofinal.DAL
 
 
         public UsuarioDatabaseContext()
-        { 
+        {
             // Check if the database file exists in the local application data folder
+            File.Delete(dbPath);
             if (!File.Exists(dbPath))
             {
                 // Copy the database file from the resources folder to the local application data folder
@@ -98,40 +99,40 @@ namespace Proyectofinal.DAL
         }
 
         //Insert
-        public int InsertFieldTrip(FieldTripModel model)
+        public int InsertFieldTrip(FieldTrip model)
         {
             return connection.Insert(model);
         }
 
 
         //Read
-        public List<FieldTripModel> GetAllFieldTrip()
+        public List<FieldTrip> GetAllFieldTrip()
         {
-            return connection.Table<FieldTripModel>().ToList();
+            return connection.Table<FieldTrip>().ToList();
         }
 
         //Update
-        public int UpdateFieldTrip(FieldTripModel model)
+        public int UpdateFieldTrip(FieldTrip model)
         {
             return connection.Update(model);
         }
 
         //Delete
-        public int DeleteFieldTrip(FieldTripModel model)
+        public int DeleteFieldTrip(FieldTrip model)
         {
             return connection.Delete(model);
         }
 
         //Search - Single object
-        public FieldTripModel GetFieldTripById(int id)
+        public FieldTrip GetFieldTripById(int id)
         {
-            return connection.Table<FieldTripModel>().FirstOrDefault(u => u.GiraId == id);
+            return connection.Table<FieldTrip>().FirstOrDefault(u => u.GiraId == id);
         }
 
         //ID Validation - VM
-        public FieldTripModel FieldTripIdValidation(int giraId)
+        public FieldTrip FieldTripIdValidation(int giraId)
         {
-            var query = connection.Table<FieldTripModel>().Where(u => u.GiraId == giraId).ToList();
+            var query = connection.Table<FieldTrip>().Where(u => u.GiraId == giraId).ToList();
             return query.FirstOrDefault();
         }
 

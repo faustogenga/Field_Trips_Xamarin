@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Proyectofinal.Model
 {    
-    public class FieldTripModel : INotifyPropertyChanged
+    public class FieldTrip : INotifyPropertyChanged
     {        
         private int _giraId;
         private string _giraOrganizacion;
