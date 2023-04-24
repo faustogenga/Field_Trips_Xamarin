@@ -231,6 +231,7 @@ namespace Proyectofinal.ViewModel
             if (MyDal.InsertFieldTrip(nuevo) > 0)
             {
                 App.Current.MainPage.DisplayAlert("registrado", $"{nuevo.Organizacion}", "OK");
+                return true;
             }
             else
             {
