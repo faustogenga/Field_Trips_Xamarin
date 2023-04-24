@@ -15,7 +15,7 @@ namespace Proyectofinal.View
 	public partial class EditFieldTripMain : ContentPage
 	{
         private readonly EditViewModel _viewModel;
-        public EditFieldTripMain (FieldTrip selectedFieldTrip)
+        public EditFieldTripMain (Model.FieldTrip selectedFieldTrip)
 		{
 			InitializeComponent ();
             _viewModel = new EditViewModel();

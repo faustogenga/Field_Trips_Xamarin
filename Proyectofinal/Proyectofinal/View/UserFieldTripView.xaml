@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:Proyectofinal.ViewModel" 
              x:DataType="viewmodel:FieldTripViewModel"
-             x:Class="Proyectofinal.View.AddFieldTrip">
+             x:Class="Proyectofinal.View.UserFieldTripView">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="30,0,30,0">
@@ -17,7 +17,7 @@
                    HorizontalTextAlignment="Center"
                    Padding="5"/>
 
-                <Label Text="Agregar Gira" 
+                <Label Text="Entry" 
                    TextColor="#665ca8"
                    FontSize="20"
                    FontAttributes="Bold"
@@ -26,9 +26,8 @@
 
                 <Entry Placeholder="Codigo"
                    Margin="5"
-                   Text="{Binding FieldTrip.Codigo}"
+                   Text="{Binding FieldTrip.Id}"
                    TextTransform="Uppercase"
-                   
                    ></Entry>
 
                 <Entry Placeholder="Organizacion"
@@ -61,14 +60,10 @@
                    Text="{Binding FieldTrip.Descripcion}"
                    ></Entry>
 
-                <Label Text="Valor de la gira :"></Label>
-
-                    <Entry Placeholder="Valor"
+                <Entry Placeholder="Valor"
                    Margin="5"
                    Text="{Binding FieldTrip.Valor}"
                    ></Entry>
-
-                <Label Text="Precio de la gira :"></Label>
 
                 <Entry Placeholder="Precio"
                    Margin="5"
@@ -85,24 +80,13 @@
                    Text="{Binding FieldTrip.ImgURL}"
                    ></Entry>
 
-                <Button Text="Add Field Trip"
+                <Button Text="Entry data"
                     TextColor="White"
                     FontAttributes="Bold"
                     BackgroundColor="#5e5ca8"
                     CornerRadius="10"
-                    Margin="10,30,10,0"
+                    Margin="10,30,10,30"
                     Command="{Binding EntryTripCommand}"
-                />
-                
-                <Button Text="Cancel"
-                    TextColor="#5e5ca8"
-                    BackgroundColor="Transparent"
-                    FontAttributes="Bold"
-                    BorderColor="#5e5ca8"
-                    BorderWidth="5"
-                    CornerRadius="10"
-                    Margin="10,2,10,30"
-                    Command="{Binding OnCancelCommand}"
                 />
 
 

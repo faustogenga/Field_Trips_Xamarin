@@ -5,7 +5,11 @@
                  x:Class="Proyectofinal.View.PopUp.AddCareerPopupPage">
     <StackLayout BackgroundColor="White">
         <Label Text="Add Career" FontSize="Title" HorizontalOptions="Center" Margin="0,10" />
-        <Entry x:Name="careerEntry" Placeholder="Career Name" Margin="20,0,20,0" />
+        <Entry x:Name="careerEntry" 
+               Placeholder="Career Name" 
+               Margin="20,0,20,0"
+               Text="{Binding Nombre}"
+               />
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,20">
             <Button Text="Cancel" Margin="0,0,10,0" Command="{Binding OnCancelCommand}" />
             <Button Text="Save" BackgroundColor="Green" TextColor="White" Command="{Binding AddCareerCommand}" />

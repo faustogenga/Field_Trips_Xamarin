@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyectofinal.View.UsuarioMainView">
+    <ContentPage.Content>
+        <StackLayout Margin="30,0,30,0">
+            <Frame BackgroundColor="Transparent" Margin="0,50,0,0"
+                   WidthRequest="175">
+                <Image Source="User.png"/>
+            </Frame>
+            
+            <Label Text="{Binding User.Nombre}"
+                 FontAttributes="Bold"  
+                 HorizontalTextAlignment="Center"  
+                   FontSize="30"></Label>
+            <Label Text="{Binding User.Email}"
+                 HorizontalTextAlignment="Center"  
+                 FontSize="15"></Label>
+
+            <Grid Padding="10" RowSpacing="4"
+                  Margin="10,30,10,0" 
+                                          >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="80" />
+                    <RowDefinition Height="75" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+               
+                <Frame BackgroundColor="Transparent"
+                       Grid.Row="0"
+                       Grid.Column="0">
+                    <Image Source="travel_destination.png"/>
+                </Frame>
+                
+                <Button Text="Giras                   >"
+                    TextColor="Black"
+                    BackgroundColor="Transparent"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="Start"                        
+                    Command="{Binding FieldTripCommand}"
+                />
+
+                
+                <Frame BackgroundColor="Transparent"
+                       Grid.Row="1"
+                       Grid.Column="0">
+                    <Image Source="mini_user.png"/>
+                </Frame>
+
+                <Button Text="Usuario                   >"
+                    TextColor="Black"
+                    BackgroundColor="Transparent"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="Start"                        
+                    Command="{Binding UserCommand}"
+                />
+
+                
+                <Frame BackgroundColor="Transparent"
+                       Grid.Row="2"
+                       Grid.Column="0">
+                    <Image Source="heart.png"/>
+                </Frame>
+
+                <Button Text="Mis Reseñas                   >"
+                    TextColor="Black"
+                    BackgroundColor="Transparent"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="Start"                        
+                    Command="{Binding FeedbackCommand}"
+                />
+            </Grid>
+            
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -70,6 +70,7 @@
                                     <Grid Padding="10" RowSpacing="5"
                                           BackgroundColor="#5e5ca8"
                                           Margin="10,10,10,0" 
+                                          Margin="10,10,10,0" 
                                           >
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />

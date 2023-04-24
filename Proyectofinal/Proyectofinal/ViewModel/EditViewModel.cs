@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using FieldTrip = Proyectofinal.Model.FieldTrip;
 
 namespace Proyectofinal.ViewModel
 {
@@ -64,9 +65,6 @@ namespace Proyectofinal.ViewModel
         private Carrera _selectedCareer;
 
         private FieldTrip _selectedFieldTrip;
-
-
-
 
 
         public EditViewModel()

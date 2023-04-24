@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.4.33403.182
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33328.57
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyectofinal.Android", "Proyectofinal\Proyectofinal.Android\Proyectofinal.Android.csproj", "{2B62E1BE-A87A-42A0-8923-3B3A2EBA7BE1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyectofinal.iOS", "Proyectofinal\Proyectofinal.iOS\Proyectofinal.iOS.csproj", "{830CB83D-43D0-4F5F-A00D-83D7906CBA57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyectofinal", "Proyectofinal\Proyectofinal\Proyectofinal.csproj", "{0A97E152-A085-48B8-8619-DF67161586BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Proyectofinal", "Proyectofinal\Proyectofinal\Proyectofinal.csproj", "{0A97E152-A085-48B8-8619-DF67161586BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
