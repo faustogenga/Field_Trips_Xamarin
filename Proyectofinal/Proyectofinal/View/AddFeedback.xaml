@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyectofinal.View.AddFeedback">
+    <ContentPage.Content>
+        <StackLayout Margin="30,0,30,0">
+            <Frame BackgroundColor="Transparent" Margin="0,50,0,0">
+                <Image Source="LogoUlacit.png"/>
+            </Frame>
+            <Label Text="Academic Field trips" 
+               TextColor="#5e5ca8" 
+               FontSize="20"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Padding="5"/>
+
+            <Label Text="Feedback" 
+               TextColor="#665ca8"
+               FontSize="20"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Start"
+               Margin="10,50,0,25"/>
+
+            <Picker Title="Gira"
+                    Margin="5"
+                    ItemsSource="{Binding FieldTrips}"
+                    SelectedItem="{Binding SelectedFieldTrip, Mode=TwoWay}" />
+
+            <Entry Placeholder="Comentario"
+               Margin="5"
+               Text="{Binding Register.Nombre}"
+               ></Entry>
+
+            <Label Text="Space for educational purposes, please keep comments free of bad words"
+                   TextColor="red" 
+                   FontAttributes="Bold"
+                   Margin="5,40,0,40"
+                   />
+            
+            <Button Text="Agregar comentario"
+                TextColor="White"
+                FontAttributes="Bold"
+                BackgroundColor="#5e5ca8"
+                CornerRadius="20"
+                Margin="10,30,10,0"
+                Command="{Binding AddFeedbackCommand}"
+            />
+            
+            <Button    BackgroundColor="#665ca8"
+                        CornerRadius="20"
+                        Text="Back"
+                        TextColor="White"
+                       Margin="10,30,10,0"
+                        Command="{Binding BackMainFeedbackCommand}"
+                    />
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyectofinal.View.FeedbackView">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame>
+                <Image Source="LogoUlacit.png"
+                    VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White"/>
+            </Frame>
+
+            <Label FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       FontSize="25"
+                       Text="Reseñas Giras ULACIT 2023"
+                        Padding="0,20,0,0"
+                   />
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <Button Text="Agregar comentario"
+                TextColor="White"
+                FontAttributes="Bold"
+                BackgroundColor="#5e5ca8"
+                CornerRadius="20"
+                Margin="10,30,10,0"
+                Command="{Binding NewFeedbackCommand}"
+            />
+
+            <Button    BackgroundColor="#665ca8"
+                        CornerRadius="20"
+                        Text="Back"
+                        TextColor="White"
+                       Margin="10,30,10,0"
+                        Command="{Binding BackMainCommand}"
+                    />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
