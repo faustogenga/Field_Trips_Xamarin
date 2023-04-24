@@ -66,9 +66,6 @@ namespace Proyectofinal.ViewModel
         private FieldTrip _selectedFieldTrip;
 
 
-
-
-
         public EditViewModel()
         {
             //sqllite connection
