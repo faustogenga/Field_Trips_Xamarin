@@ -1,4 +1,5 @@
-﻿using Proyectofinal.ViewModel;
+﻿using Proyectofinal.Model;
+using Proyectofinal.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -8,10 +9,11 @@ namespace Proyectofinal.View
     public partial class UserFieldTripView : ContentPage
     {
         private readonly EditViewModel _viewModel;
-        public UserFieldTripView()
+        public UserFieldTripView(Usuario User)
         {
             InitializeComponent();
             _viewModel = new EditViewModel();
+            _viewModel.User = User;
             BindingContext = _viewModel;
         }
     }

@@ -12,9 +12,9 @@
 
             <Label FontAttributes="Bold"
                        HorizontalOptions="Center"
-                       FontSize="25"
-                       Text="PRUEBA"
-                        Padding="0,20,0,0"
+                       FontSize="40"
+                       Text="{Binding User.Nombre}"
+                       Padding="0,20,0,0"
                    />
             
             <Frame VerticalOptions="Center"
@@ -29,20 +29,16 @@
 
             
 
-            <Grid Margin="0,20,0,0"
+            <Grid Margin="0,0,0,0"
                 >
                 <Grid.RowDefinitions >
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
@@ -51,7 +47,7 @@
                        Grid.Column="0"
                        Grid.ColumnSpan="3"
                        FontAttributes="Bold"
-                       FontSize="15"
+                       FontSize="20"
                        Padding="50,0,0,0"  
                        VerticalOptions="Center"
                     />
@@ -59,53 +55,54 @@
                        Grid.Column="0"
                        Grid.ColumnSpan="2"
                        Text="Correo: "
-                       Padding="100,0,0,0"
+                       FontSize="20"
                        HorizontalOptions="Center"                       
                        />
 
                 <Label Grid.Row="1"
                        Grid.Column="2"
                        Grid.ColumnSpan="2"
+                       FontSize="20"
                        Text="{Binding User.Email}"
-                       Padding="0,0,75,0"
                        HorizontalOptions="Start" 
                        />
 
                 <Label Grid.Row="2"
                        Grid.Column="0"
                        Grid.ColumnSpan="2"
+                       FontSize="20"
                        Text="Cedula"
-                       Padding="100,0,0,0"
                        HorizontalOptions="Center"                        
                        />
 
                 <Label Grid.Row="2"
                        Grid.Column="2"
+                       FontSize="20"
                        Grid.ColumnSpan="2"
                        Text="{Binding User.Cedula}"
-                       Padding="0,0,75,0"
                        HorizontalOptions="Start" 
                        />
 
                 <Label Grid.Row="3"
                        Grid.Column="0"
+                       FontSize="20"
                        Grid.ColumnSpan="2"
                        Text="Carrera"
-                       Padding="100,0,0,0"
                        HorizontalOptions="Center"                         
                        />
 
                 <Label Grid.Row="3"
                        Grid.Column="2"
+                       FontSize="20"
                        Grid.ColumnSpan="2"
                        Text="{Binding User.Carrera}"
-                       Padding="0,0,75,0"
                        HorizontalOptions="Start" 
                        />
                 <Button Grid.Row="5"
                         Grid.Column="2"                    
                         BackgroundColor="#665ca8"
                         CornerRadius="20"
+                        FontSize="20"
                         Text="Back"
                         TextColor="White"
                         Command="{Binding BackMainCommand}"

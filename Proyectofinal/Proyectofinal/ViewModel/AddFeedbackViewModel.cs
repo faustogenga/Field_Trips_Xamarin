@@ -48,7 +48,7 @@ namespace Proyectofinal.ViewModel
 
                     if (isSuccess)
                     {
-                        App.Current.MainPage = new FeedbackView();
+                        App.Current.MainPage = new FeedbackView(User);
                     }
                     else
                     {
@@ -63,7 +63,7 @@ namespace Proyectofinal.ViewModel
 
             BackMainFeedbackCommand = new Command(() =>
             {
-                App.Current.MainPage = new FeedbackView();
+                App.Current.MainPage = new FeedbackView(User);
             });
             NewFeedbackCommand = new Command(() =>
             {

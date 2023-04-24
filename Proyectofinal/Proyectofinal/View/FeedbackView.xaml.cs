@@ -1,4 +1,5 @@
-﻿using Proyectofinal.ViewModel;
+﻿using Proyectofinal.Model;
+using Proyectofinal.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,10 +8,13 @@ namespace Proyectofinal.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FeedbackView : ContentPage
     {
-        public FeedbackView()
+        private readonly AddFeedbackViewModel _viewModel;
+        public FeedbackView(Usuario UserLogin)
         {
             InitializeComponent();
-            this.BindingContext = new AddFeedbackViewModel();
+            _viewModel = new AddFeedbackViewModel();
+            _viewModel.User = UserLogin;
+            BindingContext = _viewModel;
         }
     }
 }

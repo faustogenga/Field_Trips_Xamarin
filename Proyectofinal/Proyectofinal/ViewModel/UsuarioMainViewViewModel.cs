@@ -12,13 +12,15 @@ namespace Proyectofinal.ViewModel
         public ICommand UserCommand { get; set; }
         public ICommand FeedbackCommand { get; set; }
 
+        public ICommand SignOutCommand { get; set; }
+
         public Usuario _User;
 
         public UsuarioMainViewViewModel()
         {
             FieldTripCommand = new Command(() =>
             {
-                App.Current.MainPage = new View.UserFieldTripView();
+                App.Current.MainPage = new View.UserFieldTripView(User);
 
             });
 
@@ -29,10 +31,16 @@ namespace Proyectofinal.ViewModel
             });
             FeedbackCommand = new Command(() =>
             {
-                App.Current.MainPage = new View.FeedbackView();
+                App.Current.MainPage = new View.FeedbackView(User);
 
             });
-            
+
+            SignOutCommand = new Command (() =>
+            {
+                App.Current.MainPage = new Login();
+            });
+
+
         }
         public Usuario User
         {
