@@ -22,7 +22,6 @@ namespace Proyectofinal.DAL
 
         public UsuarioDatabaseContext()
         { 
-            /*File.Delete(dbPath);*/
             // Check if the database file exists in the local application data folder
             if (!File.Exists(dbPath))
             {
@@ -42,6 +41,13 @@ namespace Proyectofinal.DAL
             File.SetAttributes(dbPath, FileAttributes.Normal);
         }
 
+        //INSERT
+        public int InsertFieldTrip(FieldTrip model)
+        {
+            return connection.Insert(model);
+        }
+
+        //GET ALL
 
         public List<Usuario> GetAllUsuarios()
         {
@@ -53,6 +59,13 @@ namespace Proyectofinal.DAL
             return connection.GetAllWithChildren<Carrera>().ToList();
         }
 
+        public List<FieldTrip> GetAllFieldTrips()
+        {
+            return connection.Table<FieldTrip>().ToList();
+        }
+
+        //UPDATE
+
         public int UpdateUsuario(Usuario model)
         {
             return connection.Update(model);
@@ -63,6 +76,12 @@ namespace Proyectofinal.DAL
             return connection.Update(model);
         }
 
+        public int UpdateFieldTrip(FieldTrip model)
+        {
+            return connection.Update(model);
+        }
+
+        //DELETE
 
         public int DeleteUsuario(Usuario model)
         {
@@ -74,6 +93,13 @@ namespace Proyectofinal.DAL
             return connection.Delete(model);
         }
 
+        public int DeleteFieldTrip(FieldTrip model)
+        {
+            return connection.Delete(model);
+        }
+
+
+        //GET BY ID
 
         public Usuario GetUsuarioById(int id)
         {
@@ -85,27 +111,34 @@ namespace Proyectofinal.DAL
             return connection.Table<Carrera>().FirstOrDefault(u => u.Id == id);
         }
 
+        public FieldTrip GetFieldTripById(int id)
+        {
+            return connection.Table<FieldTrip>().FirstOrDefault(u => u.Id == id);
+        }
 
 
 
+        //LOGIN
         public Usuario LoginUsuario(string email, string password)
         {
             var query = connection.Table<Usuario>().Where(u => u.Email == email && u.Password == password).ToList();
             return query.FirstOrDefault();
         }
 
-
+        //ADMIN LOGIN
         public Usuario LoginAdminUsuario(String email, string password)
         {
             var query = connection.Table<Usuario>().Where(u => u.Email == email && u.Password == password && u.Role == "Admin").ToList();
             return query.FirstOrDefault();
         }
 
+        //REGISTER
         public int RegisterUsuario(Usuario model)
         {
             return connection.Insert(model);
         }
 
+        //VALIDATION
         public Usuario RegisterEmailValidation(string email)
         {
             var query = connection.Table<Usuario>().Where(u => u.Email == email).ToList();
@@ -115,6 +148,12 @@ namespace Proyectofinal.DAL
         public Usuario RegisterCedulaValidation(string cedula)
         {
             var query = connection.Table<Usuario>().Where(u => u.Cedula == cedula).ToList();
+            return query.FirstOrDefault();
+        }
+
+        public FieldTrip FieldTripIdValidation(string Codigo)
+        {
+            var query = connection.Table<FieldTrip>().Where(u => u.Codigo == Codigo).ToList();
             return query.FirstOrDefault();
         }
 

@@ -15,39 +15,55 @@ namespace Proyectofinal.ViewModel
     {
         private readonly UsuarioDatabaseContext _databaseContext;
 
+        //selected item command
         public ICommand ItemTappedCommandUser { get; set; }
-
         public ICommand ItemTappedCommandCareer { get; set; }
-        public ICommand DeleteUserCommand { get; private set; }
+        public ICommand ItemTappedCommandFieldTrip { get; set; }
 
+        //ADD COMMANDS
+
+        public ICommand ShowAddCareerPopupCommand { get; private set; }
+
+        public ICommand ShowAddFieldTripPopupCommand { get; private set; }
+
+        //delete command
+        public ICommand DeleteUserCommand { get; private set; }
+        public ICommand DeleteCareerCommand { get; private set; }
+        public ICommand DeleteFieldTripCommand { get; private set; }
+
+        //edit command
         public ICommand EditUserCommand { get; private set; }
 
         public ICommand EditCareerCommand { get; private set; }
 
-        public ICommand DeleteCareerCommand { get; private set; }
+        public ICommand EditFieldTripCommand { get; private set; }
 
-        public ICommand DeleteTripCommand { get; private set; }
-
+        //others
         public ICommand SignOutCommand { get; private set; }
-
-        public ICommand ShowAddCareerPopupCommand { get; private set; }
 
         public ICommand OnCancelCommand { get; private set; }
 
+        //lists
+
         private ObservableCollection<Usuario> _users { get; set; }
         private ObservableCollection<Carrera> _carrera { get; set; }
+        private ObservableCollection<FieldTrip> _fieldtrip { get; set; }
 
-        private ObservableCollection<Usuario> _trip { get; set; }
+        //All Objects
 
         private Usuario _User;
 
         private Carrera _Career;
 
+        private FieldTrip _FieldTrip;
+
+
+        //Selected from list view
         private Usuario _selectedUser;
 
         private Carrera _selectedCareer;
 
-        private Usuario _selectedTrip;
+        private FieldTrip _selectedFieldTrip;
 
 
 
@@ -55,23 +71,29 @@ namespace Proyectofinal.ViewModel
 
         public EditViewModel()
         {
-           
+            //sqllite connection
             _databaseContext = new UsuarioDatabaseContext();
 
+            //fill lists
             Users = new ObservableCollection<Usuario>(_databaseContext.GetAllUsuarios());
             Carreras = new ObservableCollection<Carrera>(_databaseContext.GetAllCarreras());
+            FieldTrips = new ObservableCollection<FieldTrip>(_databaseContext.GetAllFieldTrips());
 
+            //Deletes
             DeleteUserCommand = new Command<Usuario>(OnDeleteUser);
-
-            EditUserCommand = new Command(async () => await OnEditUser());
-
-            EditCareerCommand = new Command(async () => await OnEditCarreer());
-
             DeleteCareerCommand = new Command<Carrera>(OnDeleteCareer);
+            DeleteFieldTripCommand = new Command<FieldTrip>(OnDeleteFieldTrip);
 
+            //Edits
+            EditUserCommand = new Command(async () => await OnEditUser());
+            EditCareerCommand = new Command(async () => await OnEditCarreer());
+            EditFieldTripCommand = new Command(async () => await OnEditFieldTrip());
+
+            //others
             SignOutCommand = new Command(OnSignOut);
             OnCancelCommand = new Command(OnClose);
 
+            //selected item command
             ItemTappedCommandUser = new Command(async () =>
             {
                 App.Current.MainPage = new EditUserMain(SelectedUser);
@@ -82,11 +104,22 @@ namespace Proyectofinal.ViewModel
                 App.Current.MainPage = new EditCareerMain(SelectedCareer);
             });
 
+            ItemTappedCommandFieldTrip = new Command(async () =>
+            {
+                App.Current.MainPage = new EditFieldTripMain(SelectedFieldTrip);
+            });
+
+            //Add Command
 
             ShowAddCareerPopupCommand = new Command(async () =>
             {
                 var addCareerPopupPage = new AddCareerPopupPage();
                 await App.Current.MainPage.Navigation.PushPopupAsync(addCareerPopupPage);
+            });
+
+            ShowAddFieldTripPopupCommand = new Command(async () =>
+            {
+                App.Current.MainPage = new AddFieldTrip();
             });
 
         }
@@ -116,6 +149,19 @@ namespace Proyectofinal.ViewModel
             }
         }
 
+        public FieldTrip FieldTrip
+        {
+            get { return _FieldTrip; }
+            set
+            {
+                if (_FieldTrip != value)
+                {
+                    _FieldTrip = value;
+                    OnPropertyChanged(nameof(FieldTrip));
+                }
+            }
+        }
+
         public Usuario SelectedUser
         {
             get { return _selectedUser; }
@@ -127,7 +173,7 @@ namespace Proyectofinal.ViewModel
                     OnPropertyChanged(nameof(SelectedUser));
                     if (_selectedUser != null)
                     {
-                        ItemTappedCommandUser.Execute(SelectedUser);
+                        ItemTappedCommandUser.Execute(_selectedUser);
                     }
                 }
             }
@@ -146,6 +192,21 @@ namespace Proyectofinal.ViewModel
                 }
             }
         }
+
+        public FieldTrip SelectedFieldTrip
+        {
+            get { return _selectedFieldTrip; }
+            set
+            {
+                if (_selectedFieldTrip != value)
+                {
+                    _selectedFieldTrip = value;
+                    OnPropertyChanged(nameof(SelectedFieldTrip));
+                    ItemTappedCommandFieldTrip.Execute(_selectedFieldTrip);
+                }
+            }
+        }
+
         
 
         public ObservableCollection<Carrera> Carreras
@@ -174,6 +235,66 @@ namespace Proyectofinal.ViewModel
             }
         }
 
+        public ObservableCollection<FieldTrip> FieldTrips
+        {
+            get { return _fieldtrip; }
+            set
+            {
+                if (_fieldtrip != value)
+                {
+                    _fieldtrip = value;
+                    OnPropertyChanged(nameof(FieldTrips));
+                }
+            }
+        }
+
+        private async void OnDeleteFieldTrip(FieldTrip fieldTrip)
+        {
+            bool answer = await App.Current.MainPage.DisplayAlert("Confirm Deletion", $"Are you sure you want to delete field trip \n {fieldTrip.Organizacion}?", "Yes", "No");
+            if (answer)
+            {
+                await DeleteFieldTrip(fieldTrip.Id);
+                Refresh();
+            }
+        }
+
+        public async Task DeleteFieldTrip(int id)
+        {
+            var fieldTripToDelete = _databaseContext.GetFieldTripById(id);
+
+            if (fieldTripToDelete != null)
+            {
+                _databaseContext.DeleteFieldTrip(fieldTripToDelete);
+
+                // Remove the user from the collection
+                FieldTrips.Remove(fieldTripToDelete);
+            }
+        }
+
+        private async void OnDeleteCareer(Carrera carrera)
+        {
+            bool answer = await App.Current.MainPage.DisplayAlert("Confirm Deletion", $"Are you sure you want to delete career \n {carrera.Nombre}?", "Yes", "No");
+            if (answer)
+            {
+                await DeleteCareer(carrera.Id);
+                Refresh();
+            }
+        }
+
+
+        public async Task DeleteCareer(int id)
+        {
+            var careerToDelete = _databaseContext.GetCarreraById(id);
+
+            if (careerToDelete != null)
+            {
+                _databaseContext.DeleteCarrera(careerToDelete);
+
+                // Remove the user from the collection
+                Carreras.Remove(careerToDelete);
+            }
+        }
+
         private async void OnDeleteUser(Usuario user)
         {
             bool answer = await App.Current.MainPage.DisplayAlert("Confirm Deletion", $"Are you sure you want to delete user \n {user.Nombre}?", "Yes", "No");
@@ -183,6 +304,21 @@ namespace Proyectofinal.ViewModel
                 Refresh();
             }
         }
+        public async Task DeleteUser(int id)
+        {
+            var userToDelete = _databaseContext.GetUsuarioById(id);
+
+            if (userToDelete != null)
+            {
+                _databaseContext.DeleteUsuario(userToDelete);
+
+                // Remove the user from the collection
+                Users.Remove(userToDelete);
+            }
+        }
+
+
+
         public async Task OnEditUser()
         {
             _databaseContext.UpdateUsuario(User);
@@ -195,14 +331,10 @@ namespace Proyectofinal.ViewModel
             OnClose();
         }
 
-        private async void OnDeleteCareer(Carrera carrera)
+        public async Task OnEditFieldTrip()
         {
-            bool answer = await App.Current.MainPage.DisplayAlert("Confirm Deletion", $"Are you sure you want to delete career \n {carrera.Nombre}?", "Yes", "No");
-            if (answer)
-            {
-                await DeleteCareer(carrera.Id);
-                Refresh();
-            }
+            _databaseContext.UpdateFieldTrip(FieldTrip);
+            OnClose();
         }
 
         private void OnSignOut()
@@ -222,32 +354,10 @@ namespace Proyectofinal.ViewModel
                 SelectedCareer= null;
                 App.Current.MainPage = new AdminCareers();
             }
-        }
-
-
-        public async Task DeleteUser(int id)
-        {
-            var userToDelete = _databaseContext.GetUsuarioById(id);
-
-            if (userToDelete != null)
+            if (App.Current.MainPage is EditFieldTripMain editFieldTripPage)
             {
-                _databaseContext.DeleteUsuario(userToDelete);
-
-                // Remove the user from the collection
-                Users.Remove(userToDelete);
-            }
-        }
-
-        public async Task DeleteCareer(int id)
-        {
-            var careerToDelete = _databaseContext.GetCarreraById(id);
-
-            if (careerToDelete != null)
-            {
-                _databaseContext.DeleteCarrera(careerToDelete);
-
-                // Remove the user from the collection
-                Carreras.Remove(careerToDelete);
+                SelectedFieldTrip = null;
+                App.Current.MainPage = new AdminFieldTrip();
             }
         }
 
@@ -255,8 +365,10 @@ namespace Proyectofinal.ViewModel
         {
             Carreras.Clear();
             Users.Clear();
+            FieldTrips.Clear();
             var users = _databaseContext.GetAllUsuarios();
             var careers = _databaseContext.GetAllCarreras();
+            var fieldTrips = _databaseContext.GetAllFieldTrips();
             foreach (var user in users)
             {
                 Users.Add(user);
@@ -264,6 +376,10 @@ namespace Proyectofinal.ViewModel
             foreach (var career in careers)
             {
                 Carreras.Add(career);
+            }
+            foreach (var fieldTrip in fieldTrips)
+            {
+                FieldTrips.Add(fieldTrip);
             }
         }
 

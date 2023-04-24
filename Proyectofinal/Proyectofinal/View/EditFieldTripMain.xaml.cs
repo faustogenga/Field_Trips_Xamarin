@@ -1,4 +1,5 @@
-﻿using Proyectofinal.ViewModel;
+﻿using Proyectofinal.Model;
+using Proyectofinal.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,23 +12,15 @@ using Xamarin.Forms.Xaml;
 namespace Proyectofinal.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AdminFieldTrip : ContentPage
+	public partial class EditFieldTripMain : ContentPage
 	{
         private readonly EditViewModel _viewModel;
-        public AdminFieldTrip ()
+        public EditFieldTripMain (FieldTrip selectedFieldTrip)
 		{
 			InitializeComponent ();
             _viewModel = new EditViewModel();
+            _viewModel.FieldTrip = selectedFieldTrip;
             BindingContext = _viewModel;
         }
-        private void OnRefreshClicked(object sender, System.EventArgs e)
-        {
-            _viewModel.Refresh();
-        }
-
-        private void AdminMainView(object sender, EventArgs e)
-        {
-            _viewModel.AdminMainView();
-        }
-    }
+	}
 }

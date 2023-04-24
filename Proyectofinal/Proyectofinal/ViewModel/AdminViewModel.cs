@@ -32,7 +32,7 @@ namespace Proyectofinal.ViewModel
             });
             EditTripsCommand = new Command(() =>
             {
-                App.Current.MainPage = new FieldTrip();
+                App.Current.MainPage = new AdminFieldTrip();
             });
 
             SignOutCommand = new Command(() =>
