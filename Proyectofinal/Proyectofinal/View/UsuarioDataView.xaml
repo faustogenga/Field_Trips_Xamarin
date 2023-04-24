@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyectofinal.View.UserMainView">
+    <ContentPage.Content>
+
+        <StackLayout>
+            <Frame>
+                <Image Source="LogoUlacit.png"
+                    VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White"/>
+            </Frame>
+
+            <Label FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       FontSize="25"
+                       Text="PRUEBA"
+                        Padding="0,20,0,0"
+                   />
+            
+            <Frame VerticalOptions="Center"
+                   HeightRequest="80"
+                   WidthRequest="40"
+                    CornerRadius="100" 
+                   BackgroundColor="Transparent"
+                   IsClippedToBounds="True">
+                <Image Source="Mini_user.png"
+                    VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+            </Frame>
+
+            
+
+            <Grid Margin="0,20,0,0"
+                >
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Informacion basica:"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="3"
+                       FontAttributes="Bold"
+                       FontSize="15"
+                       Padding="50,0,0,0"  
+                       VerticalOptions="Center"
+                    />
+                <Label Grid.Row="1"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       Text="Correo: "
+                       Padding="100,0,0,0"
+                       HorizontalOptions="Center"                       
+                       />
+
+                <Label Grid.Row="1"
+                       Grid.Column="2"
+                       Grid.ColumnSpan="2"
+                       Text="Binding correo"
+                       Padding="0,0,75,0"
+                       HorizontalOptions="Center" 
+                       />
+
+                <Label Grid.Row="2"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       Text="Cedula"
+                       Padding="100,0,0,0"
+                       HorizontalOptions="Center"                        
+                       />
+
+                <Label Grid.Row="2"
+                       Grid.Column="2"
+                       Grid.ColumnSpan="2"
+                       Text="Binding cedula"
+                       Padding="0,0,75,0"
+                       HorizontalOptions="Center" 
+                       />
+
+                <Label Grid.Row="3"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       Text="Carrera"
+                       Padding="100,0,0,0"
+                       HorizontalOptions="Center"                         
+                       />
+
+                <Label Grid.Row="3"
+                       Grid.Column="2"
+                       Grid.ColumnSpan="2"
+                       Text="Binding carrera"
+                       Padding="0,0,75,0"
+                       HorizontalOptions="Center" 
+                       />
+                <Button Grid.Row="5"
+                        Grid.Column="2"                    
+                        BackgroundColor="#665ca8"
+                        CornerRadius="20"
+                        Text="Back"
+                        TextColor="White"
+                        Command="{Binding BackMainCommand}"
+                    />
+
+            </Grid>
+            
+            
+        </StackLayout>
+        
+
+    </ContentPage.Content>
+</ContentPage>

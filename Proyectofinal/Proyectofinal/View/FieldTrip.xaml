@@ -90,7 +90,7 @@
                     FontAttributes="Bold"
                     BackgroundColor="#5e5ca8"
                     CornerRadius="10"
-                    Margin="10,30,10,0"
+                    Margin="10,30,10,30"
                     Command="{Binding EntryTripCommand}"
                 />
 

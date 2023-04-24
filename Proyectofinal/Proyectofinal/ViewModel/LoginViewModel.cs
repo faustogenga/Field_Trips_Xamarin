@@ -1,14 +1,9 @@
 ﻿using Proyectofinal.DAL;
 using Proyectofinal.Model;
 using Proyectofinal.View;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Proyectofinal.ViewModel
@@ -24,9 +19,6 @@ namespace Proyectofinal.ViewModel
 
         public ICommand RegisterCommand { get; set; }
         public ICommand ForgotPasswordCommand { get; set; }
-        //***********************
-        public ICommand FieldTripCommand { get; set; }
-        //***********************
         public LoginViewModel()
         {
             Login = new LoginModel();
@@ -73,14 +65,6 @@ namespace Proyectofinal.ViewModel
             {
                 App.Current.MainPage = new Register();
             });
-
-            //*********************
-            FieldTripCommand = new Command(() =>
-            {
-                App.Current.MainPage = new View.FieldTrip();
-
-            });
-            //*********************
 
             ForgotPasswordCommand = new Command(() =>
             {

@@ -41,13 +41,15 @@
     <Compile Update="View\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
+    <Compile Update="View\UsuarioDataView.xaml.cs">
+      <DependentUpon>UsuarioDataView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="View\UsuarioMainView.xaml.cs">
       <DependentUpon>UsuarioMainView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
-  <ItemGroup>
-    <!--<EmbeddedResource Update="View\FieldTrip.xaml">
+  <ItemGroup><!--<EmbeddedResource Update="View\FieldTrip.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\FieldTripListView.xaml">
@@ -59,5 +61,12 @@
     <EmbeddedResource Update="View\UsuarioMainView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>-->
+  
+    <EmbeddedResource Update="View\FeedbackMain.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\UsuarioDataView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

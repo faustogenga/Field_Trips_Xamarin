@@ -12,13 +12,13 @@ namespace Proyectofinal.ViewModel
     {
         public bool statusEntryFieldTrip;
         private readonly UsuarioDatabaseContext MyDal;
-        public Model.FieldTripModel FieldTrip { get; set; }
+        public Model.FieldTrip FieldTrip { get; set; }
         public string ErrorMessage { get; set; }
         public ICommand EntryTripCommand { get; set; }
 
         public FieldTripViewModel()
         {
-            FieldTrip = new Model.FieldTripModel();
+            FieldTrip = new Model.FieldTrip();
             MyDal = new UsuarioDatabaseContext();
 
             EntryTripCommand = new Command(() =>
@@ -200,7 +200,7 @@ namespace Proyectofinal.ViewModel
             }
 
             //Insert
-            Model.FieldTripModel nuevo = new Model.FieldTripModel
+            Model.FieldTrip nuevo = new Model.FieldTrip
             {
                 GiraId = giraId,
                 GiraOrganizacion = giraOrganizacion,

@@ -5,14 +5,15 @@ using Xamarin.Forms.Xaml;
 namespace Proyectofinal.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class UsuarioMainView : ContentPage
+    public partial class UserMainView : ContentPage
     {
         
-        public UsuarioMainView()
+        public UserMainView()
         {
             InitializeComponent();
+            this.BindingContext = new UsuarioDataViewViewModel();
 
-            this.BindingContext = new UsuarioMainViewViewModel();
+
         }
     }
 }
