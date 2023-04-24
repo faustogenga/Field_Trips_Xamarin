@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Proyectofinal.Model;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -10,19 +11,20 @@ namespace Proyectofinal.ViewModel
         public ICommand FieldTripCommand { get; set; }
         public ICommand UserCommand { get; set; }
         public ICommand FeedbackCommand { get; set; }
-        
+
+        public Usuario _User;
 
         public UsuarioMainViewViewModel()
         {
             FieldTripCommand = new Command(() =>
             {
-                App.Current.MainPage = new View.FieldTrip();
+                App.Current.MainPage = new View.UserFieldTripView();
 
             });
 
             UserCommand = new Command(() =>
             {
-                App.Current.MainPage = new View.UserMainView();
+                App.Current.MainPage = new View.UsuarioDataView(User);
 
             });
             FeedbackCommand = new Command(() =>
@@ -32,7 +34,15 @@ namespace Proyectofinal.ViewModel
             });
             
         }
-
+        public Usuario User
+        {
+            get { return _User; }
+            set
+            {
+                _User = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         //Interface

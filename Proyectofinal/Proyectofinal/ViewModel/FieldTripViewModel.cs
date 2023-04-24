@@ -18,6 +18,8 @@ namespace Proyectofinal.ViewModel
         public string ErrorMessage { get; set; }
         public ICommand EntryTripCommand { get; set; }
 
+        public ICommand OnCancelCommand { get;  set; }
+
         public FieldTripViewModel()
         {
             FieldTrip = new Model.FieldTrip();
@@ -49,6 +51,15 @@ namespace Proyectofinal.ViewModel
                         App.Current.MainPage.DisplayAlert("Error", $"{ErrorMessage}", "OK");
                     }
                 }
+                else
+                {
+                    App.Current.MainPage.DisplayAlert("Error", $"{ErrorMessage}", "OK");
+                }
+            });
+
+            OnCancelCommand = new Command(async () =>
+            {
+                App.Current.MainPage = new AdminFieldTrip();
             });
 
         }
@@ -169,17 +180,17 @@ namespace Proyectofinal.ViewModel
         //Validation fields
         private void ValidateInputFields()
         {
-            if (string.IsNullOrEmpty(FieldTrip.Organizacion) &
-                string.IsNullOrEmpty(FieldTrip.Ubicacion) &
-                string.IsNullOrEmpty(FieldTrip.Fecha) &
-                string.IsNullOrEmpty(FieldTrip.HoraSalida) &
-                string.IsNullOrEmpty(FieldTrip.HoraRegreso) &
-                string.IsNullOrEmpty(FieldTrip.Descripcion) &
-                FieldTrip.Valor == default(int) &
-                FieldTrip.Valor > 0 &
-                FieldTrip.Precio == default(int) &
-                FieldTrip.Precio > 0 &
-                string.IsNullOrEmpty(FieldTrip.Link) &
+            if (string.IsNullOrEmpty(FieldTrip.Organizacion) ||
+                string.IsNullOrEmpty(FieldTrip.Ubicacion) ||
+                string.IsNullOrEmpty(FieldTrip.Fecha) ||
+                string.IsNullOrEmpty(FieldTrip.HoraSalida) ||
+                string.IsNullOrEmpty(FieldTrip.HoraRegreso) ||
+                string.IsNullOrEmpty(FieldTrip.Descripcion) ||
+                FieldTrip.Valor == default(int) ||
+                FieldTrip.Valor > 0 ||
+                FieldTrip.Precio == default(int) ||
+                FieldTrip.Precio > 0 ||
+                string.IsNullOrEmpty(FieldTrip.Link) ||
                 string.IsNullOrEmpty(FieldTrip.ImgURL))
             {
                 statusEntryFieldTrip = false;

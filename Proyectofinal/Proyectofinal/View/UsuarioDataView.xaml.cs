@@ -1,17 +1,20 @@
-﻿using Proyectofinal.ViewModel;
+﻿using Proyectofinal.Model;
+using Proyectofinal.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Proyectofinal.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class UserMainView : ContentPage
+    public partial class UsuarioDataView : ContentPage
     {
-        
-        public UserMainView()
+        private readonly UsuarioDataViewViewModel _viewModel;
+        public UsuarioDataView(Usuario UserLogin)
         {
             InitializeComponent();
-            this.BindingContext = new UsuarioDataViewViewModel();
+            _viewModel = new UsuarioDataViewViewModel();
+            _viewModel.User = UserLogin;
+            BindingContext = _viewModel;
 
 
         }

@@ -9,11 +9,11 @@
                 <Image Source="User.png"/>
             </Frame>
             
-            <Label Text="Name"
+            <Label Text="{Binding User.Nombre}"
                  FontAttributes="Bold"  
                  HorizontalTextAlignment="Center"  
                    FontSize="30"></Label>
-            <Label Text="Email"
+            <Label Text="{Binding User.Email}"
                  HorizontalTextAlignment="Center"  
                  FontSize="15"></Label>
 

@@ -93,6 +93,17 @@
                     Margin="10,30,10,0"
                     Command="{Binding EntryTripCommand}"
                 />
+                
+                <Button Text="Cancel"
+                    TextColor="#5e5ca8"
+                    BackgroundColor="Transparent"
+                    FontAttributes="Bold"
+                    BorderColor="#5e5ca8"
+                    BorderWidth="5"
+                    CornerRadius="10"
+                    Margin="10,2,10,30"
+                    Command="{Binding OnCancelCommand}"
+                />
 
 
             </StackLayout>

@@ -16,7 +16,7 @@
                     FontAttributes="Bold"
                     BackgroundColor="#665ca8"
                     CornerRadius="10"
-                    Margin="10,10,10,0"/>
+                    Margin="10,1,10,0"/>
 
 
             <Button Text="Add Field Trip"

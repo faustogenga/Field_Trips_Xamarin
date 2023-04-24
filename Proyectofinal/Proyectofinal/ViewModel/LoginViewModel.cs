@@ -14,6 +14,8 @@ namespace Proyectofinal.ViewModel
 
         public LoginModel Login;
 
+        public Usuario _UserLogin;
+
         public bool isLoginButtonEnabled;
         public ICommand LoginCommand { get; set; }
 
@@ -44,7 +46,7 @@ namespace Proyectofinal.ViewModel
                         if (isUser)
                         {
                             await App.Current.MainPage.DisplayAlert("Bien", "User login successful", "OK");
-                            App.Current.MainPage = new UsuarioMainView();
+                            App.Current.MainPage = new UsuarioMainView(UserLogin);
                         }
                         else
                         {
@@ -94,6 +96,16 @@ namespace Proyectofinal.ViewModel
             }
         }
 
+        public Usuario UserLogin
+        { 
+            get { return _UserLogin; }
+                set
+            {
+                    _UserLogin = value;
+                    OnPropertyChanged();
+                }
+            }
+
         public bool IsLoginButtonEnabled
         {
             get { return isLoginButtonEnabled; }
@@ -131,6 +143,7 @@ namespace Proyectofinal.ViewModel
 
             if (user != null)
             {
+                UserLogin = user;
                 return true;
             }
 

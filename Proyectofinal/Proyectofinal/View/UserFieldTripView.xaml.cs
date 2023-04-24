@@ -5,9 +5,9 @@ using Xamarin.Forms.Xaml;
 namespace Proyectofinal.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FieldTrip : ContentPage
+    public partial class UserFieldTripView : ContentPage
     {
-        public FieldTrip()
+        public UserFieldTripView()
         {
             InitializeComponent();
             this.BindingContext = new FieldTripViewModel();

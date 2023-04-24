@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Proyectofinal.View.UserMainView">
+             x:Class="Proyectofinal.View.UsuarioDataView">
     <ContentPage.Content>
 
         <StackLayout>
@@ -66,9 +66,9 @@
                 <Label Grid.Row="1"
                        Grid.Column="2"
                        Grid.ColumnSpan="2"
-                       Text="Binding correo"
+                       Text="{Binding User.Email}"
                        Padding="0,0,75,0"
-                       HorizontalOptions="Center" 
+                       HorizontalOptions="Start" 
                        />
 
                 <Label Grid.Row="2"
@@ -82,9 +82,9 @@
                 <Label Grid.Row="2"
                        Grid.Column="2"
                        Grid.ColumnSpan="2"
-                       Text="Binding cedula"
+                       Text="{Binding User.Cedula}"
                        Padding="0,0,75,0"
-                       HorizontalOptions="Center" 
+                       HorizontalOptions="Start" 
                        />
 
                 <Label Grid.Row="3"
@@ -98,9 +98,9 @@
                 <Label Grid.Row="3"
                        Grid.Column="2"
                        Grid.ColumnSpan="2"
-                       Text="Binding carrera"
+                       Text="{Binding User.Carrera}"
                        Padding="0,0,75,0"
-                       HorizontalOptions="Center" 
+                       HorizontalOptions="Start" 
                        />
                 <Button Grid.Row="5"
                         Grid.Column="2"                    

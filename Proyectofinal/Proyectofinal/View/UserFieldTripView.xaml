@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:Proyectofinal.ViewModel" 
              x:DataType="viewmodel:FieldTripViewModel"
-             x:Class="Proyectofinal.View.FieldTrip">
+             x:Class="Proyectofinal.View.UserFieldTripView">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="30,0,30,0">

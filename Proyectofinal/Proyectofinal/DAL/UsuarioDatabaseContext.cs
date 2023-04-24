@@ -17,11 +17,11 @@ namespace Proyectofinal.DAL
         static string dbName = "Proyecto.db";
 
         public string dbPath = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),dbName);
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), dbName);
 
 
         public UsuarioDatabaseContext()
-        { 
+        {
             // Check if the database file exists in the local application data folder
             if (!File.Exists(dbPath))
             {
@@ -45,6 +45,11 @@ namespace Proyectofinal.DAL
         public int InsertFieldTrip(FieldTrip model)
         {
             return connection.Insert(model);
+        }
+
+        public int InsertCareer(Carrera model)
+        { 
+            return connection.Insert(model); 
         }
 
         //GET ALL
@@ -156,6 +161,13 @@ namespace Proyectofinal.DAL
             var query = connection.Table<FieldTrip>().Where(u => u.Codigo == Codigo).ToList();
             return query.FirstOrDefault();
         }
+
+        public Carrera CareerValidation(string Nombre)
+        {
+            var query = connection.Table<Carrera>().Where(u => u.Nombre == Nombre).ToList();
+            return query.FirstOrDefault();
+        }
+
 
     }
 
