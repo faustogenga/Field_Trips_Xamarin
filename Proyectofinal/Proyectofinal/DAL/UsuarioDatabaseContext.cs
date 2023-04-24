@@ -69,6 +69,7 @@ namespace Proyectofinal.DAL
             return connection.Table<FieldTrip>().ToList();
         }
 
+
         //UPDATE
 
         public int UpdateUsuario(Usuario model)
