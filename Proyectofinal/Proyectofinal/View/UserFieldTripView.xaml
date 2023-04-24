@@ -26,63 +26,58 @@
 
                 <Entry Placeholder="Codigo"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraId}"
+                   Text="{Binding FieldTrip.Id}"
                    TextTransform="Uppercase"
                    ></Entry>
 
                 <Entry Placeholder="Organizacion"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraOrganizacion}"
+                   Text="{Binding FieldTrip.Organizacion}"
                    ></Entry>
 
                 <Entry Placeholder="Ubicacion"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraUbicacion}"
+                   Text="{Binding FieldTrip.Ubicacion}"
                    ></Entry>
 
                 <Entry Placeholder="Fecha"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraFecha}"
+                   Text="{Binding FieldTrip.Fecha}"
                    ></Entry>
 
                 <Entry Placeholder="HoraSalida"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraHoraSalida}"
+                   Text="{Binding FieldTrip.HoraSalida}"
                    ></Entry>
 
                 <Entry Placeholder="Hora Regreso"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraHoraRegreso}"
+                   Text="{Binding FieldTrip.HoraRegreso}"
                    ></Entry>
 
                 <Entry Placeholder="Descripcion"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraDescripcion}"
-                   ></Entry>
-
-                <Entry Placeholder="Requisitos"
-                   Margin="5"
-                   Text="{Binding FieldTrip.GiraRequisitos}"
+                   Text="{Binding FieldTrip.Descripcion}"
                    ></Entry>
 
                 <Entry Placeholder="Valor"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraValor}"
+                   Text="{Binding FieldTrip.Valor}"
                    ></Entry>
 
                 <Entry Placeholder="Precio"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraPrecio}"
+                   Text="{Binding FieldTrip.Precio}"
                    ></Entry>
 
                 <Entry Placeholder="Link"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraLink}"
+                   Text="{Binding FieldTrip.Link}"
                    ></Entry>
 
                 <Entry Placeholder="Imagen URL"
                    Margin="5"
-                   Text="{Binding FieldTrip.GiraImgURL}"
+                   Text="{Binding FieldTrip.ImgURL}"
                    ></Entry>
 
                 <Button Text="Entry data"
