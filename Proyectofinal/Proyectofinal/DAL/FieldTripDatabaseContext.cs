@@ -40,40 +40,40 @@ namespace Proyectofinal.DAL
         }
 
         //Insert
-        public int InsertFieldTrip(FieldTrip model)
+        public int InsertFieldTrip(FieldTripModel model)
         {
             return connection.Insert(model);
         }
 
 
         //Read
-        public List<FieldTrip> GetAllFieldTrip()
+        public List<FieldTripModel> GetAllFieldTrip()
         {
-            return connection.Table<FieldTrip>().ToList();
+            return connection.Table<FieldTripModel>().ToList();
         }
 
         //Update
-        public int UpdateFieldTrip(FieldTrip model)
+        public int UpdateFieldTrip(FieldTripModel model)
         {
             return connection.Update(model);
         }
 
         //Delete
-        public int DeleteFieldTrip(FieldTrip model)
+        public int DeleteFieldTrip(FieldTripModel model)
         {
             return connection.Delete(model);
         }
 
         //Search - Single object
-        public FieldTrip GetFieldTripById(int id)
+        public FieldTripModel GetFieldTripById(int id)
         {
-            return connection.Table<FieldTrip>().FirstOrDefault(u => u.GiraId == id);
+            return connection.Table<FieldTripModel>().FirstOrDefault(u => u.GiraId == id);
         }
 
         //ID Validation - VM
-        public FieldTrip FieldTripIdValidation(int giraId)
+        public FieldTripModel FieldTripIdValidation(int giraId)
         {
-            var query = connection.Table<FieldTrip>().Where(u => u.GiraId == giraId).ToList();
+            var query = connection.Table<FieldTripModel>().Where(u => u.GiraId == giraId).ToList();
             return query.FirstOrDefault();
         }
     }    

@@ -41,7 +41,7 @@
                 Command="{Binding LoginCommand}" 
         />
 
-            <Button Text="Register"
+        <Button Text="Register"
                 TextColor="White"
                 FontAttributes="Bold"
                 BackgroundColor="#5e5ca8"
@@ -50,6 +50,15 @@
                 Command="{Binding RegisterCommand}"
         />
 
-        </StackLayout>
+        <Button Text="Register Trip"
+                TextColor="White"
+                FontAttributes="Bold"
+                BackgroundColor="#5e5ca8"
+                CornerRadius="10"
+                Margin="10,30,10,0"
+                Command="{Binding FieldTripCommand}"
+        />
+        
+    </StackLayout>
     </ContentPage.Content>
 </ContentPage>
