@@ -26,8 +26,5 @@ namespace Proyectofinal.Model
 
 
 
-
-
-
     }
 }

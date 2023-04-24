@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyectofinal.View.AdminFieldTrip">
+    <ContentPage.Content>
+        <StackLayout>
+            <Button Text="Exit" Clicked="AdminMainView" 
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    BackgroundColor="#665ca8"
+                    CornerRadius="10"
+                    Margin="10,10,10,0"/>
+
+            <Button Text="Refresh" Clicked="OnRefreshClicked"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    BackgroundColor="#665ca8"
+                    CornerRadius="10"
+                    Margin="10,10,10,0"/>
+
+
+            <Button Text="Add Field Trip"
+                    Command="{Binding ShowAddFieldTripPopupCommand}"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    BackgroundColor="#665ca8"
+                    CornerRadius="10"
+                    Margin="10,1,10,0"/>
+
+
+
+            <ListView x:Name="fieldtripListView" 
+                      ItemsSource="{Binding FieldTrips}" 
+                      Header="Field Trips"
+                      HasUnevenRows="True"
+                      Footer="Todos los derechos reservados."
+                      SelectedItem="{Binding SelectedFieldTrip}">
+
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                            <Label Text="Field Trips"
+                                   TextColor="#665ca8"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   Margin="10,10,10,10"
+                                   />
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+
+                <ListView.FooterTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                            <Label Padding="20" Text="2023 © Univeridad Latinoamericana de Ciencia y Technologia." FontSize="10"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.FooterTemplate>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Delete" BackgroundColor="Red"
+                                                    Command="{Binding BindingContext.DeleteFieldTripCommand, 
+                                                                Source={x:Reference Name=fieldtripListView}}"  
+                                                   CommandParameter="{Binding .}" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <SwipeView.Content>
+                                    <Grid Padding="10" RowSpacing="5"
+                                          BackgroundColor="#5e5ca8"
+                                          Margin="10,30,10,0" 
+                                          >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label                                                
+                                               FontAttributes="Bold"
+                                               TextColor="White"
+                                               FontSize="20"
+                                               Grid.Row="0">
+                                            <Label.FormattedText 
+>
+                                                <FormattedString >
+                                                    <Span Text="{Binding Id}" />
+                                                    <Span Text=" - " />
+                                                    <Span Text="{Binding Codigo}" />
+                                                    <Span Text=" :  " />
+                                                    <Span Text="{Binding Organizacion}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label                                                
+                                               FontAttributes="None"
+                                               TextColor="White"
+                                               FontSize="15"
+                                               Grid.Row="1">
+                                            <Label.FormattedText 
+>
+                                                <FormattedString >
+                                                    <Span Text="{Binding Fecha}" />
+                                                    <Span Text=" - " />
+                                                    <Span Text="{Binding Ubicacion}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Text="{Binding Valor, StringFormat='Field Trip Value : {0}'}" Grid.Row="2"
+                                               FontAttributes="Bold"
+                                               TextColor="White"/>
+                                    </Grid>
+                                </SwipeView.Content>
+                            </SwipeView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

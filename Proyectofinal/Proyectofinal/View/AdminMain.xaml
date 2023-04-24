@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyectofinal.View.AdminMain">
+    <ContentPage.Content>
+        <StackLayout Margin="30,0,30,0">
+            <Frame BackgroundColor="Transparent" Margin="0,50,0,0">
+                <Image Source="LogoUlacit.png"/>
+            </Frame>
+            <Label Text="Welcome Admin" 
+               TextColor="#5e5ca8" 
+               FontSize="20"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Padding="10"/>
+            <Label Text="Admin Control Center" 
+               TextColor="#665ca8"
+               FontSize="30"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Padding="10"
+               Margin="0,00,0,0"/>
+
+
+            <Button Text="Edit Users"
+                TextColor="White"
+                FontAttributes="Bold"
+                BackgroundColor="#5e5ca8"
+                CornerRadius="10"
+                Margin="10,30,10,0"
+                Command="{Binding EditUsersCommand}" 
+        />
+
+            <Button Text="Edit Careers "
+                TextColor="White"
+                FontAttributes="Bold"
+                BackgroundColor="#5e5ca8"
+                CornerRadius="10"
+                Margin="10,30,10,0"
+                Command="{Binding EditCareersCommand}"
+        />
+
+
+            <Button Text="Edit Academic Trips "
+                TextColor="White"
+                FontAttributes="Bold"
+                BackgroundColor="#5e5ca8"
+                CornerRadius="10"
+                Margin="10,30,10,0"
+                Command="{Binding EditTripsCommand}"
+        />
+
+            <Button Text="Sign Out"
+                TextColor="White"
+                FontAttributes="Bold"
+                FontSize="Caption"
+                BackgroundColor="#665ca8"
+                CornerRadius="10"
+                Margin="50,30,50,0"
+                Command="{Binding SignOutCommand}"
+        />
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

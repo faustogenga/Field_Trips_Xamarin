@@ -1,8 +1,12 @@
 ﻿using Proyectofinal.Model;
+using Proyectofinal.View.PopUp;
+using Rg.Plugins.Popup.Extensions;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Proyectofinal.ViewModel
 {
@@ -12,7 +16,9 @@ namespace Proyectofinal.ViewModel
 
         private List<string> _carrerasnombres;
 
+        public ICommand AddCareerCommand { get; private set; }
 
+        public ICommand OnCancelCommand { get; private set; }
         private CarreraRepository Repository { get; set; }
 
         public CarreraViewModel()
@@ -24,6 +30,19 @@ namespace Proyectofinal.ViewModel
         {
             Repository = new CarreraRepository();
             CarrerasNombres = Repository.GetAllCarreraNombres();
+
+            AddCareerCommand = new Command(async () =>
+            {
+                // Add the new career to the database
+                // ...
+
+                // Close the popup
+            });
+
+            OnCancelCommand = new Command(async () =>
+            {
+                // Close the popup
+            });
         }
 
 

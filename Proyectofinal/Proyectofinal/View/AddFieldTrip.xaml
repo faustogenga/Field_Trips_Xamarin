@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:Proyectofinal.ViewModel" 
+             x:DataType="viewmodel:FieldTripViewModel"
+             x:Class="Proyectofinal.View.AddFieldTrip">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="30,0,30,0">
+                <Frame BackgroundColor="Transparent" Margin="0,50,0,0">
+                    <Image Source="LogoUlacit.png"/>
+                </Frame>
+                <Label Text="Academic Field trips" 
+                   TextColor="#5e5ca8" 
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   Padding="5"/>
+
+                <Label Text="Agregar Gira" 
+                   TextColor="#665ca8"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Start"
+                   Padding="10"/>
+
+                <Entry Placeholder="Codigo"
+                   Margin="5"
+                   Text="{Binding FieldTrip.Codigo}"
+                   TextTransform="Uppercase"
+                   
+                   ></Entry>
+
+                <Entry Placeholder="Organizacion"
+                   Margin="5"
+                   Text="{Binding FieldTrip.Organizacion}"
+                   ></Entry>
+
+                <Entry Placeholder="Ubicacion"
+                   Margin="5"
+                   Text="{Binding FieldTrip.Ubicacion}"
+                   ></Entry>
+
+                <Entry Placeholder="Fecha"
+                   Margin="5"
+                   Text="{Binding FieldTrip.Fecha}"
+                   ></Entry>
+
+                <Entry Placeholder="HoraSalida"
+                   Margin="5"
+                   Text="{Binding FieldTrip.HoraSalida}"
+                   ></Entry>
+
+                <Entry Placeholder="Hora Regreso"
+                   Margin="5"
+                   Text="{Binding FieldTrip.HoraRegreso}"
+                   ></Entry>
+
+                <Entry Placeholder="Descripcion"
+                   Margin="5"
+                   Text="{Binding FieldTrip.Descripcion}"
+                   ></Entry>
+
+                <Label Text="Valor de la gira :"></Label>
+
+                    <Entry Placeholder="Valor"
+                   Margin="5"
+                   Text="{Binding FieldTrip.Valor}"
+                   ></Entry>
+
+                <Label Text="Precio de la gira :"></Label>
+
+                <Entry Placeholder="Precio"
+                   Margin="5"
+                   Text="{Binding FieldTrip.Precio}"
+                   ></Entry>
+
+                <Entry Placeholder="Link"
+                   Margin="5"
+                   Text="{Binding FieldTrip.Link}"
+                   ></Entry>
+
+                <Entry Placeholder="Imagen URL"
+                   Margin="5"
+                   Text="{Binding FieldTrip.ImgURL}"
+                   ></Entry>
+
+                <Button Text="Add Field Trip"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    BackgroundColor="#5e5ca8"
+                    CornerRadius="10"
+                    Margin="10,30,10,0"
+                    Command="{Binding EntryTripCommand}"
+                />
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

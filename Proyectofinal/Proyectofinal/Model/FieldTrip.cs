@@ -1,176 +1,177 @@
 ﻿using SQLite;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text;
 
 namespace Proyectofinal.Model
-{    
+{
     public class FieldTrip : INotifyPropertyChanged
-    {        
-        private int _giraId;
-        private string _giraOrganizacion;
-        private string _giraUbicacion;
-        private string _giraFecha;
-        private string _giraHoraSalida;
-        private string _giraHoraRegreso;
-        private string _giraDescripcion;
-        private string _giraRequisitos;
-        private int _giraValor;
-        private int _giraPrecio;
-        private string _giraLink;
-        private string _giraImgURL;
+    {
+        private int _id;
+        private string _codigo;
+        private string _organizacion;
+        private string _ubicacion;
+        private string _fecha;
+        private string _horaSalida;
+        private string _horaRegreso;
+        private string _descripcion;
+        private int _valor;
+        private int _precio;
+        private string _link;
+        private string _imgURL;
 
         [PrimaryKey, AutoIncrement]
-        public int GiraId
+        public int Id
         {
-            get => _giraId;
+            get => _id;
             set
             {
-                if (_giraId != value)
+                if (_id != value)
                 {
-                    _giraId = value;
-                    OnPropertyChanged(nameof(GiraId));
+                    _id = value;
+                    OnPropertyChanged(nameof(Id));
+                }
+            }
+        }
+        public string Codigo
+        {
+            get => _codigo;
+            set
+            {
+                if (_codigo != value)
+                {
+                    _codigo = value;
+                    OnPropertyChanged(nameof(Codigo));
+                }
+            }
+        }
+        public string Organizacion
+        {
+            get => _organizacion;
+            set
+            {
+                if (_organizacion != value)
+                {
+                    _organizacion = value;
+                    OnPropertyChanged(nameof(Organizacion));
                 }
             }
         }
 
-        public string GiraOrganizacion
+        public string Ubicacion
         {
-            get => _giraOrganizacion;
+            get => _ubicacion;
             set
             {
-                if (_giraOrganizacion != value)
+                if (_ubicacion != value)
                 {
-                    _giraOrganizacion = value;
-                    OnPropertyChanged(nameof(GiraOrganizacion));
+                    _ubicacion = value;
+                    OnPropertyChanged(nameof(Ubicacion));
                 }
             }
         }
 
-        public string GiraUbicacion
+        public string Fecha
         {
-            get => _giraUbicacion;
+            get => _fecha;
             set
             {
-                if (_giraUbicacion != value)
+                if (_fecha != value)
                 {
-                    _giraUbicacion = value;
-                    OnPropertyChanged(nameof(GiraUbicacion));
+                    _fecha = value;
+                    OnPropertyChanged(nameof(Fecha));
                 }
             }
         }
 
-        public string GiraFecha
+        public string HoraSalida
         {
-            get => _giraFecha;
+            get => _horaSalida;
             set
             {
-                if (_giraFecha != value)
+                if (_horaSalida != value)
                 {
-                    _giraFecha = value;
-                    OnPropertyChanged(nameof(GiraFecha));
+                    _horaSalida = value;
+                    OnPropertyChanged(nameof(HoraSalida));
                 }
             }
         }
 
-        public string GiraHoraSalida
+        public string HoraRegreso
         {
-            get => _giraHoraSalida;
+            get => _horaRegreso;
             set
             {
-                if (_giraHoraSalida != value)
+                if (_horaRegreso != value)
                 {
-                    _giraHoraSalida = value;
-                    OnPropertyChanged(nameof(GiraHoraSalida));
+                    _horaRegreso = value;
+                    OnPropertyChanged(nameof(HoraRegreso));
                 }
             }
         }
 
-        public string GiraHoraRegreso
+        public string Descripcion
         {
-            get => _giraHoraRegreso;
+            get => _descripcion;
             set
             {
-                if (_giraHoraRegreso != value)
+                if (_descripcion != value)
                 {
-                    _giraHoraRegreso = value;
-                    OnPropertyChanged(nameof(GiraHoraRegreso));
+                    _descripcion = value;
+                    OnPropertyChanged(nameof(Descripcion));
                 }
             }
         }
 
-        public string GiraDescripcion
+        public int Valor
         {
-            get => _giraDescripcion;
+            get => _valor;
             set
             {
-                if (_giraDescripcion != value)
+                if (_valor != value)
                 {
-                    _giraDescripcion = value;
-                    OnPropertyChanged(nameof(GiraDescripcion));
+                    _valor = value;
+                    OnPropertyChanged(nameof(Valor));
                 }
             }
         }
 
-        public string GiraRequisitos
+        public int Precio
         {
-            get => _giraRequisitos;
+            get => _precio;
             set
             {
-                if (_giraRequisitos != value)
+                if (_precio != value)
                 {
-                    _giraRequisitos = value;
-                    OnPropertyChanged(nameof(GiraRequisitos));
+                    _precio = value;
+                    OnPropertyChanged(nameof(Precio));
                 }
             }
         }
 
-        public int GiraValor
+        public string Link
         {
-            get => _giraValor;
+            get => _link;
             set
             {
-                if (_giraValor != value)
+                if (_link != value)
                 {
-                    _giraValor = value;
-                    OnPropertyChanged(nameof(GiraValor));
+                    _link = value;
+                    OnPropertyChanged(nameof(Link));
                 }
             }
         }
 
-        public int GiraPrecio
+        public string ImgURL
         {
-            get => _giraPrecio;
+            get => _imgURL;
             set
             {
-                if (_giraPrecio != value)
+                if (_imgURL != value)
                 {
-                    _giraPrecio = value;
-                    OnPropertyChanged(nameof(GiraPrecio));
-                }
-            }
-        }
-
-        public string GiraLink
-        {
-            get => _giraLink;
-            set
-            {
-                if (_giraLink != value)
-                {
-                    _giraLink = value;
-                    OnPropertyChanged(nameof(GiraLink));
-                }
-            }
-        }
-
-        public string GiraImgURL
-        {
-            get => _giraImgURL;
-            set
-            {
-                if (_giraImgURL != value)
-                {
-                    _giraImgURL = value;
-                    OnPropertyChanged(nameof(GiraImgURL));
+                    _imgURL = value;
+                    OnPropertyChanged(nameof(ImgURL));
                 }
             }
         }

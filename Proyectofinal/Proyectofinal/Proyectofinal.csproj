@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
     <PackageReference Include="SQLite" Version="3.13.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
     <PackageReference Include="SQLiteNetExtensions.Async" Version="2.1.0" />
@@ -29,43 +30,46 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="View\AdminUser.xaml.cs">
+      <DependentUpon>AdminUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\AddFieldTrip.xaml.cs">
+      <DependentUpon>AddFieldTrip.xaml</DependentUpon>
+    </Compile>
     <Compile Update="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Update="View\FieldTrip.xaml.cs">
-      <DependentUpon>FieldTrip.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="View\FieldTripListView.xaml.cs">
-      <DependentUpon>FieldTripListView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="View\Register.xaml.cs">
-      <DependentUpon>Register.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="View\UsuarioDataView.xaml.cs">
-      <DependentUpon>UsuarioDataView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="View\UsuarioMainView.xaml.cs">
-      <DependentUpon>UsuarioMainView.xaml</DependentUpon>
+    <Compile Update="View\PopUp\AddCareerPopupPage.xaml.cs">
+      <DependentUpon>AddCareerPopupPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
-  <ItemGroup><!--<EmbeddedResource Update="View\FieldTrip.xaml">
+  <ItemGroup>
+    <EmbeddedResource Update="View\AdminCareers.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\FieldTripListView.xaml">
+    <EmbeddedResource Update="View\AdminFieldTrip.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\AdminMain.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\EditCareerMain.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\EditFieldTripMain.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\EditUserMain.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\AddFieldTrip.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\PopUp\AddCareerPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\Register.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="View\UsuarioMainView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>-->
-  
-    <EmbeddedResource Update="View\FeedbackMain.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="View\UsuarioDataView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

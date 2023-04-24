@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace Proyectofinal.DAL
 {
@@ -20,9 +21,8 @@ namespace Proyectofinal.DAL
 
 
         public UsuarioDatabaseContext()
-        {
+        { 
             // Check if the database file exists in the local application data folder
-            File.Delete(dbPath);
             if (!File.Exists(dbPath))
             {
                 // Copy the database file from the resources folder to the local application data folder
@@ -41,6 +41,13 @@ namespace Proyectofinal.DAL
             File.SetAttributes(dbPath, FileAttributes.Normal);
         }
 
+        //INSERT
+        public int InsertFieldTrip(FieldTrip model)
+        {
+            return connection.Insert(model);
+        }
+
+        //GET ALL
 
         public List<Usuario> GetAllUsuarios()
         {
@@ -52,40 +59,86 @@ namespace Proyectofinal.DAL
             return connection.GetAllWithChildren<Carrera>().ToList();
         }
 
+        public List<FieldTrip> GetAllFieldTrips()
+        {
+            return connection.Table<FieldTrip>().ToList();
+        }
+
+        //UPDATE
+
         public int UpdateUsuario(Usuario model)
         {
             return connection.Update(model);
         }
+
+        public int UpdateCarrera(Carrera model)
+        {
+            return connection.Update(model);
+        }
+
+        public int UpdateFieldTrip(FieldTrip model)
+        {
+            return connection.Update(model);
+        }
+
+        //DELETE
 
         public int DeleteUsuario(Usuario model)
         {
             return connection.Delete(model);
         }
 
+        public int DeleteCarrera(Carrera model)
+        {
+            return connection.Delete(model);
+        }
+
+        public int DeleteFieldTrip(FieldTrip model)
+        {
+            return connection.Delete(model);
+        }
+
+
+        //GET BY ID
+
         public Usuario GetUsuarioById(int id)
         {
             return connection.Table<Usuario>().FirstOrDefault(u => u.Id == id);
         }
 
+        public Carrera GetCarreraById(int id)
+        {
+            return connection.Table<Carrera>().FirstOrDefault(u => u.Id == id);
+        }
 
+        public FieldTrip GetFieldTripById(int id)
+        {
+            return connection.Table<FieldTrip>().FirstOrDefault(u => u.Id == id);
+        }
+
+
+
+        //LOGIN
         public Usuario LoginUsuario(string email, string password)
         {
             var query = connection.Table<Usuario>().Where(u => u.Email == email && u.Password == password).ToList();
             return query.FirstOrDefault();
         }
 
-
+        //ADMIN LOGIN
         public Usuario LoginAdminUsuario(String email, string password)
         {
             var query = connection.Table<Usuario>().Where(u => u.Email == email && u.Password == password && u.Role == "Admin").ToList();
             return query.FirstOrDefault();
         }
 
+        //REGISTER
         public int RegisterUsuario(Usuario model)
         {
             return connection.Insert(model);
         }
 
+        //VALIDATION
         public Usuario RegisterEmailValidation(string email)
         {
             var query = connection.Table<Usuario>().Where(u => u.Email == email).ToList();
@@ -98,41 +151,9 @@ namespace Proyectofinal.DAL
             return query.FirstOrDefault();
         }
 
-        //Insert
-        public int InsertFieldTrip(FieldTrip model)
+        public FieldTrip FieldTripIdValidation(string Codigo)
         {
-            return connection.Insert(model);
-        }
-
-
-        //Read
-        public List<FieldTrip> GetAllFieldTrip()
-        {
-            return connection.Table<FieldTrip>().ToList();
-        }
-
-        //Update
-        public int UpdateFieldTrip(FieldTrip model)
-        {
-            return connection.Update(model);
-        }
-
-        //Delete
-        public int DeleteFieldTrip(FieldTrip model)
-        {
-            return connection.Delete(model);
-        }
-
-        //Search - Single object
-        public FieldTrip GetFieldTripById(int id)
-        {
-            return connection.Table<FieldTrip>().FirstOrDefault(u => u.GiraId == id);
-        }
-
-        //ID Validation - VM
-        public FieldTrip FieldTripIdValidation(int giraId)
-        {
-            var query = connection.Table<FieldTrip>().Where(u => u.GiraId == giraId).ToList();
+            var query = connection.Table<FieldTrip>().Where(u => u.Codigo == Codigo).ToList();
             return query.FirstOrDefault();
         }
 

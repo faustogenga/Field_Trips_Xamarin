@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyectofinal.View.AdminCareers">
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+            <Button Text="Exit" Clicked="AdminMainView" 
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    BackgroundColor="#665ca8"
+                    CornerRadius="10"
+                    Margin="10,1,10,0"/>
+
+            <Button Text="Refresh" Clicked="OnRefreshClicked"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    BackgroundColor="#665ca8"
+                    CornerRadius="10"
+                    Margin="10,1,10,0"/>
+
+            <Button Text="Add Career"
+                    Command="{Binding ShowAddCareerPopupCommand}"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    BackgroundColor="#665ca8"
+                    CornerRadius="10"
+                    Margin="10,1,10,0"/>
+
+            <ListView x:Name="careerListView" 
+                      ItemsSource="{Binding Carreras}" 
+                      HasUnevenRows="True"
+                      SelectedItem="{Binding SelectedCareer}">
+
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                            <Label Text="Careers"
+                                   TextColor="#665ca8"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   Margin="10,10,10,10"
+                                   />
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+
+                <ListView.FooterTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                            <Label Padding="20" Text="2023 © Univeridad Latinoamericana de Ciencia y Technologia." FontSize="10"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.FooterTemplate>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Delete" BackgroundColor="Red"
+                                                    Command="{Binding BindingContext.DeleteCareerCommand, 
+                                                                Source={x:Reference Name=careerListView}}"  
+                                                   CommandParameter="{Binding .}" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <SwipeView.Content>
+                                    <Grid Padding="10" RowSpacing="5"
+                                          BackgroundColor="#5e5ca8"
+                                          Margin="10,30,10,0" 
+                                          >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label Text="{Binding Id}" FontAttributes="Bold" Grid.Row="0"
+                                               TextColor="White"
+                                               FontSize="20"/>
+                                        <Label Text="{Binding Nombre}" Grid.Row="2"
+                                               FontAttributes="Bold"
+                                               TextColor="White"/>
+                                    </Grid>
+                                </SwipeView.Content>
+                            </SwipeView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyectofinal.View.EditFieldTripMain">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout BackgroundColor="white">
+            <StackLayout>
+                <Frame BackgroundColor="Transparent">
+                    <Image Source="EditUser.png"
+                       Margin="0,-30,0,0"></Image>
+                </Frame>
+            </StackLayout>
+            <StackLayout Margin="30">
+                <Label Text="Codigo: " 
+                   Style="{StaticResource formLabel}" />
+                <Entry Placeholder="Codigo..."
+                   Text="{Binding FieldTrip.Codigo}" />
+
+                <Label Text="Organizacion: " 
+                   Style="{StaticResource formLabel}" />
+                <Entry Placeholder="Organizacion..."
+                   Text="{Binding FieldTrip.Organizacion}" />
+
+                <Label Text="Ubicacion: " 
+                   Style="{StaticResource formLabel}" />
+                <Entry Placeholder="Ubicacion..."
+                   Text="{Binding FieldTrip.Ubicacion}" />
+
+                <Label Text="Fecha: " 
+                   Style="{StaticResource formLabel}" />
+                <Entry Placeholder="Fecha..."
+                   Text="{Binding FieldTrip.Fecha}" />
+
+                <Label Text="HoraSalida: " 
+                   Style="{StaticResource formLabel}" />
+                <Entry Placeholder="HoraSalida..."
+                   Text="{Binding FieldTrip.HoraSalida}" />
+
+                <Label Text="HoraRegreso: " 
+                   Style="{StaticResource formLabel}" />
+                <Entry Placeholder="HoraRegreso..."
+                   Text="{Binding FieldTrip.HoraRegreso}" />
+
+                <Label Text="Descripcion: " 
+                   Style="{StaticResource formLabel}" />
+                <Entry Placeholder="Descripcion..."
+                   Text="{Binding FieldTrip.Descripcion}" />
+
+                <Label Text="Valor: " 
+                   Style="{StaticResource formLabel}" />
+                <Entry Placeholder="Valor..."
+                   Text="{Binding FieldTrip.Valor}" />
+
+                <Label Text="Precio: " 
+                   Style="{StaticResource formLabel}" />
+                <Entry Placeholder="Precio..."
+                   Text="{Binding FieldTrip.Precio}" />
+
+                <Label Text="Link: " 
+                   Style="{StaticResource formLabel}" />
+                <Entry Placeholder="Link..."
+                   Text="{Binding FieldTrip.Link}" />
+
+                <Label Text="ImgURL: " 
+                   Style="{StaticResource formLabel}" />
+                <Entry Placeholder="ImgURL..."
+                   Text="{Binding FieldTrip.ImgURL}" />
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,20">
+                    <Button Text="Cancel" CornerRadius="10" TextColor="#5e5ca8" BackgroundColor="Transparent" BorderColor="#5e5ca8" BorderWidth="2" Margin="0,0,10,0" Command="{Binding OnCancelCommand}" />
+                        <Button Text="Save" CornerRadius="10" BackgroundColor="#5e5ca8" TextColor="White" Command="{Binding EditFieldTripCommand}"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

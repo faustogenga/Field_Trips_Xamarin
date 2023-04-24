@@ -1,24 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Proyectofinal.View.Admin">
+             x:Class="Proyectofinal.View.AdminUsers">
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Login" Clicked="LoginView" 
+            <Button Text="Exit" Clicked="AdminMainView" 
                     TextColor="White"
                     FontAttributes="Bold"
                     BackgroundColor="#665ca8"
                     CornerRadius="10"
                     Margin="10,10,10,0"/>
-
+            
             <Button Text="Refresh" Clicked="OnRefreshClicked"
                     TextColor="White"
                     FontAttributes="Bold"
                     BackgroundColor="#665ca8"
                     CornerRadius="10"
                     Margin="10,10,10,0"/>
+            
+            
 
-            <ListView x:Name="userListView" ItemsSource="{Binding Users}" HasUnevenRows="True">
+            <ListView x:Name="userListView" 
+                      ItemsSource="{Binding Users}" 
+                      Header="Usuarios"
+                      HasUnevenRows="True"
+                      Footer="Todos los derechos reservados."
+                      SelectedItem="{Binding SelectedUser}">
+
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                            <Label Text="Users"
+                                   TextColor="#665ca8"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   Margin="10,10,10,10"
+                                   />
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+
+                <ListView.FooterTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                            <Label Padding="20" Text="2023 © Univeridad Latinoamericana de Ciencia y Technologia." FontSize="10"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.FooterTemplate>
+
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -43,18 +74,27 @@
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
-                                        <Label Text="{Binding Id}" FontAttributes="Bold" Grid.Row="0"
+                                        <Label                                                
+                                               FontAttributes="Bold"
                                                TextColor="White"
-                                               FontSize="20"/>  
-                                        <Label Text="{Binding Email}" FontAttributes="Bold" Grid.Row="1"
-                                               TextColor="White"/>
-                                        <Label Text="{Binding Nombre}" Grid.Row="2"
+                                               FontSize="20"
+                                               Grid.Row="0">
+                                            <Label.FormattedText 
+>
+                                                <FormattedString >
+                                                    <Span Text="{Binding Id}" />
+                                                    <Span Text=" - " />
+                                                    <Span Text="{Binding Email}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Text="{Binding Nombre, StringFormat='Nombre : {0}'}" Grid.Row="2"
                                                FontAttributes="Bold"
                                                TextColor="White"/>
-                                        <Label Text="{Binding Carrera}" Grid.Row="3" 
+                                        <Label Text="{Binding Carrera, StringFormat='Carrera : {0}'}" Grid.Row="3" 
                                                TextColor="White"
                                                FontAttributes="Bold"/>
-                                        <Label Text="{Binding Cedula}" Grid.Row="4" 
+                                        <Label Text="{Binding Cedula, StringFormat='Cedula : {0}'}" Grid.Row="4" 
                                                TextColor="White"
                                                FontAttributes="Bold"/>
                                     </Grid>
