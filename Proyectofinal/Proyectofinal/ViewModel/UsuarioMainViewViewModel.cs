@@ -29,7 +29,7 @@ namespace Proyectofinal.ViewModel
             });
             FeedbackCommand = new Command(() =>
             {
-                App.Current.MainPage = new View.FeedbackMain();
+                App.Current.MainPage = new View.FeedbackView();
 
             });
             

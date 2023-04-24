@@ -2,94 +2,155 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:Proyectofinal.ViewModel" 
-             x:DataType="viewmodel:FieldTripViewModel"
              x:Class="Proyectofinal.View.UserFieldTripView">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Margin="30,0,30,0">
-                <Frame BackgroundColor="Transparent" Margin="0,50,0,0">
-                    <Image Source="LogoUlacit.png"/>
+            <StackLayout>
+                <Frame>
+                    <Image Source="LogoUlacit.png"
+                    VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White"/>
                 </Frame>
-                <Label Text="Academic Field trips" 
-                   TextColor="#5e5ca8" 
-                   FontSize="20"
-                   FontAttributes="Bold"
-                   HorizontalTextAlignment="Center"
-                   Padding="5"/>
 
-                <Label Text="Entry" 
-                   TextColor="#665ca8"
-                   FontSize="20"
-                   FontAttributes="Bold"
-                   HorizontalTextAlignment="Start"
-                   Padding="10"/>
+                <Label FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       FontSize="25"
+                       Text="Giras ULACIT 2023"
+                        Padding="0,20,0,0"
+                   />
 
-                <Entry Placeholder="Codigo"
-                   Margin="5"
-                   Text="{Binding FieldTrip.Id}"
-                   TextTransform="Uppercase"
-                   ></Entry>
+                <ListView x:Name="fieldTripListView" 
+                      ItemsSource="{Binding FieldTrips}" 
+                      HasUnevenRows="True">
 
-                <Entry Placeholder="Organizacion"
-                   Margin="5"
-                   Text="{Binding FieldTrip.Organizacion}"
-                   ></Entry>
+                    <ListView.HeaderTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                                <Label Text="Giras"
+                                   TextColor="#665ca8"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   Margin="10,10,10,10"
+                                   />
+                            </StackLayout>
+                        </DataTemplate>
+                    </ListView.HeaderTemplate>
 
-                <Entry Placeholder="Ubicacion"
-                   Margin="5"
-                   Text="{Binding FieldTrip.Ubicacion}"
-                   ></Entry>
+                    <ListView.FooterTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                                <Label Padding="20" Text="2023 © Univeridad Latinoamericana de Ciencia y Technologia." FontSize="10"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </ListView.FooterTemplate>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <SwipeView>
+                                    <SwipeView.Content>
+                                        <Grid Padding="10" RowSpacing="10"
+                                          BackgroundColor="#AFB4FF"
+                                          Margin="10,30,10,0" 
+                                          >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Label Text="{Binding Codigo}" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"
+                                               TextColor="White"
+                                               FontSize="20"/>
 
-                <Entry Placeholder="Fecha"
-                   Margin="5"
-                   Text="{Binding FieldTrip.Fecha}"
-                   ></Entry>
+                                            <Label Text="Organizacion: " 
+                                               TextColor="White"
+                                               Grid.Row="1" Grid.Column="0"/>
+                                            <Label Text="{Binding Organizacion}" Grid.Row="1" Grid.Column="1"
+                                               FontAttributes="Bold"
+                                               TextColor="White"/>
 
-                <Entry Placeholder="HoraSalida"
-                   Margin="5"
-                   Text="{Binding FieldTrip.HoraSalida}"
-                   ></Entry>
+                                            <Label Text="Ubicacion: " 
+                                               TextColor="White"
+                                               Grid.Row="2" Grid.Column="0"/>
+                                            <Label Text="{Binding Ubicacion}" Grid.Row="2" Grid.Column="1"
+                                               TextColor="White"/>
 
-                <Entry Placeholder="Hora Regreso"
-                   Margin="5"
-                   Text="{Binding FieldTrip.HoraRegreso}"
-                   ></Entry>
+                                            <Label Text="Fecha: " 
+                                               TextColor="White"
+                                               Grid.Row="3" Grid.Column="0"/>
+                                            <Label Text="{Binding Fecha}" Grid.Row="3" Grid.Column="1"
+                                               TextColor="White"/>
 
-                <Entry Placeholder="Descripcion"
-                   Margin="5"
-                   Text="{Binding FieldTrip.Descripcion}"
-                   ></Entry>
+                                            <Label Text="Hora de salida: " 
+                                               TextColor="White"
+                                               Grid.Row="4" Grid.Column="0"/>
+                                            <Label Text="{Binding HoraSalida}"  Grid.Row="4" Grid.Column="1"
+                                               TextColor="White"/>
 
-                <Entry Placeholder="Valor"
-                   Margin="5"
-                   Text="{Binding FieldTrip.Valor}"
-                   ></Entry>
+                                            <Label Text="Hora de regreso: " 
+                                               TextColor="White"
+                                               Grid.Row="5" Grid.Column="0"/>
+                                            <Label Text="{Binding HoraRegreso}" Grid.Row="5" Grid.Column="1"
+                                               TextColor="White"/>
 
-                <Entry Placeholder="Precio"
-                   Margin="5"
-                   Text="{Binding FieldTrip.Precio}"
-                   ></Entry>
+                                            <Label Text="Descripcion: " 
+                                               TextColor="White"
+                                               Grid.Row="6" Grid.Column="0"/>
+                                            <Label Text="{Binding Descripcion}" Grid.Row="6" Grid.Column="1"
+                                               TextColor="White"/>
 
-                <Entry Placeholder="Link"
-                   Margin="5"
-                   Text="{Binding FieldTrip.Link}"
-                   ></Entry>
+                                            <Label Text="Valor de la gira: " 
+                                               TextColor="White"
+                                               Grid.Row="7" Grid.Column="0"/>
+                                            <Label Text="{Binding Valor}" Grid.Row="7" Grid.Column="1"
+                                               TextColor="White"/>
 
-                <Entry Placeholder="Imagen URL"
-                   Margin="5"
-                   Text="{Binding FieldTrip.ImgURL}"
-                   ></Entry>
+                                            <Label Text="Precio de la gira: " 
+                                               TextColor="White"
+                                               Grid.Row="8" Grid.Column="0"/>
+                                            <Label Text="{Binding Precio}" Grid.Row="8" Grid.Column="1"
+                                               TextColor="White"/>
 
-                <Button Text="Entry data"
-                    TextColor="White"
-                    FontAttributes="Bold"
-                    BackgroundColor="#5e5ca8"
-                    CornerRadius="10"
-                    Margin="10,30,10,30"
-                    Command="{Binding EntryTripCommand}"
-                />
+                                            <Label Text="Link informacion: " 
+                                               TextColor="White"
+                                               Grid.Row="9" Grid.Column="0"/>
+                                            <Label Text="{Binding Link}" Grid.Row="9" Grid.Column="1"
+                                               TextColor="White"/>
 
-
+                                            <Label Text="Lugar: " 
+                                               TextColor="White"
+                                               Grid.Row="10" Grid.Column="0"/>
+                                            <Image Source="{Binding ImgURL}" Grid.Row="10" Grid.Column="1"
+                                               WidthRequest="150" HeightRequest="100"
+                                               HorizontalOptions="Start"
+                                               BackgroundColor="Transparent"/>
+                                        </Grid>
+                                    </SwipeView.Content>
+                                </SwipeView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button    BackgroundColor="#665ca8"
+                        CornerRadius="20"
+                        Text="Back"
+                        TextColor="White"
+                       Margin="0,15,0,50"
+                        Command="{Binding BackMainCommand}"
+                    />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

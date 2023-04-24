@@ -7,10 +7,12 @@ namespace Proyectofinal.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserFieldTripView : ContentPage
     {
+        private readonly EditViewModel _viewModel;
         public UserFieldTripView()
         {
             InitializeComponent();
-            this.BindingContext = new FieldTripViewModel();
+            _viewModel = new EditViewModel();
+            BindingContext = _viewModel;
         }
     }
 }

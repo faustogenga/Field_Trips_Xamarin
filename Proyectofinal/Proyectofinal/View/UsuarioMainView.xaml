@@ -82,6 +82,21 @@
                     HorizontalOptions="Start"                        
                     Command="{Binding FeedbackCommand}"
                 />
+                <Frame BackgroundColor="Transparent"
+                       Grid.Row="3"
+                       Grid.Column="0">
+                    <Image Source="signOut.jpg" WidthRequest="40"/>
+                </Frame>
+
+                <Button Text="Sign Out"
+                    TextColor="Red"
+                    BackgroundColor="Transparent"
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="Start"                        
+                    Command="{Binding SignOutCommand}"
+                />
             </Grid>
             
             

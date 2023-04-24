@@ -26,9 +26,11 @@ namespace Proyectofinal.ViewModel
         public ICommand BackMainFeedbackCommand { get; set; }
         public ICommand NewFeedbackCommand { get; set; }
         public ICommand BackMainCommand { get; set; }
+        public Usuario _User;
 
         public AddFeedbackViewModel()
         {
+
             MyDal = new UsuarioDatabaseContext();
 
             FieldTrip = new FieldTripRepoViewModel();
@@ -69,9 +71,19 @@ namespace Proyectofinal.ViewModel
             });
             BackMainCommand = new Command(() =>
             {
-                App.Current.MainPage = new UsuarioMain();
+                App.Current.MainPage = new UsuarioMainView(User);
             });
 
+        }
+
+        public Usuario User
+        {
+            get { return _User; }
+            set
+            {
+                _User = value;
+                OnPropertyChanged();
+            }
         }
         public List<string> FieldTrips
         {

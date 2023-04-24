@@ -44,6 +44,8 @@ namespace Proyectofinal.ViewModel
 
         public ICommand OnCancelCommand { get; private set; }
 
+        public ICommand BackMainCommand { get; set; }
+
         //lists
 
         private ObservableCollection<Usuario> _users { get; set; }
@@ -90,6 +92,7 @@ namespace Proyectofinal.ViewModel
             //others
             SignOutCommand = new Command(OnSignOut);
             OnCancelCommand = new Command(OnClose);
+            BackMainCommand = new Command(() => { App.Current.MainPage = new View.UsuarioMainView(User); });
 
             //selected item command
             ItemTappedCommandUser = new Command(async () =>
