@@ -21,7 +21,8 @@ namespace Proyectofinal.DAL
 
 
         public UsuarioDatabaseContext()
-        { 
+        {
+            File.Delete(dbPath);
             // Check if the database file exists in the local application data folder
             if (!File.Exists(dbPath))
             {
@@ -64,6 +65,11 @@ namespace Proyectofinal.DAL
             return connection.Table<FieldTrip>().ToList();
         }
 
+        public List<Feedback> GetAllFeedbacks()
+        {
+            return connection.Table<Feedback>().ToList();
+        }
+
         //UPDATE
 
         public int UpdateUsuario(Usuario model)
@@ -77,6 +83,10 @@ namespace Proyectofinal.DAL
         }
 
         public int UpdateFieldTrip(FieldTrip model)
+        {
+            return connection.Update(model);
+        }
+        public int UpdateFeedbackp(Feedback model)
         {
             return connection.Update(model);
         }
@@ -94,6 +104,10 @@ namespace Proyectofinal.DAL
         }
 
         public int DeleteFieldTrip(FieldTrip model)
+        {
+            return connection.Delete(model);
+        }
+        public int DeleteFeedback(Feedback model)
         {
             return connection.Delete(model);
         }
@@ -115,6 +129,10 @@ namespace Proyectofinal.DAL
         {
             return connection.Table<FieldTrip>().FirstOrDefault(u => u.Id == id);
         }
+        public Feedback GetFeedbackById(int id)
+        {
+            return connection.Table<Feedback>().FirstOrDefault(u => u.Id == id);
+        }
 
 
 
@@ -134,6 +152,10 @@ namespace Proyectofinal.DAL
 
         //REGISTER
         public int RegisterUsuario(Usuario model)
+        {
+            return connection.Insert(model);
+        }
+        public int RegisterFeedback(Feedback model)
         {
             return connection.Insert(model);
         }
