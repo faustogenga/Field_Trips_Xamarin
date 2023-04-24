@@ -1,4 +1,5 @@
 ﻿using Proyectofinal.Model;
+using Proyectofinal.View;
 using Proyectofinal.View.PopUp;
 using Rg.Plugins.Popup.Extensions;
 using System.Collections.Generic;
@@ -33,10 +34,30 @@ namespace Proyectofinal.ViewModel
 
             AddCareerCommand = new Command(async () =>
             {
-                // Add the new career to the database
-                // ...
-
-                // Close the popup
+                ValidateInputFields();
+                if (statusEntryFieldTrip)
+                {
+                    bool isSuccess = EntryVoid(
+                        FieldTrip.Codigo,
+                        FieldTrip.Organizacion,
+                        FieldTrip.Ubicacion,
+                        FieldTrip.Fecha,
+                        FieldTrip.HoraSalida,
+                        FieldTrip.HoraRegreso,
+                        FieldTrip.Descripcion,
+                        FieldTrip.Valor,
+                        FieldTrip.Precio,
+                        FieldTrip.Link,
+                        FieldTrip.ImgURL);
+                    if (isSuccess)
+                    {
+                        App.Current.MainPage = new AdminFieldTrip();
+                    }
+                    else
+                    {
+                        App.Current.MainPage.DisplayAlert("Error", $"{ErrorMessage}", "OK");
+                    }
+                }
             });
 
             OnCancelCommand = new Command(async () =>

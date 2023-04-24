@@ -69,18 +69,27 @@
                                 <SwipeView.Content>
                                     <Grid Padding="10" RowSpacing="5"
                                           BackgroundColor="#5e5ca8"
-                                          Margin="10,30,10,0" 
+                                          Margin="10,10,10,0" 
                                           >
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
-                                        <Label Text="{Binding Id}" FontAttributes="Bold" Grid.Row="0"
-                                               TextColor="White"
-                                               FontSize="20"/>
-                                        <Label Text="{Binding Nombre}" Grid.Row="2"
+
+                                        <Label                                                
                                                FontAttributes="Bold"
-                                               TextColor="White"/>
+                                               TextColor="White"
+                                               FontSize="15"
+                                               Grid.Row="0">
+
+                                            <Label.FormattedText>
+                                                <FormattedString >
+                                                    <Span Text="{Binding Id}" />
+                                                    <Span Text=" - " />
+                                                    <Span Text="{Binding Nombre}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
                                     </Grid>
                                 </SwipeView.Content>
                             </SwipeView>
