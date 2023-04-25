@@ -16,6 +16,8 @@ namespace Proyectofinal.ViewModel
         public ICommand EditCareersCommand { get; set; }
         public ICommand EditTripsCommand { get; set; }
 
+        public ICommand EditFeedbackCommand { get; set; }
+
         public ICommand SignOutCommand { get; set; }
 
         public AdminViewModel()
@@ -38,6 +40,11 @@ namespace Proyectofinal.ViewModel
             SignOutCommand = new Command(() =>
             {
                 App.Current.MainPage = new Login();
+            });
+
+            EditFeedbackCommand = new Command(() =>
+            {
+                App.Current.MainPage = new AdminFeedback();
             });
         }
 

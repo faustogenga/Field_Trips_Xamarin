@@ -16,8 +16,15 @@
                        HorizontalOptions="Center"
                        FontSize="25"
                        Text="Giras ULACIT 2023"
-                        Padding="0,20,0,0"
+                        Padding="0,0,0,0"
                    />
+                <Button BackgroundColor="#665ca8"
+                        CornerRadius="20"
+                        Text="Back"
+                        TextColor="White"
+                        Command="{Binding BackMainCommand}"
+                        Margin="10,0,10,0"
+                    />
 
                 <ListView x:Name="fieldTripListView" 
                       ItemsSource="{Binding FieldTrips}" 
@@ -144,13 +151,6 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <Button    BackgroundColor="#665ca8"
-                        CornerRadius="20"
-                        Text="Back"
-                        TextColor="White"
-                       Margin="0,15,0,50"
-                        Command="{Binding BackMainCommand}"
-                    />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

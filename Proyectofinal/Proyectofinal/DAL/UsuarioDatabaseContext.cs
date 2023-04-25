@@ -90,7 +90,7 @@ namespace Proyectofinal.DAL
         {
             return connection.Update(model);
         }
-        public int UpdateFeedbackp(Feedback model)
+        public int UpdateFeedback(Feedback model)
         {
             return connection.Update(model);
         }

@@ -22,6 +22,9 @@ namespace Proyectofinal.ViewModel
         public ICommand ItemTappedCommandCareer { get; set; }
         public ICommand ItemTappedCommandFieldTrip { get; set; }
 
+        public ICommand ItemTappedCommandFeedback { get; set; }
+
+
         //ADD COMMANDS
 
         public ICommand ShowAddCareerPopupCommand { get; private set; }
@@ -32,6 +35,8 @@ namespace Proyectofinal.ViewModel
         public ICommand DeleteUserCommand { get; private set; }
         public ICommand DeleteCareerCommand { get; private set; }
         public ICommand DeleteFieldTripCommand { get; private set; }
+        public ICommand DeleteFeedbackCommand { get; private set; }
+
 
         //edit command
         public ICommand EditUserCommand { get; private set; }
@@ -39,6 +44,8 @@ namespace Proyectofinal.ViewModel
         public ICommand EditCareerCommand { get; private set; }
 
         public ICommand EditFieldTripCommand { get; private set; }
+
+        public ICommand EditFeedbackCommand { get; private set; }
 
         //others
         public ICommand SignOutCommand { get; private set; }
@@ -55,6 +62,8 @@ namespace Proyectofinal.ViewModel
         private ObservableCollection<Carrera> _carrera { get; set; }
         private ObservableCollection<FieldTrip> _fieldtrip { get; set; }
 
+        private ObservableCollection<Feedback> _feedback { get; set; }
+
         //All Objects
 
         private Usuario _User;
@@ -63,6 +72,8 @@ namespace Proyectofinal.ViewModel
 
         private FieldTrip _FieldTrip;
 
+        private Feedback _Feedback;
+
 
         //Selected from list view
         private Usuario _selectedUser;
@@ -70,6 +81,8 @@ namespace Proyectofinal.ViewModel
         private Carrera _selectedCareer;
 
         private FieldTrip _selectedFieldTrip;
+
+        private Feedback _selectedFeedback;
 
 
         public EditViewModel()
@@ -81,16 +94,20 @@ namespace Proyectofinal.ViewModel
             Users = new ObservableCollection<Usuario>(_databaseContext.GetAllUsuarios());
             Carreras = new ObservableCollection<Carrera>(_databaseContext.GetAllCarreras());
             FieldTrips = new ObservableCollection<FieldTrip>(_databaseContext.GetAllFieldTrips());
+            Feedbacks = new ObservableCollection<Feedback>(_databaseContext.GetAllFeedbacks());
 
             //Deletes
             DeleteUserCommand = new Command<Usuario>(OnDeleteUser);
             DeleteCareerCommand = new Command<Carrera>(OnDeleteCareer);
             DeleteFieldTripCommand = new Command<FieldTrip>(OnDeleteFieldTrip);
+            DeleteFeedbackCommand = new Command<Feedback>(OnDeleteFeedback);
+            
 
             //Edits
             EditUserCommand = new Command(async () => await OnEditUser());
             EditCareerCommand = new Command(async () => await OnEditCarreer());
             EditFieldTripCommand = new Command(async () => await OnEditFieldTrip());
+            EditFeedbackCommand = new Command(async () => await OnEditFeedback());
 
             //others
             SignOutCommand = new Command(OnSignOut);
@@ -115,6 +132,10 @@ namespace Proyectofinal.ViewModel
             ItemTappedCommandFieldTrip = new Command(async () =>
             {
                 App.Current.MainPage = new EditFieldTripMain(SelectedFieldTrip);
+            });
+            ItemTappedCommandFeedback = new Command(async () =>
+            {
+                App.Current.MainPage = new EditFeedbackMain(SelectedFeedback);
             });
 
             //Add Command
@@ -170,6 +191,19 @@ namespace Proyectofinal.ViewModel
             }
         }
 
+        public Feedback Feedback
+        {
+            get { return _Feedback; }
+            set
+            {
+                if (_Feedback != value)
+                {
+                    _Feedback = value;
+                    OnPropertyChanged(nameof(Feedback));
+                }
+            }
+        }
+
         public Usuario SelectedUser
         {
             get { return _selectedUser; }
@@ -215,7 +249,21 @@ namespace Proyectofinal.ViewModel
             }
         }
 
-        
+        public Feedback SelectedFeedback
+        {
+            get { return _selectedFeedback; }
+            set
+            {
+                if (_selectedFeedback != value)
+                {
+                    _selectedFeedback = value;
+                    OnPropertyChanged(nameof(SelectedFeedback));
+                    ItemTappedCommandFeedback.Execute(_selectedFeedback);
+                }
+            }
+        }
+
+       
 
         public ObservableCollection<Carrera> Carreras
         {
@@ -256,6 +304,19 @@ namespace Proyectofinal.ViewModel
             }
         }
 
+        public ObservableCollection<Feedback> Feedbacks
+        {
+            get { return _feedback; }
+            set
+            {
+                if (_feedback != value)
+                {
+                    _feedback = value;
+                    OnPropertyChanged(nameof(Feedbacks));
+                }
+            }
+        }
+
         private async void OnDeleteFieldTrip(FieldTrip fieldTrip)
         {
             bool answer = await App.Current.MainPage.DisplayAlert("Confirm Deletion", $"Are you sure you want to delete field trip \n {fieldTrip.Organizacion}?", "Yes", "No");
@@ -276,6 +337,29 @@ namespace Proyectofinal.ViewModel
 
                 // Remove the user from the collection
                 FieldTrips.Remove(fieldTripToDelete);
+            }
+        }
+
+        private async void OnDeleteFeedback(Feedback feedback)
+        {
+            bool answer = await App.Current.MainPage.DisplayAlert("Confirm Deletion", $"Are you sure you want to delete feedback?", "Yes", "No");
+            if (answer)
+            {
+                await DeleteFeedback(feedback.Id);
+                Refresh();
+            }
+        }
+
+        public async Task DeleteFeedback(int id)
+        {
+            var feedbackToDelete = _databaseContext.GetFeedbackById(id);
+
+            if (feedbackToDelete != null)
+            {
+                _databaseContext.DeleteFeedback(feedbackToDelete);
+
+                // Remove the user from the collection
+                Feedbacks.Remove(feedbackToDelete);
             }
         }
 
@@ -345,6 +429,14 @@ namespace Proyectofinal.ViewModel
             OnClose();
         }
 
+        public async Task OnEditFeedback()
+        {
+            _databaseContext.UpdateFeedback(Feedback);
+            OnClose();
+        }
+
+
+
         private void OnSignOut()
         {
             App.Current.MainPage = new Login();
@@ -367,6 +459,11 @@ namespace Proyectofinal.ViewModel
                 SelectedFieldTrip = null;
                 App.Current.MainPage = new AdminFieldTrip();
             }
+            if (App.Current.MainPage is EditFeedbackMain editFeedbackPage)
+            {
+                SelectedFeedback = null;
+                App.Current.MainPage = new AdminFeedback();
+            }
         }
 
         public void Refresh()
@@ -374,9 +471,11 @@ namespace Proyectofinal.ViewModel
             Carreras.Clear();
             Users.Clear();
             FieldTrips.Clear();
+            Feedbacks.Clear();
             var users = _databaseContext.GetAllUsuarios();
             var careers = _databaseContext.GetAllCarreras();
             var fieldTrips = _databaseContext.GetAllFieldTrips();
+            var feedbacks = _databaseContext.GetAllFeedbacks();
             foreach (var user in users)
             {
                 Users.Add(user);
@@ -388,6 +487,10 @@ namespace Proyectofinal.ViewModel
             foreach (var fieldTrip in fieldTrips)
             {
                 FieldTrips.Add(fieldTrip);
+            }
+            foreach (var feedback in feedbacks)
+            {
+                Feedbacks.Add(feedback);
             }
         }
 

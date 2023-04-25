@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyectofinal.View.AdminFeedback">
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+            <Button Text="Exit" Clicked="AdminMainView" 
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    BackgroundColor="#665ca8"
+                    CornerRadius="10"
+                    Margin="10,1,10,0"/>
+
+            <Button Text="Refresh" Clicked="OnRefreshClicked"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    BackgroundColor="#665ca8"
+                    CornerRadius="10"
+                    Margin="10,1,10,0"/>
+
+            <ListView x:Name="FeedbackListView" 
+                      ItemsSource="{Binding Feedbacks}" 
+                      HasUnevenRows="True"
+                      SelectedItem="{Binding SelectedFeedback}">
+
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                            <Label Text="Careers"
+                                   TextColor="#665ca8"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   Margin="10,10,10,10"
+                                   />
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+
+                <ListView.FooterTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                            <Label Padding="20" Text="2023 © Univeridad Latinoamericana de Ciencia y Technologia." FontSize="10"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.FooterTemplate>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Delete" BackgroundColor="Red"
+                                                    Command="{Binding BindingContext.DeleteFeedbackCommand, 
+                                                                Source={x:Reference Name=FeedbackListView}}"  
+                                                   CommandParameter="{Binding .}" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <SwipeView.Content>
+                                    <Grid Padding="10" RowSpacing="10"
+                                          BackgroundColor="#AFB4FF"
+                                          Margin="15,15,15,0" 
+                                          >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <Label Text="Field Trip: " 
+                                               TextColor="#5e5ca8"
+                                               FontSize="20"
+                                               FontAttributes="Bold"
+                                               Grid.Row="0" Grid.Column="0"/>
+                                        <Label Text="{Binding OrganizacionFieldTrip}" Grid.Row="0" Grid.Column="1"
+                                               TextColor="#5e5ca8"
+                                               FontSize="18"
+                                               FontAttributes="Bold"/>
+
+                                        <Label Text="CodigoFieldTrip: " 
+                                               TextColor="White"
+                                               Grid.Row="1" Grid.Column="0"/>
+                                        <Label Text="{Binding CodigoFieldTrip}" Grid.Row="1" Grid.Column="1"
+                                               FontAttributes="Bold"
+                                               TextColor="White"/>
+                                        <Label Text="{Binding FeedbackInfo}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                                               Padding="10"
+                                               TextColor="White"
+                                               VerticalTextAlignment="Center"
+                                               FontSize="18"
+                                               FontAttributes="Bold"/>
+                                    </Grid>
+                                </SwipeView.Content>
+                            </SwipeView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

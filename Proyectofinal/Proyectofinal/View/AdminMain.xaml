@@ -49,6 +49,14 @@
                 Margin="10,30,10,0"
                 Command="{Binding EditTripsCommand}"
         />
+            <Button Text="Edit Feedbacks "
+                TextColor="White"
+                FontAttributes="Bold"
+                BackgroundColor="#5e5ca8"
+                CornerRadius="10"
+                Margin="10,30,10,0"
+                Command="{Binding EditFeedbackCommand}"
+        />
 
             <Button Text="Sign Out"
                 TextColor="White"
