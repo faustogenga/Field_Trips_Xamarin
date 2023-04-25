@@ -26,10 +26,11 @@
                     ItemsSource="{Binding FieldTrips}"
                     SelectedItem="{Binding SelectedFieldTrip, Mode=TwoWay}" />
 
-            <Entry Placeholder="Comentario"
+            <Editor Placeholder="Feedback"
                Margin="5"
+               HeightRequest="120"
                Text="{Binding FeedbackInfo}"
-               ></Entry>
+               ></Editor>
 
             <Label Text="Space for educational purposes, please keep comments free of bad words"
                    TextColor="red" 
@@ -37,7 +38,7 @@
                    Margin="5,40,0,40"
                    />
 
-            <Button Text="Agregar comentario"
+            <Button Text="Add Feedback"
                 TextColor="White"
                 FontAttributes="Bold"
                 BackgroundColor="#5e5ca8"

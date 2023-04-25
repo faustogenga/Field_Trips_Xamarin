@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:Proyectofinal.ViewModel" 
-             x:Class="Proyectofinal.View.UserFieldTripView">
+             x:Class="Proyectofinal.View.UserFieldTripView"
+              x:Name="MyPage">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
@@ -124,15 +125,17 @@
                                             <Label Text="{Binding Precio}" Grid.Row="8" Grid.Column="1"
                                                TextColor="White"/>
 
-                                            <Label Text="Link informacion: " 
-                                               TextColor="White"
-                                               Grid.Row="9" Grid.Column="0"/>
-                                            <Label Text="{Binding Link}" Grid.Row="9" Grid.Column="1"
-                                               TextColor="White"/>
-                                            
-                                            <Image Source="{Binding ImgURL}" Grid.Row="10" Grid.Column="1"
+                                            <Button
+                                                Text = "Click here to visit Website"
+                                                TextColor = "Blue"
+                                                BackgroundColor="Transparent"
+                                                Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"
+                                                Command="{Binding Path=BindingContext.OpenUriCommand, Source={x:Reference MyPage}}"
+                                                CommandParameter="{Binding Link}" 
+                                               />
+                                            <Image Source="{Binding ImgURL}" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2"
                                                WidthRequest="150" HeightRequest="100"
-                                               HorizontalOptions="Start"
+                                               HorizontalOptions="Center"
                                                BackgroundColor="Transparent"/>
                                         </Grid>
                                     </SwipeView.Content>

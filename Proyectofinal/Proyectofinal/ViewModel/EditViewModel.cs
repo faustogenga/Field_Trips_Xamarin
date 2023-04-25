@@ -3,6 +3,7 @@ using Proyectofinal.Model;
 using Proyectofinal.View;
 using Proyectofinal.View.PopUp;
 using Rg.Plugins.Popup.Extensions;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
@@ -45,6 +46,8 @@ namespace Proyectofinal.ViewModel
         public ICommand OnCancelCommand { get; private set; }
 
         public ICommand BackMainCommand { get; set; }
+
+        public ICommand OpenUriCommand { get; }
 
         //lists
 
@@ -93,6 +96,10 @@ namespace Proyectofinal.ViewModel
             SignOutCommand = new Command(OnSignOut);
             OnCancelCommand = new Command(OnClose);
             BackMainCommand = new Command(() => { App.Current.MainPage = new View.UsuarioMainView(User); });
+            OpenUriCommand = new Command<string>((uri) =>
+            {
+                Device.OpenUri(new Uri(uri));
+            });
 
             //selected item command
             ItemTappedCommandUser = new Command(async () =>

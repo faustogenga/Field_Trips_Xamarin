@@ -12,7 +12,7 @@
             <Label FontAttributes="Bold"
                        HorizontalOptions="Center"
                        FontSize="25"
-                       Text="Reseñas Giras ULACIT 2023"
+                       Text="Feedback Fieldtrips ULACIT"
                        TextColor="#5e5ca8"
                        Padding="0,2,0,0"
                    />
@@ -28,7 +28,7 @@
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
 
-                <Picker x:Name="picker" Title="Seleccione una gira  &lt;-"
+                <Picker x:Name="picker" Title="Select Fieldtrip  &lt;-"
                     ItemsSource="{Binding FieldTrips}"
                     SelectedItem="{Binding SelectedFieldTrip, Mode=TwoWay}"
                     TextColor="#5e5ca8"
@@ -122,7 +122,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Button Text="Agregar comentario"
+            <Button Text="Add Feedback"
                 TextColor="White"
                 FontAttributes="Bold"
                 BackgroundColor="#5e5ca8"
