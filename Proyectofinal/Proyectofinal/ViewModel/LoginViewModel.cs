@@ -45,7 +45,6 @@ namespace Proyectofinal.ViewModel
 
                         if (isUser)
                         {
-                            await App.Current.MainPage.DisplayAlert("Bien", "User login successful", "OK");
                             App.Current.MainPage = new UsuarioMainView(UserLogin);
                         }
                         else

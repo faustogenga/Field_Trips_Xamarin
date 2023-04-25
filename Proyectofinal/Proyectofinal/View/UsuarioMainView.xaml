@@ -73,7 +73,7 @@
                     <Image Source="heart.png"/>
                 </Frame>
 
-                <Button Text="Mis Reseñas                   >"
+                <Button Text="Reseñas                   >"
                     TextColor="Black"
                     BackgroundColor="Transparent"
                     Grid.Column="1"

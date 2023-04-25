@@ -8,7 +8,7 @@ namespace Proyectofinal.Model
 {
     public class FieldTripRepository
     {
-        public List<String> FieldTripsCodigo { get; set; }
+        public List<String> FieldTripsOrganizacion { get; set; }
 
         public UsuarioDatabaseContext DataBase = new UsuarioDatabaseContext();
 
@@ -17,11 +17,26 @@ namespace Proyectofinal.Model
             var FieldTrips = DataBase.GetAllFieldTrips();
             return FieldTrips;
         }
-        public List<string> GetAllFieldTripCodigos()
+
+        public List<string> GetAllFieldTripString()
+        {
+            var fieldTrips = GetAllFieldTrip();
+            var fieldTripsString = fieldTrips.Select(c => c.ToString()).ToList();
+            return fieldTripsString;
+        }
+        public List<string> GetAllFieldTripOrganizacion()
         {
             var FieldTrips = GetAllFieldTrip();
-            FieldTripsCodigo = FieldTrips.Select(c => c.Codigo).ToList();
-            return FieldTripsCodigo;
+            FieldTripsOrganizacion = FieldTrips.Select(c => c.Organizacion).ToList();
+            return FieldTripsOrganizacion;
         }
+
+        public string GetFieldTripByOrganizacion(string Organizacion)
+        {
+            var FieldTrips = GetAllFieldTrip();
+            var FieldTrip = FieldTrips.Where(c => c.Organizacion == Organizacion).FirstOrDefault();
+            return FieldTrip.Codigo;
+        }
+
     }
 }

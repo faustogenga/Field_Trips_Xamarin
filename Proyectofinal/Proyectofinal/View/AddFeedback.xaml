@@ -28,7 +28,7 @@
 
             <Entry Placeholder="Comentario"
                Margin="5"
-               Text="{Binding Register.Nombre}"
+               Text="{Binding FeedbackInfo}"
                ></Entry>
 
             <Label Text="Space for educational purposes, please keep comments free of bad words"
@@ -36,7 +36,7 @@
                    FontAttributes="Bold"
                    Margin="5,40,0,40"
                    />
-            
+
             <Button Text="Agregar comentario"
                 TextColor="White"
                 FontAttributes="Bold"
@@ -45,7 +45,7 @@
                 Margin="10,30,10,0"
                 Command="{Binding AddFeedbackCommand}"
             />
-            
+
             <Button    BackgroundColor="#665ca8"
                         CornerRadius="20"
                         Text="Back"
@@ -53,7 +53,7 @@
                        Margin="10,30,10,0"
                         Command="{Binding BackMainFeedbackCommand}"
                     />
-            
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

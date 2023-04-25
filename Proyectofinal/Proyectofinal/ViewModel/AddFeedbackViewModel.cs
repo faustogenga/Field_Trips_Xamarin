@@ -14,28 +14,32 @@ namespace Proyectofinal.ViewModel
     class AddFeedbackViewModel : INotifyPropertyChanged
     {
         private readonly UsuarioDatabaseContext MyDal;
-        public FieldTripRepoViewModel FieldTrip { get; set; }
+        public FieldTripRepository Repository { get; set; }
+
+
         private List<string> _fieldtrips;
+        public Usuario _User;
+        public string _FeedbackInfo { get; set; }
+
         private string _selectedFieldTrip { get; set; }
-        //Register
+        //Register Feedback
         public ICommand AddFeedbackCommand { get; set; }
-        public Feedback Register { get; set; }
+
         public bool isRegisterButtonEnabled;
         public string ErrorMessage { get; set; }
         //Other
         public ICommand BackMainFeedbackCommand { get; set; }
         public ICommand NewFeedbackCommand { get; set; }
         public ICommand BackMainCommand { get; set; }
-        public Usuario _User;
 
         public AddFeedbackViewModel()
         {
 
             MyDal = new UsuarioDatabaseContext();
 
-            FieldTrip = new FieldTripRepoViewModel();
+            Repository = new FieldTripRepository();
 
-            FieldTrips = FieldTrip.FieldTripsCodigos;
+            FieldTrips = Repository.GetAllFieldTripOrganizacion();
 
             AddFeedbackCommand = new Command(() =>
             {
@@ -43,8 +47,9 @@ namespace Proyectofinal.ViewModel
 
                 if (IsRegisterButtonEnabled)
                 {
-                    // Perform register logic
-                    bool isSuccess = RegisterVoid(Register.CodigoFieldTrip, Register.FeedbackInfo);
+                    var CodigoFieldTrip = Repository.GetFieldTripByOrganizacion(SelectedFieldTrip);
+
+                    bool isSuccess = RegisterVoid(SelectedFieldTrip, CodigoFieldTrip, FeedbackInfo);
 
                     if (isSuccess)
                     {
@@ -67,11 +72,7 @@ namespace Proyectofinal.ViewModel
             });
             NewFeedbackCommand = new Command(() =>
             {
-                App.Current.MainPage = new AddFeedback();
-            });
-            BackMainCommand = new Command(() =>
-            {
-                App.Current.MainPage = new UsuarioMainView(User);
+                App.Current.MainPage = new AddFeedback(User);
             });
 
         }
@@ -91,6 +92,16 @@ namespace Proyectofinal.ViewModel
             set
             {
                 _fieldtrips = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string FeedbackInfo
+        {
+            get => _FeedbackInfo;
+            set
+            {
+                _FeedbackInfo = value;
                 OnPropertyChanged();
             }
         }
@@ -115,7 +126,7 @@ namespace Proyectofinal.ViewModel
 
         private void ValidateRegisterInputFields()
         {
-            if (string.IsNullOrEmpty(Register.CodigoFieldTrip) || string.IsNullOrEmpty(Register.FeedbackInfo) )
+            if (string.IsNullOrEmpty(SelectedFieldTrip) || string.IsNullOrEmpty(FeedbackInfo) )
             {
                 IsRegisterButtonEnabled = false;
                 ErrorMessage = "Entries cannot be empty";
@@ -126,18 +137,18 @@ namespace Proyectofinal.ViewModel
             }
         }
 
-        private bool RegisterVoid(string codigoFieldTrip, string feedbackInfo)
+        private bool RegisterVoid(string organizacion, string codigoFieldTrip, string feedbackInfo)
         {
             // register
             Feedback nuevo = new Feedback
             {
+                OrganizacionFieldTrip = organizacion,
                 CodigoFieldTrip = codigoFieldTrip,
                 FeedbackInfo = feedbackInfo
             };
 
             if (MyDal.RegisterFeedback(nuevo) > 0)
             {
-                App.Current.MainPage.DisplayAlert("registerd", "Succesfully", "OK");
                 return true;
             }
             else

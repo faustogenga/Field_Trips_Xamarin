@@ -1,4 +1,5 @@
 ﻿using Proyectofinal.DAL;
+using Proyectofinal.Model;
 using Proyectofinal.View;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,9 @@ namespace Proyectofinal.ViewModel
     {
         public bool statusEntryFieldTrip;
         private readonly UsuarioDatabaseContext MyDal;
+
+        public Usuario _User;
+
         public Model.FieldTrip FieldTrip { get; set; }
         public string ErrorMessage { get; set; }
         public ICommand EntryTripCommand { get; set; }

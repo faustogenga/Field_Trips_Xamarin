@@ -36,9 +36,6 @@
     <Compile Update="View\AddFieldTrip.xaml.cs">
       <DependentUpon>AddFieldTrip.xaml</DependentUpon>
     </Compile>
-    <Compile Update="View\UserFieldTripListView.xaml.cs">
-      <DependentUpon>UserFieldTripListView.xaml</DependentUpon>
-    </Compile>
     <Compile Update="View\UserFieldTripView.xaml.cs">
       <DependentUpon>UserFieldTripView.xaml</DependentUpon>
     </Compile>

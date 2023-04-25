@@ -8,6 +8,7 @@ namespace Proyectofinal.Model
         private int _id;
         private string _codigoFieldTrip;
         private string _feedbackInfo;
+        private string _OrganizacionFieldTrip;
 
         [PrimaryKey, AutoIncrement]
         public int Id
@@ -19,6 +20,19 @@ namespace Proyectofinal.Model
                 {
                     _id = value;
                     OnPropertyChanged(nameof(Id));
+                }
+            }
+        }
+
+        public string OrganizacionFieldTrip
+        {
+            get => _OrganizacionFieldTrip;
+            set
+            {
+                if (_OrganizacionFieldTrip != value)
+                {
+                    _OrganizacionFieldTrip = value;
+                    OnPropertyChanged(nameof(OrganizacionFieldTrip));
                 }
             }
         }

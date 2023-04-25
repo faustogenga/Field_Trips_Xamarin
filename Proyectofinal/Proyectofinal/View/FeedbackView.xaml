@@ -13,18 +13,121 @@
                        HorizontalOptions="Center"
                        FontSize="25"
                        Text="Reseñas Giras ULACIT 2023"
-                        Padding="0,20,0,0"
+                       TextColor="#5e5ca8"
+                       Padding="0,2,0,0"
                    />
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Grid Padding="10" RowSpacing="10"
+                  BackgroundColor="#AFB4FF"
+                  Margin="10,00,10,0" 
+                  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+
+                <Picker x:Name="picker" Title="Seleccione una gira  &lt;-"
+                    ItemsSource="{Binding FieldTrips}"
+                    SelectedItem="{Binding SelectedFieldTrip, Mode=TwoWay}"
+                    TextColor="#5e5ca8"
+                    FontSize="15"
+                    FontAttributes="Bold"
+                    Grid.Column="0"
+                    />
+                <Button
+                    BackgroundColor="#665ca8"
+                    FontSize="15"
+                     CornerRadius="20"
+                     Text="All"
+                     TextColor="White"
+                     Command="{Binding AllCommand}"
+                    Grid.Column="1"
+                    />
+            </Grid>
+
+            <ListView x:Name="feedbackListView" 
+                      ItemsSource="{Binding Feedbacks}" 
+                      HasUnevenRows="True">
+
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                            <Label Text="Feedbacks"
+                                   TextColor="#665ca8"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   Margin="10,10,10,10"
+                                   />
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+
+                <ListView.FooterTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                            <Label Padding="20" Text="2023 © Univeridad Latinoamericana de Ciencia y Technologia." FontSize="10"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.FooterTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <SwipeView>
+                                <SwipeView.Content>
+                                    <Grid Padding="10" RowSpacing="10"
+                                          BackgroundColor="#AFB4FF"
+                                          Margin="15,15,15,0" 
+                                          >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <Label Text="Field Trip: " 
+                                               TextColor="#5e5ca8"
+                                               FontSize="20"
+                                               FontAttributes="Bold"
+                                               Grid.Row="0" Grid.Column="0"/>
+                                        <Label Text="{Binding OrganizacionFieldTrip}" Grid.Row="0" Grid.Column="1"
+                                               TextColor="#5e5ca8"
+                                               FontSize="18"
+                                               FontAttributes="Bold"/>
+
+                                        <Label Text="CodigoFieldTrip: " 
+                                               TextColor="White"
+                                               Grid.Row="1" Grid.Column="0"/>
+                                        <Label Text="{Binding CodigoFieldTrip}" Grid.Row="1" Grid.Column="1"
+                                               FontAttributes="Bold"
+                                               TextColor="White"/>
+                                        <Label Text="{Binding FeedbackInfo}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                                               Padding="10"
+                                               TextColor="White"
+                                               VerticalTextAlignment="Center"
+                                               FontSize="18"
+                                               FontAttributes="Bold"/>
+                                    </Grid>
+                                </SwipeView.Content>
+                            </SwipeView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
             <Button Text="Agregar comentario"
                 TextColor="White"
                 FontAttributes="Bold"
                 BackgroundColor="#5e5ca8"
                 CornerRadius="20"
-                Margin="10,30,10,0"
+                Margin="10,10,10,0"
                 Command="{Binding NewFeedbackCommand}"
             />
 
@@ -32,7 +135,7 @@
                         CornerRadius="20"
                         Text="Back"
                         TextColor="White"
-                       Margin="10,30,10,0"
+                       Margin="10,10,10,30"
                         Command="{Binding BackMainCommand}"
                     />
         </StackLayout>

@@ -129,10 +129,7 @@
                                                Grid.Row="9" Grid.Column="0"/>
                                             <Label Text="{Binding Link}" Grid.Row="9" Grid.Column="1"
                                                TextColor="White"/>
-
-                                            <Label Text="Lugar: " 
-                                               TextColor="White"
-                                               Grid.Row="10" Grid.Column="0"/>
+                                            
                                             <Image Source="{Binding ImgURL}" Grid.Row="10" Grid.Column="1"
                                                WidthRequest="150" HeightRequest="100"
                                                HorizontalOptions="Start"

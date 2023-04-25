@@ -8,11 +8,11 @@ namespace Proyectofinal.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FeedbackView : ContentPage
     {
-        private readonly AddFeedbackViewModel _viewModel;
+        private readonly FeedbackViewModel _viewModel;
         public FeedbackView(Usuario UserLogin)
         {
             InitializeComponent();
-            _viewModel = new AddFeedbackViewModel();
+            _viewModel = new FeedbackViewModel();
             _viewModel.User = UserLogin;
             BindingContext = _viewModel;
         }
