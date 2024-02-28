@@ -1,5 +1,5 @@
 # Field Trip App Xamarin
-## App to Register to College Field Trips develop in Xamarin Forms
+## App to Register to College Field Trips developed in Xamarin Forms
 
 ## Run in local Android Phone Simulator
 Developed an App project in Xamarin, presenting a prototype about the college fieldtrips program that requiered an asistance Trimesterly.
