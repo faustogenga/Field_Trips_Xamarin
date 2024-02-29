@@ -2,8 +2,7 @@
 ### App to Register to College Field Trips developed in Xamarin Forms
 
 ### Run in local Android Phone Simulator
-Developed a Mobile App project in Xamarin, presenting a prototype about the college fieldtrips program that requiered an asistance Trimesterly.
-Showcased proficiency in XAML and C# in frontend and backend integration, emphasizing dynamic functionalities and a user-friendly interfaces.
+Engineered a mobile app project in Xamarin, unveiling a prototype for the college field trips program that demanded trimesterly assistance. Demonstrated proficiency in XAML and C# for both frontend and backend integration, emphasizing dynamic functionalities and user-friendly interfaces.
 
 This project was made for Elective XAMARIN FORMS, ULACIT. \
 All resources are used for learning / school related purposes. \
