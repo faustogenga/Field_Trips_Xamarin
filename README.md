@@ -7,4 +7,4 @@ Engineered a mobile app project in Xamarin, unveiling a prototype for the colleg
 This project was made for Elective XAMARIN FORMS, ULACIT. \
 All resources are used for learning / school related purposes. \
 **`Owner`** : \
-Fausto Genga : *80 commits    27,617 ++    3,807 --* \
+Fausto Genga : 51 commits    70,425 ++    2,238 --
